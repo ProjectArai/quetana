@@ -6,7 +6,7 @@
 UserInfoBean userInfo = (UserInfoBean) session.getAttribute("userInfo");
 %>
 <div class="Header">
-	<div class="Logo">8tana</div>
+	<div class="Logo">Quetana</div>
 	<div id="nav-drawer">
 		<input id="nav-input" type="checkbox" class="nav-unshown">
 		<label id="nav-open" for="nav-input"><div class="Menu">≡</div></label>

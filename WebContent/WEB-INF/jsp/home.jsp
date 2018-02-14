@@ -33,11 +33,23 @@ timeLine = (TimeLineBean) arrTimeLine.get(1);
 				<tr><td align="center" bgcolor="#FFFFFF">
 					<br>
 						<%
-							for (int i = 0; i < 4; i++) {
-								
+							for (int cntTL = 0 ; cntTL < arrTimeLine.size() ; cntTL++) {
+								TimeLineBean recTL = new TimeLineBean();
+								recTL = (TimeLineBean) arrTimeLine.get(cntTL);
+								String idPost     = recTL.getIdPost();
+								String idUser     = recTL.getIdUser();
+								String stUserName = recTL.getStUserName();
+								String stTitle    = recTL.getStTitle();
+								String cfPost     = recTL.getCfPost();
+								out.println(idPost + ", " + idUser + ", " + stUserName + ", " + stTitle + ", " + cfPost + "<br>");
 							}
 						%>
 					<br>
+						<table>
+							<% for (TimeLineBean test : arrTimeLine){ %>
+								<p><%= test.getIdPost() %>, <%= test.getIdUser() %>, <%= test.getStUserName() %>, <%= test.getStTitle() %>, <%= test.getCfPost() %></p>
+							<% } %>
+						</table>
 				</td></tr>
 <tr><td align="center" bgcolor="#FFFFFF">
 <table id="post_tbl" border="1">

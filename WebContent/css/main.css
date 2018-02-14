@@ -10,15 +10,15 @@ a:hover{
 body {
   background: #eeeeee;
   font-family: Meiryo;
-  font-size:11px;
+  font-size:12px;
 }
 /*
  * ヘッダーの要素
  */
 .Logo{
   float: left;
-  padding: 5px 35px;
-  width: 80px;
+  padding: 5px 20px;
+  width: 110px;
   height: 40px;
   background-color: #696969;
   color: #FFFFFF;
