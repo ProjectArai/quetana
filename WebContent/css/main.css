@@ -1,0 +1,125 @@
+*{
+  margin:0;
+}
+a:link{
+  color: #1e90ff;
+}
+a:hover{
+  color: #fa8072";
+}
+body {
+  background: #eeeeee;
+  font-family: Meiryo;
+  font-size:11px;
+}
+/*
+ * ヘッダーの要素
+ */
+.Logo{
+  float: left;
+  padding: 5px 35px;
+  width: 80px;
+  height: 40px;
+  background-color: #696969;
+  color: #FFFFFF;
+  font-size: 20pt;
+}
+.Menu{
+  float:right;
+  padding:5px 15px;
+  width:20px;
+  height: 40px;
+  background-color: #696969;
+  color: #FFFFFF;
+  font-size:20pt;
+}
+.LoginUser{
+  float:right;
+  padding:10px;
+  width:100px;
+  height: 30px;
+  background-color: #0000FF;
+  overflow:hidden;
+}
+.Username{
+  float:right;
+  padding:7px 0px;
+  width:70px;
+  height:16px;
+  background-color: #FF0000;
+  text-align: center;
+}
+.Icon{
+  float:right;
+  width:30px;
+  height: 30px;
+  background-color: #00FF00;
+}
+.Header {
+  position:fixed;
+  width: 100%;                /* ヘッダーの横幅を指定する */
+  height: 50px;               /* ヘッダーの高さを指定する */
+  background-color: #fa8072;  /* ヘッダーの背景色を指定する */
+  color: #000000;             /* フォントの色を指定する */
+}
+.HiddenHeader{
+  overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
+  width: 100%;    /* コンテンツの横幅を指定する */
+  height: 100px;               /* ヘッダーの高さを指定する */
+  background: #000000;
+}
+.menubutton{
+  padding:10px 0px;
+  text-align: center;
+  width: 250px;
+  height: 30px;
+  background-color: #00FF00;  /* ヘッダーの背景色を指定する */
+  color: #000000;
+  font-size:14pt;
+}
+
+/*
+ * コンテンツの要素
+ */
+.Contents {
+  width: 95%;    /* コンテンツの横幅を指定する */
+  overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
+  align: center;
+  background: #ffffff;
+  text-align: center;
+  margin: auto;
+}
+table#main_tbl {
+  border-style: none;
+  width:360px;
+  margin-left:auto;
+  margin-right:auto;
+  background-color: #fa8072;
+}
+table#post_tbl {
+  width:350px;
+  margin-left:auto;
+  margin-right:auto;
+}
+ul li {
+  list-style: none;
+  margin-top: 5px;
+}
+ul li.login {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+input[type=text]{
+  width:250px;
+  height:25px;
+}
+input#submit_btn {
+  width: 115px;
+  height: 20px;
+  background-color: #fa8072;
+  color: #ffffff;
+  border-style: none;
+}
+input#submit_btn:hover {
+  background: #ffa07a;
+}

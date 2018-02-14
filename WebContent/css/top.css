@@ -1,0 +1,59 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+a:link{
+  color: #1e90ff;
+}
+a:hover{
+  color: #fa8072";
+}
+body {
+  background: #eeeeee;
+  font-family: Meiryo;
+  font-size:12px;
+}
+.Header {
+  position:fixed;
+  width: 100%;                /* ヘッダーの横幅を指定する */
+  height: 45px;               /* ヘッダーの高さを指定する */
+  background-color: #fa8072;  /* ヘッダーの背景色を指定する */
+  color: #000000;             /* フォントの色を指定する */
+}
+.Contents {
+  width: 100%;    /* コンテンツの横幅を指定する */
+  overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
+}
+div#main_div {
+  background: #ffffff;
+  width: 100%;
+  text-align: center;
+}
+table#main_tbl {
+  border-style: none;
+  align:center;
+  width:100%;
+}
+ul li {
+  list-style: none;
+  margin-top: 5px;
+}
+ul li.login {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+input[type=text]{
+  width:250px;
+  height:25px;
+}
+input#submit_btn {
+  width: 150px;
+  height: 35px;
+  background-color: #444444;
+  color: #ffffff;
+  border-style: none;
+  border-radius: 5px 5px 5px 5px;
+}
+input#submit_btn:hover {
+    background: #fa8072;
+}
