@@ -1,125 +1,167 @@
 *{
-  margin:0;
+	margin:0;
 }
 a:link{
-  color: #1e90ff;
-}
-a:hover{
-  color: #fa8072";
+	color: #1e90ff;
 }
 body {
-  background: #eeeeee;
-  font-family: Meiryo;
-  font-size:12px;
+	background: #eeeeee;
+	font-family: Hiragino Kaku Gothic ProN;
+	font-size:16px;
 }
 /*
  * ヘッダーの要素
  */
-.Logo{
-  float: left;
-  padding: 5px 20px;
-  width: 110px;
-  height: 40px;
-  background-color: #696969;
-  color: #FFFFFF;
-  font-size: 20pt;
+div#Logo{
+	float: left;
+	padding: 5px 15px;
+	width: 120px;
+	height: 40px;
+	background-color: #696969;
+	color: #FFFFFF;
+	font-size: 28px;
 }
-.Menu{
-  float:right;
-  padding:5px 15px;
-  width:20px;
-  height: 40px;
-  background-color: #696969;
-  color: #FFFFFF;
-  font-size:20pt;
+div#MenuButton{
+	float:right;
+	padding:5px 15px;
+	width:20px;
+	height: 40px;
+	background-color: #696969;
+	color: #FFFFFF;
+	font-size:28px;
 }
-.LoginUser{
-  float:right;
-  padding:10px;
-  width:100px;
-  height: 30px;
-  background-color: #0000FF;
-  overflow:hidden;
+div#LoginUser{
+	float:right;
+	padding:10px;
+	width:100px;
+	height: 30px;
+	background-color: #0000FF;
+	overflow:hidden;
+	font-size:11px;
 }
-.Username{
-  float:right;
-  padding:7px 0px;
-  width:70px;
-  height:16px;
-  background-color: #FF0000;
-  text-align: center;
+div#UserName{
+	float:right;
+	padding:7px 0px;
+	width:70px;
+	height:16px;
+	background-color: #FF0000;
+	text-align: center;
+	font-size:11px;
 }
-.Icon{
-  float:right;
-  width:30px;
-  height: 30px;
-  background-color: #00FF00;
+div#Icon{
+	float:right;
+	width:30px;
+	height: 30px;
+	background-color: #00FF00;
 }
-.Header {
-  position:fixed;
-  width: 100%;                /* ヘッダーの横幅を指定する */
-  height: 50px;               /* ヘッダーの高さを指定する */
-  background-color: #fa8072;  /* ヘッダーの背景色を指定する */
-  color: #000000;             /* フォントの色を指定する */
+div#Header {
+	position:fixed;
+	width: 100%;                /* ヘッダーの横幅を指定する */
+	height: 50px;               /* ヘッダーの高さを指定する */
+	background-color: #fa8072;  /* ヘッダーの背景色を指定する */
+	color: #000000;             /* フォントの色を指定する */
 }
-.HiddenHeader{
-  overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
-  width: 100%;    /* コンテンツの横幅を指定する */
-  height: 100px;               /* ヘッダーの高さを指定する */
-  background: #000000;
-}
-.menubutton{
-  padding:10px 0px;
-  text-align: center;
-  width: 250px;
-  height: 30px;
-  background-color: #00FF00;  /* ヘッダーの背景色を指定する */
-  color: #000000;
-  font-size:14pt;
+div#MenuContents{
+	padding:10px 0px;
+	width: 250px;
+	height: 30px;
+	background-color: #00FF00;  /* ヘッダーの背景色を指定する */
+	text-align: center;
+	color: #000000;
+	font-size:18px;
 }
 
 /*
  * コンテンツの要素
  */
-.Contents {
-  width: 95%;    /* コンテンツの横幅を指定する */
-  overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
-  align: center;
-  background: #ffffff;
-  text-align: center;
-  margin: auto;
+div#ContentsHeader{
+	overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
+	width: 100%;    /* コンテンツの横幅を指定する */
+	height: 100px;               /* ヘッダーの高さを指定する */
+	background: #000000;
 }
+div#Contents {
+	overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
+	width: 95%;
+	align: center;
+	background: #ffffff;
+	margin: auto;
+}
+/*
+ * タイムラインの要素
+ */
+div#TLTable {
+	margin:5px auto;
+	padding:3px;
+	width: 300px;
+	height: 300px;
+	background: #ffffff;
+	border-style: none;
+	border-radius: 5px;
+}
+div#TLIcon {
+	margin:1px;
+	float:left;
+	width: 58px;
+	height: 58px;
+	background: #AAAAAA;
+}
+div#TLUserName {
+	margin:1px;
+	float:left;
+	width: 238px;
+	height: 28px;
+	background: #AA0000;
+}
+div#TLType {
+	margin:1px;
+	float:left;
+	width: 238px;
+	height: 28px;
+	background: #00AA00;
+}
+div#TLTitle {
+	margin:1px;
+	float:left;
+	width: 298px;
+	height: 60px;
+	background: #00AA00;
+}
+
+/*
+ * その他検討中
+ */
 table#main_tbl {
-  border-style: none;
-  width:360px;
-  margin-left:auto;
-  margin-right:auto;
-  background-color: #fa8072;
+	border-style: none;
+	width:360px;
+	margin-left:auto;
+	margin-right:auto;
+	background-color: #fa8072;
 }
 table#post_tbl {
-  width:350px;
-  margin-left:auto;
-  margin-right:auto;
+	width:350px;
+	margin-left:auto;
+	margin-right:auto;
 }
 ul li {
-  list-style: none;
-  margin-top: 5px;
+	list-style: none;
+	margin-top: 5px;
 }
 ul li.login {
-  margin-top: 30px;
-  margin-bottom: 30px;
+	margin-top: 30px;
+	margin-bottom: 30px;
 }
 input[type=text]{
-  width:250px;
-  height:25px;
+	width:250px;
+	height:25px;
 }
 input#submit_btn {
-  width: 115px;
-  height: 20px;
-  background-color: #fa8072;
-  color: #ffffff;
-  border-style: none;
+	width: 115px;
+	height: 20px;
+	background-color: #fa8072;
+	color: #ffffff;
+	border-style: none;
 }
 input#submit_btn:hover {
-  background: #ffa07a;
+	background: #ffa07a;
 }
