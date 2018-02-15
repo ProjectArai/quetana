@@ -34,9 +34,13 @@ public class CreateAccountServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 
-		// アカウント作成画面に遷移
+		// セッションにユーザ情報がない場合
+		// createAccount.jspにフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/createAccount.jsp");
 		dispatcher.forward(request, response);
+
+		// セッションにユーザ情報がある場合
+		// ●/Homeにリダイレクトする●
 	}
 
 	/**
@@ -55,16 +59,18 @@ public class CreateAccountServlet extends HttpServlet {
 		//CreateAccountLogicクラスのcreateAccoutメソッドを実行し、戻り値をもとにuserInfoBeanインスタンスを生成
 		UserInfoBean userInfoBean = CreateAccountLogic.createAccount(stUserName, stMailAddress, stPassword);
 
-		//ログイン判定（ユーザIDが空の場合はエラー）
+		// ●アカウント作成成功・失敗判定●
 		if(userInfoBean.getIdUser().equals("")) {
 
-			//ログイン画面にエラーメッセージを表示
+			// アカウント作成に失敗した場合
+			// creacteAccount.jspにフォワードする●
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 			dispatcher.forward(request, response);
 
 		} else {
 
-			//ログイン画面にアカウントが作成された旨を表示
+			// アカウント作成に成功した場合
+			// /Homeにリダイレクトする●
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 			dispatcher.forward(request, response);
 

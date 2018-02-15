@@ -35,9 +35,13 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 
-		// ログイン画面に遷移
+		// セッションにユーザ情報がない場合
+		// login.jspにフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 		dispatcher.forward(request, response);
+
+		// セッションにユーザ情報がある場合
+		//●ホーム画面にリダイレクト●
 	}
 
 	/**
@@ -56,20 +60,20 @@ public class LoginServlet extends HttpServlet {
 		//ログイン判定（ユーザIDが空の場合はエラー）
 		if(loginUserInfo.getIdUser().equals("")) {
 
-			//ログイン画面にエラーメッセージを表示
+			// ログインに失敗した場合
+			// login.jspにフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/");
 			dispatcher.forward(request, response);
 
 		} else {
 
+			// ログインに成功した場合
 			//ユーザ情報をセッションスコープに保存
 			HttpSession session = request.getSession();
 			session.setAttribute("userInfo", loginUserInfo);
 
-			//ホーム画面に遷移
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/Home");
-			dispatcher.forward(request, response);
-
+			// /Homeにリダイレクト
+			response.sendRedirect("/quetana/Home");
 		}
 	}
 }

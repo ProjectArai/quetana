@@ -21,11 +21,18 @@ public class T_USER_INFO_DAO {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost/mysql", "root", "mon202");
 
 			// INSERT文を準備
-			String sql = "INSERT INTO mysql.T_USER_INFO VALUES('" + idUser + "', '" + stUserName + "', '" + stMailAddress + "', '" + stPassword + "', '" + stIconURL + "', false, now(), now());";
+			String sql = "INSERT INTO mysql.T_USER_INFO VALUES('" + 
+							idUser + "', '" + 
+							stUserName + "', '" + 
+							stMailAddress + "', '" + 
+							stPassword + "', '" + 
+							stIconURL + 
+							"', false, now(), now());";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// INSERTを実行
 			pStmt.executeQuery();
+			
 		} catch(SQLException e) {
 			e.printStackTrace();
 			return null;

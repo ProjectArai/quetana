@@ -31,7 +31,18 @@ public class HomeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		// セッションにユーザ情報がない場合
+		// ●/Loginにリダイレクトする●
+
+		// セッションにユーザ情報がある場合
+		//タイムラインを取得し、リクエストスコープに保存
+		request.setAttribute("arrTimeLine", ViewTimeLine.getTimeLineList());
+
+		// home.jspにフォワード
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/home.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	/**
@@ -39,12 +50,7 @@ public class HomeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//タイムラインを取得し、リクエストスコープに保存
-		request.setAttribute("arrTimeLine", ViewTimeLine.getTimeLineList());
 
-		//ホーム画面に遷移
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/home.jsp");
-		dispatcher.forward(request, response);
 	}
 
 }

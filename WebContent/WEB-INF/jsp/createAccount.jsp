@@ -33,6 +33,7 @@
 				}
 			}
 			</script>
+			// /Loginにリダイレクト
 			<a href="<%=request.getContextPath()%>/Login">キャンセル</a>
 		</div>
 	</body>
