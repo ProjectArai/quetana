@@ -15,11 +15,11 @@
 		<div class="ContentsA">
 			<font size="6" >Quetana</font><font size="4" >&nbsp;にログイン</font>
 			<form action="/quetana/Login" method="post">
-				<input type="text" name="stLoginUser" maxlength="128" placeholder="ユーザ名 または メールアドレス"><br>
+				<input type="text" name="stLoginName" maxlength="128" placeholder="ユーザ名 または メールアドレス"><br>
 				<input type="text" name="stPassword" maxlength="16" placeholder="パスワード"><br>
 				<input id="submit_btn" type="submit" id="button" name="login" size="10" value="ログイン">
 			</form>
-			<a href="createaccount.jsp">アカウント作成はこちら</a>
+			<a href="<%=request.getContextPath()%>/CreateAccount">アカウント作成はこちら</a>
 		</div>
 	</body>
 </html>
