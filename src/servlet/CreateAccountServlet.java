@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.CreateAccountLogic;
+import model.UserInfoBean;
+
 /**
  * Servlet implementation class CreateAccountServlet
  */
@@ -48,6 +51,24 @@ public class CreateAccountServlet extends HttpServlet {
 		String stUserName = request.getParameter("stUserName");
 		String stMailAddress = request.getParameter("stMailAddress");
 		String stPassword = request.getParameter("stPassword");
+
+		//CreateAccountLogicクラスのcreateAccoutメソッドを実行し、戻り値をもとにuserInfoBeanインスタンスを生成
+		UserInfoBean userInfoBean = CreateAccountLogic.createAccount(stUserName, stMailAddress, stPassword);
+
+		//ログイン判定（ユーザIDが空の場合はエラー）
+		if(userInfoBean.getIdUser().equals("")) {
+
+			//ログイン画面にエラーメッセージを表示
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+			dispatcher.forward(request, response);
+
+		} else {
+
+			//ログイン画面にアカウントが作成された旨を表示
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+			dispatcher.forward(request, response);
+
+		}
 	}
 
 }

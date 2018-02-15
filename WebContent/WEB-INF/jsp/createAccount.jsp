@@ -25,13 +25,13 @@
 			<script>
 			// パスワードの一致確認
 			function checkPassword() {
-					if(f1.stPassword.value != f1.stConfirmPassword.value) {
-						alert("パスワードと確認用パスワードが一致しません");
-						return false;
-					} else {
-						return true;
-					}
+				if(f1.stPassword.value != f1.stConfirmPassword.value) {
+					alert("パスワードと確認用パスワードが一致しません");
+					return false;
+				} else {
+					return true;
 				}
+			}
 			</script>
 			<a href="<%=request.getContextPath()%>/Login">キャンセル</a>
 		</div>
