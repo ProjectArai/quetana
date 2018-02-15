@@ -9,12 +9,12 @@
 		<link rel="stylesheet" type="text/css" href="/quetana/css/top.css">
 	</head>
 	<body>
-		<div class="Header">
-			<div class="HeaderLogo">Quetana</div>
+		<div id="Header">
+			<div id="HeaderLogo">Quetana</div>
 		</div>
-		<div class="ContentsA">
-			<font size="6" >Quetana</font><font size="4" >&nbsp;のアカウントを作成</font>
-
+		<div id="ContentsHeader"></div>
+		<div id="Contents">
+			<font id="Quetana">Quetana</font><font id="ToDo">&nbsp;のアカウントを作成</font>
 			<form name="f1" action="/quetana/CreateAccount" method="post" onsubmit="return checkPassword()">
 				<input type="text" name="stUserName" maxlength="8" placeholder="ユーザ名" required><br>
 				<input type="text" name="stMailAddress" maxlength="128" placeholder="メールアドレス" required><br>
@@ -23,14 +23,14 @@
 				<input id="submit_btn" type="submit" id="button" name="createAccount" size="10" value="アカウント作成">
 			</form>
 			<script>
-		    // パスワードの一致確認
-		    function checkPassword() {
-		    		if(f1.stPassword.value != f1.stConfirmPassword.value) {
-		    			alert("パスワードと確認用パスワードが一致しません");
+			// パスワードの一致確認
+			function checkPassword() {
+					if(f1.stPassword.value != f1.stConfirmPassword.value) {
+						alert("パスワードと確認用パスワードが一致しません");
 						return false;
-		    		} else {
-		    			return true;
-		    		}
+					} else {
+						return true;
+					}
 				}
 			</script>
 			<a href="<%=request.getContextPath()%>/Login">キャンセル</a>
