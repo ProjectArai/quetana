@@ -31,12 +31,15 @@ div#MenuButton{
 	font-size:28px;
 }
 div#LoginUser{
+	overflow:hidden;
 	float:right;
-	padding:10px;
+	margin:5px;
+	padding:5px;
 	width:100px;
 	height: 30px;
-	background-color: #0000FF;
-	overflow:hidden;
+	background-color: #fa8072;
+	border-style: none;
+	border-radius: 5px;
 	font-size:11px;
 }
 div#UserName{
@@ -44,28 +47,29 @@ div#UserName{
 	padding:7px 0px;
 	width:70px;
 	height:16px;
-	background-color: #FF0000;
+	background-color: #fa8072;
 	text-align: center;
+	color: #ffffff;
 	font-size:11px;
 }
 div#Icon{
 	float:right;
 	width:30px;
 	height: 30px;
-	background-color: #00FF00;
+	background-color: #fa8072;
 }
 div#Header {
 	position:fixed;
 	width: 100%;                /* ヘッダーの横幅を指定する */
 	height: 50px;               /* ヘッダーの高さを指定する */
-	background-color: #fa8072;  /* ヘッダーの背景色を指定する */
+	background-color: #696969;  /* ヘッダーの背景色を指定する */
 	color: #000000;             /* フォントの色を指定する */
 }
 div#MenuContents{
 	padding:10px 0px;
 	width: 250px;
 	height: 30px;
-	background-color: #00FF00;  /* ヘッダーの背景色を指定する */
+	background-color: #fa8072;  /* ヘッダーの背景色を指定する */
 	text-align: center;
 	color: #000000;
 	font-size:18px;
@@ -77,12 +81,12 @@ div#MenuContents{
 div#ContentsHeader{
 	overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
 	width: 100%;    /* コンテンツの横幅を指定する */
-	height: 100px;               /* ヘッダーの高さを指定する */
-	background: #000000;
+	height: 50px;               /* ヘッダーの高さを指定する */
+	background: #eeeeee;
 }
 div#Contents {
 	overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
-	width: 95%;
+	width: 100%;
 	align: center;
 	background: #ffffff;
 	margin: auto;
@@ -90,42 +94,74 @@ div#Contents {
 /*
  * タイムラインの要素
  */
-div#TLTable {
-	margin:5px auto;
+div#TimeLine {
+	overflow:hidden;
+	margin:10px auto;
 	padding:3px;
 	width: 300px;
-	height: 300px;
-	background: #ffffff;
+	background: #fa8072;
 	border-style: none;
 	border-radius: 5px;
 }
+div#TLHeader {
+	padding:5px;
+	width: 290px;
+	height: 30px;
+	background: #fa8072;
+	font-size: 20px;
+	color: #ffffff;
+}
+div#TLMenu {
+	width: 300px;
+	height: 30px;
+	background: #fa8072;
+}
+div#TLMenuTab {
+	float:left;
+	padding:5px;
+	width: 90px;
+	height: 20px;
+	background: #fa8072;
+	text-align: center;
+	font-size: 14px;
+	border-radius: 5px 5px 0px 0px;
+	color: #ffffff;
+}
+div#TLContents {
+	padding:3px;
+	width: 294px;
+	background: #ffa07a;
+}
+div#TLTable {
+	overflow:hidden;
+	padding:3px;
+	width: 288px;
+	background: #696969;
+	border-style: none;
+	border-radius: 5px;
+	font-size: 14px;
+	}
 div#TLIcon {
-	margin:1px;
 	float:left;
-	width: 58px;
-	height: 58px;
-	background: #AAAAAA;
+	margin:2px;
+	width: 56px;
+	height: 56px;
+	background: #ffffff;
 }
-div#TLUserName {
-	margin:1px;
+div#TLUserName, #TLType {
 	float:left;
-	width: 238px;
-	height: 28px;
-	background: #AA0000;
+	margin:2px;
+	padding:3px;
+	width: 218px;
+	height: 20px;
+	background: #ffffff;
 }
-div#TLType {
-	margin:1px;
+div#TLTitle, #TLComment {
 	float:left;
-	width: 238px;
-	height: 28px;
-	background: #00AA00;
-}
-div#TLTitle {
-	margin:1px;
-	float:left;
-	width: 298px;
-	height: 60px;
-	background: #00AA00;
+	margin:2px;
+	padding:3px;
+	width: 278px;
+	background: #ffffff;
 }
 
 /*
@@ -133,35 +169,8 @@ div#TLTitle {
  */
 table#main_tbl {
 	border-style: none;
-	width:360px;
+	width:320px;
 	margin-left:auto;
 	margin-right:auto;
 	background-color: #fa8072;
-}
-table#post_tbl {
-	width:350px;
-	margin-left:auto;
-	margin-right:auto;
-}
-ul li {
-	list-style: none;
-	margin-top: 5px;
-}
-ul li.login {
-	margin-top: 30px;
-	margin-bottom: 30px;
-}
-input[type=text]{
-	width:250px;
-	height:25px;
-}
-input#submit_btn {
-	width: 115px;
-	height: 20px;
-	background-color: #fa8072;
-	color: #ffffff;
-	border-style: none;
-}
-input#submit_btn:hover {
-	background: #ffa07a;
 }
