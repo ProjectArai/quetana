@@ -20,7 +20,8 @@ timeLine = (TimeLineBean) arrTimeLine.get(1);
 	</head>
 	<body>
 		<jsp:include page="../jsp/parts/mainheader.jsp" flush="true" />
-		<div class="Contents" id="main_div">
+		<div id="ContentsHeader"></div>
+		<div id="Contents">
 			<table id="main_tbl" border="1">
 				<tr><td align="left">
 					<font color="#FFFFFF" size="3">タイムライン</font>
@@ -50,6 +51,14 @@ timeLine = (TimeLineBean) arrTimeLine.get(1);
 								<p><%= test.getIdPost() %>, <%= test.getIdUser() %>, <%= test.getStUserName() %>, <%= test.getStTitle() %>, <%= test.getCfPost() %></p>
 							<% } %>
 						</table>
+				</td></tr>
+				<tr><td>
+					<div id="TLTable">
+						<div id="TLIcon"><img src="<%= userInfo.getStIconURL() %>" width="50" height="50"></div>
+						<div id="TLUserName"><%= timeLine.getStUserName() %></div>
+						<div id="TLType">ライブ/イベント</div>
+						<div id="TLTitle">１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２</div>
+					</div>
 				</td></tr>
 <tr><td align="center" bgcolor="#FFFFFF">
 <table id="post_tbl" border="1">
