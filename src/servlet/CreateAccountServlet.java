@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.CreateAccountLogic;
-import model.UserInfoBean;
 
 /**
  * Servlet implementation class CreateAccountServlet
@@ -57,10 +56,10 @@ public class CreateAccountServlet extends HttpServlet {
 		String stPassword = request.getParameter("stPassword");
 
 		//CreateAccountLogicクラスのcreateAccoutメソッドを実行し、戻り値をもとにuserInfoBeanインスタンスを生成
-		UserInfoBean userInfoBean = CreateAccountLogic.createAccount(stUserName, stMailAddress, stPassword);
+		Boolean isCreateAccount = CreateAccountLogic.createAccount(stUserName, stMailAddress, stPassword);
 
-		// ●アカウント作成成功・失敗判定●
-		if(userInfoBean.getIdUser().equals("")) {
+		// if文でCreateAccountLogicの戻り値(ture or false)で判定
+		if(isCreateAccount == null) {
 
 			// アカウント作成に失敗した場合
 			// creacteAccount.jspにフォワードする●
@@ -70,9 +69,7 @@ public class CreateAccountServlet extends HttpServlet {
 		} else {
 
 			// アカウント作成に成功した場合
-			// /Homeにリダイレクトする●
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
-			dispatcher.forward(request, response);
+			// LoginServletのdoPost()を実行
 
 		}
 	}

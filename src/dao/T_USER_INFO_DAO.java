@@ -6,11 +6,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-import model.UserInfoBean;
-
 
 public class T_USER_INFO_DAO {
-	public UserInfoBean insertUserInfo(String idUser, String stUserName, String stMailAddress, String stPassword, String stIconURL) {
+	public int insertUserInfo(String idUser, String stUserName, String stMailAddress, String stPassword, String stIconURL) {
+		int rowsInsert = 0;
 		Connection conn = null;
 
 		try {
@@ -21,24 +20,24 @@ public class T_USER_INFO_DAO {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost/mysql", "root", "mon202");
 
 			// INSERT文を準備
-			String sql = "INSERT INTO mysql.T_USER_INFO VALUES('" + 
-							idUser + "', '" + 
-							stUserName + "', '" + 
-							stMailAddress + "', '" + 
-							stPassword + "', '" + 
-							stIconURL + 
+			String sql = "INSERT INTO mysql.T_USER_INFO VALUES('" +
+							idUser + "', '" +
+							stUserName + "', '" +
+							stMailAddress + "', '" +
+							stPassword + "', '" +
+							stIconURL +
 							"', false, now(), now());";
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
-			// INSERTを実行
-			pStmt.executeQuery();
-			
+			// INSERTを実行し、実行結果をrowInsertに格納
+			rowsInsert = pStmt.executeUpdate();
+
 		} catch(SQLException e) {
 			e.printStackTrace();
-			return null;
+			return 0;
 		} catch(ClassNotFoundException e) {
 			e.printStackTrace();
-			return null;
+			return 0;
 		} finally {
 			// DB切断
 			if(conn != null) {
@@ -46,11 +45,10 @@ public class T_USER_INFO_DAO {
 					conn.close();
 				} catch(SQLException e) {
 					e.printStackTrace();
-					return null;
+					return 0;
 				}
 			}
 		}
-		UserInfoBean userInfoBean = new UserInfoBean(idUser, stUserName, stMailAddress, stPassword, stIconURL);
-		return userInfoBean;
+		return rowsInsert;
 	}
 }
