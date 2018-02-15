@@ -59,17 +59,19 @@ public class CreateAccountServlet extends HttpServlet {
 		Boolean isCreateAccount = CreateAccountLogic.createAccount(stUserName, stMailAddress, stPassword);
 
 		// if文でCreateAccountLogicの戻り値(ture or false)で判定
-		if(isCreateAccount == null) {
+		if(isCreateAccount) {
+
+			// アカウント作成に成功した場合
+			// LoginServletの
+			RequestDispatcher dispatch = request.getRequestDispatcher("/quetana/Login");
+			dispatch.include(request, response);
+
+		} else {
 
 			// アカウント作成に失敗した場合
 			// creacteAccount.jspにフォワードする●
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 			dispatcher.forward(request, response);
-
-		} else {
-
-			// アカウント作成に成功した場合
-			// LoginServletのdoPost()を実行
 
 		}
 	}
