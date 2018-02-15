@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 
 		// ログイン画面に遷移
-		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/jsp/login.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 		dispatcher.forward(request, response);
 	}
 
