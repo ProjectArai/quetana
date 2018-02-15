@@ -18,7 +18,7 @@
 			<form action="/quetana/Login" method="post">
 				<input type="text" name="stLoginUser" maxlength="128" placeholder="ユーザ名 または メールアドレス" value="r-zoon"><br>
 				<input type="text" name="stPassword" maxlength="16" placeholder="パスワード" value="ryota1229"><br>
-				<input id="submit_btn" type="submit" id="button" name="login" value="ログイン">
+				<input id="submit_btn" type="submit" name="login" value="ログイン">
 			</form>
 			<a href="<%=request.getContextPath()%>/CreateAccount">アカウント作成はこちら</a>
 		</div>

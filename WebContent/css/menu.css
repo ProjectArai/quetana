@@ -1,12 +1,12 @@
-#nav-drawer {
-	position: relative;
-}
-
 /*チェックボックス等は非表示に*/
 .nav-unshown {
 	display:none;
 }
 
+/*ハンバーガーメニュー領域*/
+#nav-drawer {
+	position: relative;
+}
 /*閉じる用の薄黒カバー*/
 #nav-close {
 	display: none;/*はじめは隠しておく*/
@@ -20,7 +20,6 @@
 	opacity: 0;
 	transition: .3s ease-in-out;
 }
-
 /*中身*/
 #nav-content {
 	overflow: auto;
@@ -35,15 +34,24 @@
 	-webkit-transform: translateX(105%);
 	transform: translateX(105%);/*左に隠しておく*/
 }
-
 /*チェックが入ったらもろもろ表示*/
 #nav-input:checked ~ #nav-close {
 	display: block;/*カバーを表示*/
 	opacity: .5;
 }
-
 #nav-input:checked ~ #nav-content {
 	-webkit-transform: translateX(0%);
 	transform: translateX(0%);/*中身を表示（左へスライド）*/
 	box-shadow: 6px 0 25px rgba(0,0,10,10);
+}
+
+/*TLメニュータブ*/
+input#RadioAll:checked ~ div#TLMenuTab{
+	background: #ffa07a;
+}
+input#RadioEvent:checked ~ div#TLMenuTab{
+	background: #ffa07a;
+}
+input#RadioMember:checked ~ div#TLMenuTab{
+	background: #ffa07a;
 }
