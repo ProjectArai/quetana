@@ -26,6 +26,7 @@ a:active {
 	color: #fa8072;
 }
 
+
 /*
  * ヘッダーの要素
  */
@@ -67,6 +68,10 @@ font#Quetana {
 }
 font#ToDo {
 	font-size: 20px;
+}
+font#ErrorMsg {
+	font-size: 20px;
+	color: #ff0000;
 }
 input[type=text]{
 	width:250px;

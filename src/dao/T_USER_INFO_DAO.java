@@ -17,16 +17,22 @@ public class T_USER_INFO_DAO {
 			Class.forName("org.mariadb.jdbc.Driver");
 
 			// DBへ接続
-			conn = DriverManager.getConnection("jdbc:mariadb://localhost/mysql", "root", "mon202");
+			conn = DriverManager.getConnection("jdbc:mariadb://localhost/quetana_dev", "root", "mon202");
 
 			// INSERT文を準備
-			String sql = "INSERT INTO mysql.T_USER_INFO VALUES('" +
-							idUser + "', '" +
-							stUserName + "', '" +
-							stMailAddress + "', '" +
-							stPassword + "', '" +
-							stIconURL +
-							"', false, now(), now());";
+			String sql =
+				"INSERT INTO T_USER_INFO (STUSERNAME, STPASSWORD, STMAILADDRESS, STICONURL, CFDELETE, DTUPDATE, DTRESIST) "
+					+ "VALUES ("
+						+ "'" + stUserName + "', "
+						+ "'" + stPassword + "', "
+						+ "'" + stMailAddress + "', "
+						+ "'" + stIconURL + "', "
+						+" false, "
+						+ "now(), "
+						+ "now()"
+					+ ");"
+				;
+
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
 			// INSERTを実行し、実行結果をrowInsertに格納

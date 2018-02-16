@@ -80,8 +80,8 @@ public class CreateAccountServlet extends HttpServlet {
 
 			// 失敗した場合
 			// creacteAccount.jspにフォワードする
-			String createErrorMsg = "アカウントの作成に失敗しました";
-			request.setAttribute("createErrorMsg", createErrorMsg);
+			String errorMsg = "アカウントの作成に失敗しました";
+			request.setAttribute("errorMsg", errorMsg);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/createAccount.jsp");
 			dispatcher.forward(request, response);
 
