@@ -8,8 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.CreateAccountLogic;
+import model.UserInfoBean;
+
 
 /**
  * Servlet implementation class CreateAccountServlet
@@ -33,13 +36,21 @@ public class CreateAccountServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 
-		// セッションにユーザ情報がない場合
-		// createAccount.jspにフォワード
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/createAccount.jsp");
-		dispatcher.forward(request, response);
+		// セッションスコープからインスタンスを取得
+		HttpSession session = request.getSession();
+		UserInfoBean userInfo = (UserInfoBean)session.getAttribute("userInfo");
 
-		// セッションにユーザ情報がある場合
-		// ●/Homeにリダイレクトする●
+		// 条件分岐：セッションスコープにインスタンスがない/ある
+		if(userInfo == null) {
+			// ない場合
+			// createAccount.jspにフォワードする
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/createAccount.jsp");
+			dispatcher.forward(request, response);
+		} else {
+			// ある場合
+			// /Homeにリダイレクトする
+			response.sendRedirect("/quetana/Home");
+		}
 	}
 
 	/**
@@ -58,19 +69,20 @@ public class CreateAccountServlet extends HttpServlet {
 		//CreateAccountLogicクラスのcreateAccoutメソッドを実行し、戻り値をもとにuserInfoBeanインスタンスを生成
 		Boolean isCreateAccount = CreateAccountLogic.createAccount(stUserName, stMailAddress, stPassword);
 
-		// if文でCreateAccountLogicの戻り値(ture or false)で判定
+		// 条件分岐：アカウント作成の成功/失敗
 		if(isCreateAccount) {
 
-			// アカウント作成に成功した場合
-			// LoginServletの
-			RequestDispatcher dispatch = request.getRequestDispatcher("/quetana/Login");
-			dispatch.include(request, response);
+			// 成功した場合
+			// /Loginにリダイレクトする
+			response.sendRedirect("/quetana/Login");
 
 		} else {
 
-			// アカウント作成に失敗した場合
-			// creacteAccount.jspにフォワードする●
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+			// 失敗した場合
+			// creacteAccount.jspにフォワードする
+			String createErrorMsg = "アカウントの作成に失敗しました";
+			request.setAttribute("createErrorMsg", createErrorMsg);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/createAccount.jsp");
 			dispatcher.forward(request, response);
 
 		}
