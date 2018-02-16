@@ -1,4 +1,4 @@
-package servlet;
+package servlet.contents;
 
 import java.io.IOException;
 
@@ -14,7 +14,7 @@ import model.ViewTimeLine;
 /**
  * Servlet implementation class HomeServlet
  */
-@WebServlet("/Home")
+@WebServlet("/Contents/Home")
 public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -34,6 +34,7 @@ public class HomeServlet extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 
 		// セッションにユーザ情報がない場合
+		// 認証フィルタのおかげでいらなくなったっぽい？
 		// ●/Loginにリダイレクトする●
 
 		// セッションにユーザ情報がある場合
@@ -49,7 +50,7 @@ public class HomeServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		// Postすることは今のところないのである
 
 	}
 

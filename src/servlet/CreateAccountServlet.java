@@ -49,7 +49,7 @@ public class CreateAccountServlet extends HttpServlet {
 		} else {
 			// ある場合
 			// /Homeにリダイレクトする
-			response.sendRedirect("/quetana/Home");
+			response.sendRedirect("/quetana/Contents/Home");
 		}
 	}
 

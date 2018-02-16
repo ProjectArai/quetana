@@ -35,13 +35,19 @@ public class LoginServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		// response.getWriter().append("Served at: ").append(request.getContextPath());
 
-		// セッションにユーザ情報がない場合
-		// login.jspにフォワード
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
-		dispatcher.forward(request, response);
+		// セッションスコープからインスタンスを取得
+		HttpSession session = request.getSession();
+		UserInfoBean userInfo = (UserInfoBean)session.getAttribute("userInfo");
 
-		// セッションにユーザ情報がある場合
-		//●ホーム画面にリダイレクト●
+		// セッション上のログイン情報の有無を判定
+		if(userInfo == null) {
+			// ログイン情報がない場合、login.jspにフォワード
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+			dispatcher.forward(request, response);
+		} else {
+			// ログイン情報がある場合、/Homeにリダイレクト
+			response.sendRedirect("/quetana/Contents/Home");
+		}
 	}
 
 	/**
@@ -54,26 +60,22 @@ public class LoginServlet extends HttpServlet {
 		String stLoginUser = request.getParameter("stLoginUser");
 		String stPassword = request.getParameter("stPassword");
 
-		//ログインユーザを取得
+		//ログインユーザを取得（★Daoの型に合わせて直す！）
 		UserInfoBean loginUserInfo = LoginLogic.getLoginUserInfo(stLoginUser, stPassword);
 
-		//ログイン判定（ユーザIDが空の場合はエラー）
+		//ログイン判定（ユーザIDが空の場合はエラー）（★Daoの型に合わせて直す！）
 		if(loginUserInfo.getIdUser().equals("")) {
-
-			// ログインに失敗した場合
-			// login.jspにフォワードする
+			// ログインに失敗した場合、login.jspにフォワード（★エラー出す！）
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/");
 			dispatcher.forward(request, response);
-
 		} else {
-
-			// ログインに成功した場合
-			//ユーザ情報をセッションスコープに保存
+			// ログインに成功した場合、ユーザ情報をセッションに保存
 			HttpSession session = request.getSession();
 			session.setAttribute("userInfo", loginUserInfo);
 
-			// /Homeにリダイレクト
-			response.sendRedirect("/quetana/Home");
+			//本来アクセスしたかった画面(のServlet)にリダイレクト
+			String target = (String)session.getAttribute("target");
+			response.sendRedirect(target);
 		}
 	}
 }
