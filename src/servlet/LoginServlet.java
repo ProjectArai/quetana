@@ -1,6 +1,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -60,22 +61,27 @@ public class LoginServlet extends HttpServlet {
 		String stLoginUser = request.getParameter("stLoginUser");
 		String stPassword = request.getParameter("stPassword");
 
-		//ログインユーザを取得（★Daoの型に合わせて直す！）
-		UserInfoBean loginUserInfo = LoginLogic.getLoginUserInfo(stLoginUser, stPassword);
+		//ログインユーザ情報の判定
+		Map resultJudge = LoginLogic.getLoginUserInfo(stLoginUser, stPassword);
 
-		//ログイン判定（ユーザIDが空の場合はエラー）（★Daoの型に合わせて直す！）
-		if(loginUserInfo.getIdUser().equals("")) {
-			// ログインに失敗した場合、login.jspにフォワード（★エラー出す！）
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/");
-			dispatcher.forward(request, response);
-		} else {
-			// ログインに成功した場合、ユーザ情報をセッションに保存
+		String errMsg = (String)resultJudge.get("errMsg");
+
+		if (errMsg.equals("")) {
+			//ログインユーザ情報の判定が正の場合
+			//ユーザ情報をセッションに保存
+			UserInfoBean loginUserInfo = new UserInfoBean();
+			loginUserInfo = (UserInfoBean)resultJudge.get("loginUserInfo");
 			HttpSession session = request.getSession();
-			session.setAttribute("userInfo", loginUserInfo);
-
+			session.setAttribute("userInfo", loginUserInfo);//★
 			//本来アクセスしたかった画面(のServlet)にリダイレクト
 			String target = (String)session.getAttribute("target");
 			response.sendRedirect(target);
+		} else {
+			//ログインユーザ情報の判定が否の場合、
+			//エラーメッセージをリクエストスコープに持たせ、login.jspにフォワード
+			request.setAttribute("errMsg", errMsg);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
+			dispatcher.forward(request, response);
 		}
 	}
 }

@@ -1,34 +1,52 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-import dao.LoginDao;
 import dao.T_USER_INFO_DAO;
 
 public class LoginLogic {
 
-	public static UserInfoBean getLoginUserInfo(String stLoginUser, String stPassword) {
+	public static Map getLoginUserInfo(String stLoginUser, String stPassword) {
 
-		//ユーザ名またはメールアドレスを基にDBからユーザ情報を取得
-		LoginDao loginDao = new LoginDao();
-		Map mapLoginInfo = loginDao.getLoginInfo(stLoginUser);
+		Map rtnMap = new HashMap();
+		String errMsg;
+		UserInfoBean loginUserInfo = new UserInfoBean();
 
 		T_USER_INFO_DAO tUserInfo = new T_USER_INFO_DAO();
-		UserInfoDto tst = new UserInfoDto();
-		tst = tUserInfo.selectUserInfo01(stLoginUser, stPassword);
+		List<UserInfoDto> arrUserInfo = new ArrayList();
 
-		//DB登録パスワードと入力パスワードを比較
-		if(tst.getIdUser() == null) {
+		//ユーザ名またはメールアドレスを基にDBからユーザ情報を取得
+		arrUserInfo = tUserInfo.selectUserInfo(stLoginUser);
 
-			//パスワードが一致した場合、UserInfoBean型インスタンスに格納・返却
-			UserInfoBean userInfo =  new UserInfoBean((String)mapLoginInfo.get("idUser"), (String)mapLoginInfo.get("stUserName"), (String)mapLoginInfo.get("stPassword"), (String)mapLoginInfo.get("stMailAddress"), (String)mapLoginInfo.get("stIconURL")) ;
-			return userInfo;
-
+		//Daoの返却値によって処理分岐
+		if (arrUserInfo.size() == 1) {
+			// DBから取得したユーザ情報が1件の場合
+			UserInfoDto userInfoDto = new UserInfoDto();
+			userInfoDto = arrUserInfo.get(0);
+			//入力パスワードと登録パスワードを照合
+			if (stPassword.equals(userInfoDto.getStPassword())) {
+				//パスワードが一致した場合
+				errMsg = "";
+				loginUserInfo.setStUserName(userInfoDto.getStUserName());
+				loginUserInfo.setStIconURL(userInfoDto.getStIconURL());
+			} else {
+				//パスワードが一致しない場合
+				errMsg = "パスワードが一致しません";
+			}
+		} else if (arrUserInfo.size() == 0) {
+			// DBから取得したユーザ情報が0件の場合
+			errMsg = "ユーザ名またはメールアドレスが間違っています";
 		} else {
-			//ダメだったときどうしよう。。。今ここのせいでぬるぽ発生
-			UserInfoBean userInfo =  new UserInfoBean() ;
-			return userInfo;
+			// DBから取得したユーザ情報が2件以上、 またはDB処理失敗等の場合
+			errMsg = "システムエラー 管理者に連絡して下さい";
 		}
+
+		rtnMap.put("errMsg", errMsg);
+		rtnMap.put("loginUserInfo", loginUserInfo);
+		return rtnMap;
 	}
 }
 

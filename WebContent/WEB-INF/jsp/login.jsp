@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+String errMsg = (String)request.getAttribute("errMsg");
+%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -20,6 +23,9 @@
 				<input type="text" name="stPassword" maxlength="16" placeholder="パスワード" value="ryota1229"><br>
 				<input id="submit_btn" type="submit" name="login" value="ログイン">
 			</form>
+			<% if(errMsg != null) { %>
+				<font id="errMsg"><%= errMsg %></font>
+			<% } %>
 			<a href="<%=request.getContextPath()%>/CreateAccount">アカウント作成はこちら</a>
 		</div>
 	</body>
