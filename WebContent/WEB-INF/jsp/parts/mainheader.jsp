@@ -14,9 +14,8 @@ UserInfoBean userInfo = (UserInfoBean) session.getAttribute("userInfo");
 		<div id="nav-content">
 			<div id="MenuContents">マイページ</div>
 			<div id="MenuContents">投稿ページ</div>
-			<!-- <div id="MenuContents">ログアウト</div> -->
 			<form action="/quetana/Logout" method="get">
-				<input type="submit" name="logout"value="ログアウト">
+				<input id="submit_btn" type="submit" name="logout"value="ログアウト">
 			</form>
 		</div>
 	</div>
