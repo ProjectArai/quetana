@@ -34,7 +34,7 @@ public class LoginLogic {
 				loginUserInfo.setStIconURL(userInfoDto.getStIconURL());
 			} else {
 				//パスワードが一致しない場合
-				errMsg = "パスワードが一致しません";
+				errMsg = "パスワードが間違っています";
 			}
 		} else if (arrUserInfo.size() == 0) {
 			// DBから取得したユーザ情報が0件の場合
@@ -49,4 +49,3 @@ public class LoginLogic {
 		return rtnMap;
 	}
 }
-

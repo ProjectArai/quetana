@@ -67,10 +67,10 @@ public class CreateAccountServlet extends HttpServlet {
 		String stPassword = request.getParameter("stPassword");
 
 		//CreateAccountLogicクラスのcreateAccoutメソッドを実行する。
-		String errorMsg = CreateAccountLogic.createAccount(stUserName, stMailAddress, stPassword);
+		String errMsg = CreateAccountLogic.createAccount(stUserName, stMailAddress, stPassword);
 
 		// 条件分岐：アカウント作成の成功/失敗
-		if(errorMsg == null) {
+		if(errMsg == null) {
 
 			// 成功した場合
 			// /Loginにリダイレクトする
@@ -80,11 +80,10 @@ public class CreateAccountServlet extends HttpServlet {
 
 			// 失敗した場合
 			// creacteAccount.jspにフォワードする
-			request.setAttribute("errorMsg", errorMsg);
+			request.setAttribute("errMsg", errMsg);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/createAccount.jsp");
 			dispatcher.forward(request, response);
 
 		}
 	}
-
 }

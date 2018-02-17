@@ -33,11 +33,6 @@ public class HomeServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 
-		// セッションにユーザ情報がない場合
-		// 認証フィルタのおかげでいらなくなったっぽい？
-		// ●/Loginにリダイレクトする●
-
-		// セッションにユーザ情報がある場合
 		//タイムラインを取得し、リクエストスコープに保存
 		request.setAttribute("arrTimeLine", ViewTimeLine.getTimeLineList());
 
@@ -51,7 +46,5 @@ public class HomeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Postすることは今のところないのである
-
 	}
-
 }

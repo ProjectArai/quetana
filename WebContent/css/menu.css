@@ -42,7 +42,7 @@
 #nav-input:checked ~ #nav-content {
 	-webkit-transform: translateX(0%);
 	transform: translateX(0%);/*中身を表示（左へスライド）*/
-	box-shadow: 6px 0 25px rgba(0,0,10,10);
+	box-shadow: 6px 0 5px rgba(0,0,10,10);
 }
 
 /*TLメニュータブ*/
