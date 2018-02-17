@@ -26,10 +26,10 @@ public class CreateAccountLogic {
 		}
 
 		// デフォルトアイコンの格納先を指定
-		String stIconURL = "img/r-zoon.png";
+		String defaultIconURL = "/quetana/img/r-zoon.png";
 
 		// アカウント作成処理
-		int rowsInsert = t_user_info_dao.insertUserInfo(stUserName, stMailAddress, stPassword, stIconURL);
+		int rowsInsert = t_user_info_dao.insertUserInfo(stUserName, stMailAddress, stPassword, defaultIconURL);
 		if(rowsInsert == 1) {
 			return null;
 		} else {
