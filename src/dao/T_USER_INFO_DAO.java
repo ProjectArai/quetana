@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.UserInfoDto;
 
@@ -157,15 +159,13 @@ public class T_USER_INFO_DAO {
 	}
 
 	/**
-	 * ユーザ名またはメールアドレス、パスワードが一致するユーザー情報を取得
-	 * （ユーザ名またはメールアドレスは一意のため、該当ユーザ存在する場合は必ず1件）
+	 * ユーザ名またはメールアドレスが一致するユーザー情報を取得
 	 * @param stLoginUser ：ユーザ名またはメールアドレス
-	 * @param stPassword ：パスワード
-	 * @return userInfoDto or null ：ユーザ情報DTO、DB処理失敗の場合はnull
+	 * @return arrUserInfo ：該当するユーザ情報、DB処理失敗の場合はnull
 	 */
-	public UserInfoDto selectUserInfo01(String stLoginUser, String stPassword) {
+	public List<UserInfoDto> selectUserInfo(String stLoginUser) {
 
-		UserInfoDto userInfoDto = new UserInfoDto();
+		List<UserInfoDto> arrUserInfo = new ArrayList();
 
 		Connection conn = null;
 
@@ -179,25 +179,25 @@ public class T_USER_INFO_DAO {
 			// SELECT文を準備
 			String sql =
 					"select IDUSER, STUSERNAME, STPASSWORD, STMAILADDRESS, STICONURL, CFDELETE, DTUPDATE, DTRESIST from T_USER_INFO"
-					+ " where (STUSERNAME = ? or STMAILADDRESS = ?) and STPASSWORD = ? ;";
+					+ " where STUSERNAME = ? or STMAILADDRESS = ?;";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, stLoginUser);
 			pStmt.setString(2, stLoginUser);
-			pStmt.setString(3, stPassword);
 
 			// SELECTを実行し、結果が取得できた場合DTO型のListに格納
 			ResultSet rs  = pStmt.executeQuery();
-//			while (rs.next()) {
-			if (rs.next()) {
-				userInfoDto.setIdUser(rs.getString("IDUSER"));
-				userInfoDto.setStUserName(rs.getString("STUSERNAME"));
-				userInfoDto.setStPassword(rs.getString("STPASSWORD"));
-				userInfoDto.setStMailAddress(rs.getString("STMAILADDRESS"));
-				userInfoDto.setStIconURL(rs.getString("STICONURL"));
-				userInfoDto.setCfDelete(rs.getString("CFDELETE"));
-				userInfoDto.setDtUpdate(rs.getDate("DTUPDATE"));
-				userInfoDto.setDtResist(rs.getDate("DTRESIST"));
+			while (rs.next()) {
+				UserInfoDto dto = new UserInfoDto();
+				dto.setIdUser(rs.getString("IDUSER"));
+				dto.setStUserName(rs.getString("STUSERNAME"));
+				dto.setStPassword(rs.getString("STPASSWORD"));
+				dto.setStMailAddress(rs.getString("STMAILADDRESS"));
+				dto.setStIconURL(rs.getString("STICONURL"));
+				dto.setCfDelete(rs.getString("CFDELETE"));
+				dto.setDtUpdate(rs.getDate("DTUPDATE"));
+				dto.setDtResist(rs.getDate("DTRESIST"));
+				arrUserInfo.add(dto);
 			}
 
 		} catch(SQLException e) {
@@ -217,6 +217,6 @@ public class T_USER_INFO_DAO {
 				}
 			}
 		}
-		return userInfoDto;
+		return arrUserInfo;
 	}
 }
