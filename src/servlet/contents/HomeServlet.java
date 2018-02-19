@@ -1,6 +1,8 @@
 package servlet.contents;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.TimeLineBean;
 import model.ViewTimeLine;
 
 /**
@@ -34,7 +37,9 @@ public class HomeServlet extends HttpServlet {
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 
 		//タイムラインを取得し、リクエストスコープに保存
-		request.setAttribute("arrTimeLine", ViewTimeLine.getTimeLineList());
+		List<TimeLineBean> arrTimeLine = new ArrayList();
+		arrTimeLine = ViewTimeLine.getTimeLineList();
+		request.setAttribute("arrTimeLine", arrTimeLine);
 
 		// home.jspにフォワード
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/home.jsp");

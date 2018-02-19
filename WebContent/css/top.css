@@ -10,7 +10,7 @@ html {
 body {
 	height: 100%;
 	background: #eeeeee;
-	font-family: 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+	font-family: Lato;
 	font-size:14px;
 }
 a:link {

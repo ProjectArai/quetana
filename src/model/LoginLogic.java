@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import dao.T_USER_INFO_DAO;
+import dao.T_USER_PROFILE_DAO;
+import model.dto.UserProfileDto;
 
 public class LoginLogic {
 
@@ -15,10 +17,9 @@ public class LoginLogic {
 		String errMsg;
 		UserInfoBean loginUserInfo = new UserInfoBean();
 
+		//ユーザ名またはメールアドレスを基にDBからユーザ情報を取得
 		T_USER_INFO_DAO tUserInfo = new T_USER_INFO_DAO();
 		List<UserInfoDto> arrUserInfo = new ArrayList();
-
-		//ユーザ名またはメールアドレスを基にDBからユーザ情報を取得
 		arrUserInfo = tUserInfo.selectUserInfo(stLoginUser);
 
 		//Daoの返却値によって処理分岐
@@ -29,9 +30,26 @@ public class LoginLogic {
 			//入力パスワードと登録パスワードを照合
 			if (stPassword.equals(userInfoDto.getStPassword())) {
 				//パスワードが一致した場合
-				errMsg = "";
-				loginUserInfo.setStUserName(userInfoDto.getStUserName());
-				loginUserInfo.setStIconURL(userInfoDto.getStIconURL());
+				String idUser = userInfoDto.getIdUser();
+
+				//ユーザIDからユーザプロフィールを取得
+				T_USER_PROFILE_DAO tUserProfile = new T_USER_PROFILE_DAO();
+				List<UserProfileDto> arrUserProfile = new ArrayList();
+				arrUserProfile = tUserProfile.selectUserProfile(idUser);
+
+				if (arrUserProfile.size() == 1) {
+					// DBから取得したユーザプロフィールが1件の場合
+					UserProfileDto userProfileDto = new UserProfileDto();
+					userProfileDto = arrUserProfile.get(0);
+					// ログインユーザ情報をセット
+					loginUserInfo.setIdUser(userProfileDto.getIdUser());
+					loginUserInfo.setStUserName(userProfileDto.getStUserName());
+					loginUserInfo.setStIconURL(userProfileDto.getStIconURL());
+					errMsg = "";
+				} else {
+					// DBから取得したユーザプロフィールが1件以外の場合
+					errMsg = "システムエラー 管理者に連絡して下さい";
+				}
 			} else {
 				//パスワードが一致しない場合
 				errMsg = "パスワードが間違っています";

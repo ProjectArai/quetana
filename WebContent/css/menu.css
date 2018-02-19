@@ -32,7 +32,7 @@
 	right: 0px;
 	z-index: 9999;/*最前面に*/
 	width: 250px;/*最大幅（調整してください）*/
-	height: 150px;
+	height: 200px;
 	background: #DDDDDD;/*背景色*/
 	transition: .3s ease-in-out;/*滑らかに表示*/
 	-webkit-transform: translateX(105%);
