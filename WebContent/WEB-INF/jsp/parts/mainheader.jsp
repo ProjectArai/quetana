@@ -18,7 +18,9 @@ UserInfoBean userInfo = (UserInfoBean) session.getAttribute("userInfo");
 			<form action="/quetana/Contents/UserProfile" method="get">
 				<input id="submit_btn" type="submit" name="mypage"value="マイページ">
 			</form>
-			<div id="MenuContents">投稿ページ</div>
+			<form action="/quetana/Contents/Post" method="get">
+				<input id="submit_btn" type="submit" name="post"value="投稿ページ">
+			</form>
 			<form action="/quetana/Logout" method="get">
 				<input id="submit_btn" type="submit" name="logout"value="ログアウト">
 			</form>

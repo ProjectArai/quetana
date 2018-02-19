@@ -1,16 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="model.UserInfoBean,model.TimeLineBean,java.util.List" %>
-<%
-//セッションスコープからユーザ情報を取得
-UserInfoBean userInfo = (UserInfoBean) session.getAttribute("userInfo");
-//リクエストスコープからタイムラインを取得
-List<TimeLineBean> arrTimeLine = (List<TimeLineBean>) request.getAttribute("arrTimeLine");
-TimeLineBean timeLine = new TimeLineBean();
-timeLine = (TimeLineBean) arrTimeLine.get(1);
-%>
 <!DOCTYPE html>
 <html>
+<script>
+function displayMember() {
+    document.getElementById("stPart").style.display="block";
+    document.getElementById("stGenre").style.display="block";
+    document.getElementById("stPlace").style.display="none";
+    document.getElementById("dtEvent").style.display="none";
+}
+
+function displayEvent() {
+    document.getElementById("stPart").style.display="none";
+    document.getElementById("stGenre").style.display="none";
+    document.getElementById("stPlace").style.display="block";
+    document.getElementById("dtEvent").style.display="block";
+}
+</script>
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width">
@@ -25,38 +32,24 @@ timeLine = (TimeLineBean) arrTimeLine.get(1);
 			<div id="TimeLine">
 				<div id="TLHeader">TimeLine</div>
 				<div id="TLMenu">
-					<label for="RadioAll">
-						<input id="RadioAll" name="TLMenuTabRadio" type="radio" class="nav-unshown" checked>
-						<div id="TLMenuTab">すべて</div>
-					</label>
-					<label for="RadioEvent">
-						<input id="RadioEvent" name="TLMenuTabRadio" type="radio" class="nav-unshown">
-						<div id="TLMenuTab" class="aaa">イベント</div>
-					</label>
-					<label for="RadioMember">
-						<input id="RadioMember" name="TLMenuTabRadio" type="radio" class="nav-unshown">
-						<div id="TLMenuTab">メンバー募集</div>
-					</label>
+					<div id="main">こんにちは</div>
 				</div>
 				<div id="TLContents">
-							<% for (TimeLineBean test : arrTimeLine){ %>
-								<div id="TLTable">
-									<div id="TLIcon"><img src="<%= test.getStIconURL() %>" width="56" height="56"></div>
-									<div id="TLUserName"><%= test.getStUserName() %></div>
-									<% if ((test.getCfPost()).equals("E")) { %>
-										<div id="TLType">ライブ/イベント</div>
-									<% } else if ((test.getCfPost()).equals("M")) { %>
-										<div id="TLType">メンバー募集</div>
-									<% } %>
-									<div id="TLTitle"><%= test.getStTitle() %></div>
-									<% if ((test.getCfPost()).equals("E")) { %>
-										<div id="TLTitle">場所　：<%= test.getStPlace() %><br>開催日：<%= test.getDtEvent() %></div>
-									<% } else if ((test.getCfPost()).equals("M")) { %>
-										<div id="TLTitle">募集パート　：<%= test.getStRecPart() %><br>演奏ジャンル：<%= test.getStGenre() %></div>
-									<% } %>
-									<div id="TLComment"><%= test.getStDetails() %></div>
-								</div>
-							<% } %>
+					<div id="TLTable">
+						<form action="/quetana/Contents/Post" method="post">
+							<p>
+								<input type="radio" name="cfPost" value="M" onclick="displayMember()" checked>
+								<input type="radio" name="cfPost" value="E" onclick="displayEvent()">
+							</p>
+							<input type="text" name="stTitle" maxlength="32" placeholder="タイトル" required><br>
+							<input id="stPart" type="text" name="stPart" maxlength="32" placeholder="募集パート"><br>
+							<input id="stGenre" type="text" name="stGenre" maxlength="32" placeholder="演奏ジャンル"><br>
+							<input id="stPlace" type="text" name="stPlace" maxlength="32" placeholder="場所"><br>
+							<input id="dtEvent" type="text" name="dtEvent" maxlength="32" placeholder="開催日"><br>
+							<textarea name="stDetails" rows="4" cols="40" placeholder="詳細"></textarea><br>
+							<input id="post_btn" type="submit" name="post" value="投稿">
+						</form>
+					</div>
 				</div>
 			</div>
 	</body>
