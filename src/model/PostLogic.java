@@ -1,9 +1,11 @@
 package model;
 
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import dao.M_SEQ_NO_DAO;
+import dao.T_EVENT_ANNOUNCE_DAO;
 import dao.T_MEMBER_RECRUIT_DAO;
 import dao.T_TIMELINE_DAO;
 import model.dto.EventAnnounceDto;
@@ -48,7 +50,19 @@ public class PostLogic {
 
 		} else if (cfPost.equals("E")) {
 			//イベント告知の場合、T_EVENT_ANNOUNCEへInsert
+
+			Date dtEvent = Date.valueOf((String)inParam.get("dtEvent"));
+
 			EventAnnounceDto eventAnnounceDto = new EventAnnounceDto();
+			eventAnnounceDto.setIdPost(idPost);
+			eventAnnounceDto.setIdUser((String)inParam.get("idUser"));
+			eventAnnounceDto.setStTitle((String)inParam.get("stTitle"));
+			eventAnnounceDto.setStPlace((String)inParam.get("stPlace"));
+			eventAnnounceDto.setDtEvent(dtEvent);
+			eventAnnounceDto.setStDetails((String)inParam.get("stDetails"));
+
+			T_EVENT_ANNOUNCE_DAO tEventAnnounce = new T_EVENT_ANNOUNCE_DAO();
+			resultExecute = tEventAnnounce.insertEventAnnounce(eventAnnounceDto);
 		}
 
 

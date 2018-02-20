@@ -1,6 +1,6 @@
 package model.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class EventAnnounceDto {
 	private String idPost;    //投稿ID

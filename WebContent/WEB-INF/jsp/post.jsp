@@ -45,7 +45,7 @@ function displayEvent() {
 							<input id="stPart" type="text" name="stPart" maxlength="32" placeholder="募集パート"><br>
 							<input id="stGenre" type="text" name="stGenre" maxlength="32" placeholder="演奏ジャンル"><br>
 							<input id="stPlace" type="text" name="stPlace" maxlength="32" placeholder="場所"><br>
-							<input id="dtEvent" type="text" name="dtEvent" maxlength="32" placeholder="開催日"><br>
+							<input id="dtEvent" type="date" name="dtEvent" maxlength="32" placeholder="開催日"><br>
 							<textarea name="stDetails" rows="4" cols="40" placeholder="詳細"></textarea><br>
 							<input id="post_btn" type="submit" name="post" value="投稿">
 						</form>
