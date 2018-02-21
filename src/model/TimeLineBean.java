@@ -5,13 +5,14 @@ import java.sql.Date;
 public class TimeLineBean {
 	private String idPost;    //投稿ID
 	private String idUser;    //ユーザID
+	private String stAccountName;    //アカウント名
+	private String stIconURL; //アイコンURL
 	private String stTitle;   //タイトル
 	private String stPart;    //募集パート
 	private String stGenre;   //演奏ジャンル
 	private String stPlace;   //開催場所
 	private Date dtEvent;     //開催日
 	private String stDetails; //詳細
-	private String cfDelete;  //削除FLG
 	private Date dtUpdate;    //更新日付
 	private Date dtResist;    //登録日付
 
@@ -31,6 +32,22 @@ public class TimeLineBean {
 
 	public void setIdUser(String idUser) {
 		this.idUser = idUser;
+	}
+
+	public String getStAccountName() {
+		return stAccountName;
+	}
+
+	public void setStAccountName(String stAccountName) {
+		this.stAccountName = stAccountName;
+	}
+
+	public String getStIconURL() {
+		return stIconURL;
+	}
+
+	public void setStIconURL(String stIconURL) {
+		this.stIconURL = stIconURL;
 	}
 
 	public String getStTitle() {
@@ -79,14 +96,6 @@ public class TimeLineBean {
 
 	public void setStDetails(String stDetails) {
 		this.stDetails = stDetails;
-	}
-
-	public String getCfDelete() {
-		return cfDelete;
-	}
-
-	public void setCfDelete(String cfDelete) {
-		this.cfDelete = cfDelete;
 	}
 
 	public Date getDtUpdate() {

@@ -26,14 +26,23 @@ public class GetTimeLineDAO {
 			conn = DriverManager.getConnection("jdbc:mariadb://localhost/quetana_dev", "root", "mon202");
 
 			// SELECT文を準備
-			// T_MEMBER_RECRUITから更新日付が新しい順に5件を選択したものと、
-			// T_EVENT_ANNOUNCEから更新日付が新しい順に5件を選択したものを
-			// 結合し、更新日付が新しい順に並べ替えるSQL文
+			// ①T_MEMBER_RECRUITから更新日付が新しい順に5件を選択したものと、
+			//   T_EVENT_ANNOUNCEから更新日付が新しい順に5件を選択したものを
+			//   UNIONし、更新日付が新しい順に並べ替えて「V1」テーブルとする。
+			// ②T_USER_PROFILEからIDUSER, STACCOUNTNAME, STICONURLを射影し、
+			//   「V2」テーブルとする。
+			// ③「V1」テーブルと「V2」テーブルをIDUSERでJOINして紐づける。
 			String sql =
-					"(select IDPOST, IDUSER, STTITLE, STPART, STGENRE, NULL as STPLACE, NULL as DTEVENT, STDETAILS, CFDELETE, DTUPDATE, DTRESIST from T_MEMBER_RECRUIT order by DTUPDATE desc limit 5) "
-					+ "union "
-					+ "(select IDPOST, IDUSER, STTITLE, NULL as STPART, NULL as STGENRE, STPLACE, DTEVENT, STDETAILS, CFDELETE, DTUPDATE, DTRESIST from T_EVENT_ANNOUNCE order by DTUPDATE desc limit 5) "
-					+ "order by DTUPDATE desc;";
+					"select * from ("
+						+ "(select IDPOST, IDUSER, STTITLE, STPART, STGENRE, NULL as STPLACE, NULL as DTEVENT, STDETAILS, CFDELETE, DTUPDATE, DTRESIST from T_MEMBER_RECRUIT where CFDELETE = false order by DTUPDATE desc limit 5) "
+						+ "union "
+						+ "(select IDPOST, IDUSER, STTITLE, NULL as STPART, NULL as STGENRE, STPLACE, DTEVENT, STDETAILS, CFDELETE, DTUPDATE, DTRESIST from T_EVENT_ANNOUNCE where CFDELETE = false order by DTUPDATE desc limit 5) "
+						+ "order by DTUPDATE desc"
+					+ ") V1 "
+					+ "join ("
+						+ "select IDUSER, STACCOUNTNAME, STICONURL from T_USER_PROFILE"
+					+ ") V2 "
+					+ "on V1.IDUSER = V2.IDUSER;";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
@@ -43,6 +52,8 @@ public class GetTimeLineDAO {
 				TimeLineDto dto = new TimeLineDto();
 				dto.setIdPost(rs.getString("IDPOST"));
 				dto.setIdUser(rs.getString("IDUSER"));
+				dto.setStAccountName(rs.getString("STACCOUNTNAME"));
+				dto.setStIconURL(rs.getString("STICONURL"));
 				dto.setStTitle(rs.getString("STTITLE"));
 				dto.setStPart(rs.getString("STPART"));
 				dto.setStGenre(rs.getString("STGENRE"));

@@ -31,6 +31,8 @@ public class ViewTimeLine {
 			TimeLineBean timeLineBean = new TimeLineBean();
 			timeLineBean.setIdPost(timeLine.getIdPost());
 			timeLineBean.setIdUser(timeLine.getIdUser());
+			timeLineBean.setStAccountName(timeLine.getStAccountName());
+			timeLineBean.setStIconURL(timeLine.getStIconURL());
 			timeLineBean.setStTitle(timeLine.getStTitle());
 			timeLineBean.setStPart(timeLine.getStPart());
 			timeLineBean.setStGenre(timeLine.getStGenre());

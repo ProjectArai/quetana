@@ -37,18 +37,24 @@ timeLine = (TimeLineBean) arrTimeLine.get(1);
 					</label>
 				</div>
 				<div id="TLContents">
-					<% for (TimeLineBean test : arrTimeLine){
-						out.println(test.getIdPost());
-						out.println(test.getIdUser());
-						out.println(test.getStTitle());
-						out.println(test.getStPart());
-						out.println(test.getStGenre());
-						out.println(test.getStPlace());
-						out.println(test.getDtEvent());
-						out.println(test.getStDetails());
-						out.println(test.getDtUpdate());
-						out.println(test.getDtResist());
-					} %>
+					<% for (TimeLineBean test : arrTimeLine){ %>
+					    <div id="TLTitle">■■■■■■■■■■■■■■■■■■■■</div>
+					    <div id="TLTitle">投稿日：<%= test.getDtResist() %><br>更新日：<%= test.getDtUpdate() %></div>
+						<div id="TLIcon"><img src="<%= test.getStIconURL() %>" width="56" height="56"></div>
+						<div id="TLUserName"><%= test.getStAccountName() %></div>
+						<% if ((test.getIdPost()).charAt(1) == 'E') { %>
+							<div id="TLType">ライブ/イベント</div>
+						<% } else if ((test.getIdPost()).charAt(1) == 'M') { %>
+							<div id="TLType">メンバー募集</div>
+						<% } %>
+						<div id="TLTitle"><%= test.getStTitle() %></div>
+						<% if ((test.getIdPost()).charAt(1) == 'E') { %>
+							<div id="TLTitle">場所：<%= test.getStPlace() %><br>開催日：<%= test.getDtEvent() %></div>
+						<% } else if ((test.getIdPost()).charAt(1) == 'M') { %>
+							<div id="TLTitle">募集パート：<%= test.getStPart() %><br>演奏ジャンル：<%= test.getStGenre() %></div>
+						<% } %>
+						<div id="TLComment"><%= test.getStDetails() %></div>
+					<% } %>
 				</div>
 			</div>
 	</body>
