@@ -1,9 +1,13 @@
-/*チェックボックス等は非表示に*/
+/*
+ * チェックボックス等は非表示に
+ */
 .nav-unshown {
 	display:none;
 }
 
-/*ハンバーガーメニュー領域*/
+/*
+ * ハンバーガーメニュー領域
+ */
 #nav-drawer {
 	position: relative;
 }
@@ -28,7 +32,7 @@
 	right: 0px;
 	z-index: 9999;/*最前面に*/
 	width: 250px;/*最大幅（調整してください）*/
-	height: 150px;
+	height: 200px;
 	background: #DDDDDD;/*背景色*/
 	transition: .3s ease-in-out;/*滑らかに表示*/
 	-webkit-transform: translateX(105%);
@@ -42,10 +46,22 @@
 #nav-input:checked ~ #nav-content {
 	-webkit-transform: translateX(0%);
 	transform: translateX(0%);/*中身を表示（左へスライド）*/
-	box-shadow: 6px 0 25px rgba(0,0,10,10);
+	box-shadow: 6px 0 5px rgba(0,0,10,10);
+}
+input#submit_btn {
+	-webkit-appearance: none; /* iOSでもボタンレイアウトを保持 */
+	width: 250px;
+	height: 50px;
+	background-color: #fa8072;  /* ヘッダーの背景色を指定する */
+	border-style: none;
+	text-align: center;
+	color: #000000;
+	font-size:18px;
 }
 
-/*TLメニュータブ*/
+/*
+ * TLメニュータブ
+ */
 input#RadioAll:checked ~ div#TLMenuTab{
 	background: #ffa07a;
 }

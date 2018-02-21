@@ -178,8 +178,8 @@ public class T_USER_INFO_DAO {
 
 			// SELECT文を準備
 			String sql =
-					"select IDUSER, STUSERNAME, STPASSWORD, STMAILADDRESS, STICONURL, CFDELETE, DTUPDATE, DTRESIST from T_USER_INFO"
-					+ " where STUSERNAME = ? or STMAILADDRESS = ?;";
+					"select IDUSER, STMAILADDRESS, STPASSWORD, CFDELETE, DTUPDATE, DTRESIST from T_USER_INFO"
+					+ " where IDUSER = ? or STMAILADDRESS = ?;";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, stLoginUser);
@@ -190,10 +190,8 @@ public class T_USER_INFO_DAO {
 			while (rs.next()) {
 				UserInfoDto dto = new UserInfoDto();
 				dto.setIdUser(rs.getString("IDUSER"));
-				dto.setStUserName(rs.getString("STUSERNAME"));
-				dto.setStPassword(rs.getString("STPASSWORD"));
 				dto.setStMailAddress(rs.getString("STMAILADDRESS"));
-				dto.setStIconURL(rs.getString("STICONURL"));
+				dto.setStPassword(rs.getString("STPASSWORD"));
 				dto.setCfDelete(rs.getString("CFDELETE"));
 				dto.setDtUpdate(rs.getDate("DTUPDATE"));
 				dto.setDtResist(rs.getDate("DTRESIST"));

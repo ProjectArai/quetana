@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-String errorMsg = (String)request.getAttribute("errorMsg");
-if(errorMsg != null) {
-	System.out.println(errorMsg);
-}
+String errMsg = (String)request.getAttribute("errMsg");
 %>
 <!DOCTYPE html>
 <html>
@@ -25,12 +22,14 @@ if(errorMsg != null) {
 				<input type="text" name="stUserName" maxlength="8" placeholder="ユーザ名" required value="r-zoon"><br>
 				<input type="text" name="stMailAddress" maxlength="128" placeholder="メールアドレス" required value="zoon@gmail.com"><br>
 				<input type="text" name="stPassword" maxlength="16" placeholder="パスワード" required value="1234"><br>
-				<input type="text" name="stConfirmPassword" maxlength="16" placeholder="パスワード（確認）" required value="1234"><br>
+				<input type="text" name="stConfirmPassword" maxlength="16" placeholder="パスワード(確認用)" required value="1234"><br>
+				<div id="MsgArea">
+					<% if(errMsg != null) { %>
+						<font id="ErrMsg"><%= errMsg %></font>
+					<% } %>
+				</div>
 				<input id="submit_btn" type="submit" id="button" name="createAccount" size="10" value="アカウント作成">
 			</form>
-			<% if(errorMsg != null) { %>
-				<font id="ErrorMsg"><%= errorMsg %></font>
-			<% } %>
 			<script>
 			// パスワードの一致確認
 			function checkPassword() {

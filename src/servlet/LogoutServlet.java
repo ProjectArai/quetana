@@ -36,7 +36,7 @@ public class LogoutServlet extends HttpServlet {
 		session.invalidate();
 
 		// /Loginにリダイレクトする
-		response.sendRedirect("/quetana/Login");
+		response.sendRedirect("/quetana/Contents/Home");
 	}
 
 	/**

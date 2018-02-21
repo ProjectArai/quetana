@@ -4,22 +4,21 @@ import java.util.Date;
 
 public class UserInfoDto {
 	private String idUser;        //ユーザID
-	private String stUserName;    //名前
-	private String stPassword;    //パスワード
 	private String stMailAddress; //メールアドレス
-	private String stIconURL;     //アイコンURL
+	private String stPassword;    //パスワード
 	private String cfDelete;      //削除FLG
 	private Date dtUpdate;        //更新日付
 	private Date dtResist;        //登録日付
 
 	public UserInfoDto() {}
 
-	public UserInfoDto(String idUser, String stUserName, String stPassword, String stMailAddress, String stIconURL) {
+	public UserInfoDto(String idUser, String stMailAddress, String stPassword, String cfDelete, Date dtUpdate, Date dtResist) {
 		this.idUser     = idUser;
-		this.stUserName = stUserName;
-		this.stPassword    = stPassword;
 		this.stMailAddress = stMailAddress;
-		this.stIconURL  = stIconURL;
+		this.stPassword    = stPassword;
+		this.cfDelete    = cfDelete;
+		this.dtUpdate    = dtUpdate;
+		this.dtResist    = dtResist;
 	}
 
 	public String getIdUser() {
@@ -28,14 +27,6 @@ public class UserInfoDto {
 
 	public void setIdUser(String idUser) {
 		this.idUser = idUser;
-	}
-
-	public String getStUserName() {
-		return stUserName;
-	}
-
-	public void setStUserName(String stUserName) {
-		this.stUserName = stUserName;
 	}
 
 	public String getStPassword() {
@@ -52,14 +43,6 @@ public class UserInfoDto {
 
 	public void setStMailAddress(String stMailAddress) {
 		this.stMailAddress = stMailAddress;
-	}
-
-	public String getStIconURL() {
-		return stIconURL;
-	}
-
-	public void setStIconURL(String stIconURL) {
-		this.stIconURL = stIconURL;
 	}
 
 	public String getCfDelete() {

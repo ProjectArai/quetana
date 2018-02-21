@@ -30,18 +30,24 @@ public class LoginServlet extends HttpServlet {
     }
 
 	/**
+	 * ログイン画面が呼び出された時の処理
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		// response.getWriter().append("Served at: ").append(request.getContextPath());
 
-		// セッションスコープからインスタンスを取得
+		// セッションスコープからログイン情報を取得
 		HttpSession session = request.getSession();
 		UserInfoBean userInfo = (UserInfoBean)session.getAttribute("userInfo");
 
+		//本来アクセスしたかったURL(リクエストがあったURL)を取得
+		String targetURI = ((HttpServletRequest)request).getRequestURI();
+		//ターゲットURLの指定が無い場合、固定で/Homeを設定
+		if (targetURI == null) {
+			session.setAttribute("target", "/quetana/Contents/Home");
+		}
+
 		// セッション上のログイン情報の有無を判定
-		if(userInfo == null) {
+		if (userInfo == null) {
 			// ログイン情報がない場合、login.jspにフォワード
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 			dispatcher.forward(request, response);
@@ -52,6 +58,7 @@ public class LoginServlet extends HttpServlet {
 	}
 
 	/**
+	 * ログインボタンが押下された時の処理
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -1,14 +1,27 @@
+/*
+ * ページ全体の基準
+ */
 *{
 	margin:0;
 }
-a:link{
-	color: #1e90ff;
-}
 body {
 	background: #eeeeee;
-	font-family: Hiragino Kaku Gothic ProN;
-	font-size:16px;
+	font-family: ;
+	font-size:14px;
 }
+a:link {
+	color: #1e90ff;
+}
+a:visited {
+	color: #1e90ff;
+}
+a:hover {
+	color: #1e90ff;
+}
+a:active {
+	color: #fa8072;
+}
+
 /*
  * ヘッダーの要素
  */
@@ -42,7 +55,7 @@ div#LoginUser{
 	border-radius: 5px;
 	font-size:11px;
 }
-div#UserName{
+div#UserID{
 	float:right;
 	padding:7px 0px;
 	width:70px;
@@ -91,6 +104,7 @@ div#Contents {
 	background: #ffffff;
 	margin: auto;
 }
+
 /*
  * タイムラインの要素
  */
@@ -162,15 +176,4 @@ div#TLTitle, #TLComment {
 	padding:3px;
 	width: 278px;
 	background: #ffffff;
-}
-
-/*
- * その他検討中
- */
-table#main_tbl {
-	border-style: none;
-	width:320px;
-	margin-left:auto;
-	margin-right:auto;
-	background-color: #fa8072;
 }

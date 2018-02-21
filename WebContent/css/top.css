@@ -10,8 +10,8 @@ html {
 body {
 	height: 100%;
 	background: #eeeeee;
-	font-family: Hiragino Kaku Gothic ProN;
-	font-size:16px;
+	font-family: Lato;
+	font-size:14px;
 }
 a:link {
 	color: #1e90ff;
@@ -53,13 +53,21 @@ div#Header {
 div#ContentsHeader{
 	overflow:auto; /* コンテンツの表示を自動に設定（スクロール） */
 	width: 100%;
-	height: 30%;
+	height: 25%;
 	background: #ffffff;
 }
 div#Contents {
 	overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
 	width: 100%;
-	height: 70%;
+	height: 75%;
+	background: #ffffff;
+	text-align: center;
+}
+div#MsgArea {
+	overflow: hidden;
+	padding: 10px 0px;
+	width: 100%;
+	height: 20px;
 	background: #ffffff;
 	text-align: center;
 }
@@ -67,21 +75,21 @@ font#Quetana {
 	font-size: 36px;
 }
 font#ToDo {
-	font-size: 20px;
+	font-size: 16px;
 }
-font#ErrorMsg {
-	font-size: 20px;
+font#ErrMsg {
+	font-size: 12px;
 	color: #ff0000;
 }
 input[type=text]{
-	width:250px;
-	height:25px;
+	width:226px;
+	height:19px;
 	margin: 3px;
 	font-size:16px; /* 16px未満だとiOSでズームする */
 }
 input#submit_btn {
 	-webkit-appearance: none; /* iOSでもボタンレイアウトを保持 */
-	margin-top: 50px;
+	margin-top: 10px;
 	margin-bottom: 30px;
 	width: 150px;
 	height: 35px;

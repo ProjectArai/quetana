@@ -12,16 +12,22 @@ UserInfoBean userInfo = (UserInfoBean) session.getAttribute("userInfo");
 		<label id="nav-open" for="nav-input"><div id="MenuButton">≡</div></label>
 		<label class="nav-unshown" id="nav-close" for="nav-input"></label>
 		<div id="nav-content">
-			<div id="MenuContents">マイページ</div>
-			<div id="MenuContents">投稿ページ</div>
-			<!-- <div id="MenuContents">ログアウト</div> -->
+			<form action="/quetana/Contents/Home" method="get">
+				<input id="submit_btn" type="submit" name="Home"value="ホーム">
+			</form>
+			<form action="/quetana/Contents/UserProfile" method="get">
+				<input id="submit_btn" type="submit" name="mypage"value="マイページ">
+			</form>
+			<form action="/quetana/Contents/Post" method="get">
+				<input id="submit_btn" type="submit" name="post"value="投稿ページ">
+			</form>
 			<form action="/quetana/Logout" method="get">
-				<input type="submit" name="logout"value="ログアウト">
+				<input id="submit_btn" type="submit" name="logout"value="ログアウト">
 			</form>
 		</div>
 	</div>
 	<div id="LoginUser">
-		<div id="UserName"><%= userInfo.getStUserName() %></div>
+		<div id="UserID"><%= userInfo.getIdUser() %></div>
 		<div id="Icon"><img src="<%= userInfo.getStIconURL() %>" width="30" height="30"></div>
 	</div>
 </div>
