@@ -58,7 +58,7 @@ public class CreateAccountLogic {
 		if(rowsInsert != 1) {
 			return "アカウントを作成できませんでした";
 		}
-		return "";
+		return null;
 	}
 
 	/**
