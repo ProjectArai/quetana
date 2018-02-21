@@ -39,24 +39,18 @@ timeLine = (TimeLineBean) arrTimeLine.get(1);
 					</label>
 				</div>
 				<div id="TLContents">
-					<% for (TimeLineBean test : arrTimeLine){ %>
-						<div id="TLTable">
-							<div id="TLIcon"><img src="<%= test.getStIconURL() %>" width="56" height="56"></div>
-							<div id="TLUserName"><%= test.getStUserName() %></div>
-							<% if ((test.getCfPost()).equals("E")) { %>
-								<div id="TLType">ライブ/イベント</div>
-							<% } else if ((test.getCfPost()).equals("M")) { %>
-								<div id="TLType">メンバー募集</div>
-							<% } %>
-							<div id="TLTitle"><%= test.getStTitle() %></div>
-							<% if ((test.getCfPost()).equals("E")) { %>
-								<div id="TLTitle">場所　：<%= test.getStPlace() %><br>開催日：<%= test.getDtEvent() %></div>
-							<% } else if ((test.getCfPost()).equals("M")) { %>
-								<div id="TLTitle">募集パート　：<%= test.getStRecPart() %><br>演奏ジャンル：<%= test.getStGenre() %></div>
-							<% } %>
-							<div id="TLComment"><%= test.getStDetails() %></div>
-						</div>
-					<% } %>
+					<% for (TimeLineBean test : arrTimeLine){
+						test.getIdPost();
+						test.getIdUser();
+						test.getStTitle();
+						test.getStPart();
+						test.getStGenre();
+						test.getStPlace();
+						test.getDtEvent();
+						test.getStDetails();
+						test.getDtUpdate();
+						test.getDtResist();
+					} %>
 				</div>
 			</div>
 	</body>

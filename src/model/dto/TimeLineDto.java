@@ -1,13 +1,19 @@
 package model.dto;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class TimeLineDto {
-	private String idPost;   //投稿ID
-	private String cfPost;   //投稿区分
-	private String cfDelete; //削除FLG
-	private Date dtUpdate;   //更新日付
-	private Date dtResist;   //登録日付
+	private String idPost;    //投稿ID
+	private String idUser;    //ユーザID
+	private String stTitle;   //タイトル
+	private String stPart;    //募集パート
+	private String stGenre;   //演奏ジャンル
+	private String stPlace;   //開催場所
+	private Date dtEvent;     //開催日
+	private String stDetails; //詳細
+	private String cfDelete;  //削除FLG
+	private Date dtUpdate;    //更新日付
+	private Date dtResist;    //登録日付
 
 	public TimeLineDto() {}
 
@@ -19,12 +25,60 @@ public class TimeLineDto {
 		this.idPost = idPost;
 	}
 
-	public String getCfPost() {
-		return cfPost;
+	public String getIdUser() {
+		return idUser;
 	}
 
-	public void setCfPost(String cfPost) {
-		this.cfPost = cfPost;
+	public void setIdUser(String idUser) {
+		this.idUser = idUser;
+	}
+
+	public String getStTitle() {
+		return stTitle;
+	}
+
+	public void setStTitle(String stTitle) {
+		this.stTitle = stTitle;
+	}
+
+	public String getStPart() {
+		return stPart;
+	}
+
+	public void setStPart(String stPart) {
+		this.stPart = stPart;
+	}
+
+	public String getStGenre() {
+		return stGenre;
+	}
+
+	public void setStGenre(String stGenre) {
+		this.stGenre = stGenre;
+	}
+
+	public String getStPlace() {
+		return stPlace;
+	}
+
+	public void setStPlace(String stPlace) {
+		this.stPlace = stPlace;
+	}
+
+	public Date getDtEvent() {
+		return dtEvent;
+	}
+
+	public void setDtEvent(Date dtEvent) {
+		this.dtEvent = dtEvent;
+	}
+
+	public String getStDetails() {
+		return stDetails;
+	}
+
+	public void setStDetails(String stDetails) {
+		this.stDetails = stDetails;
 	}
 
 	public String getCfDelete() {
