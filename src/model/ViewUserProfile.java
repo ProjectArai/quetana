@@ -14,21 +14,23 @@ public class ViewUserProfile {
 
 		Map rtnMap = new HashMap();
 		String errMsg;
-//		UserProfileBean userPlofile = new UserProfileBean("A001", "r-zoon", "26", "2010", "ボーカル, ギター", "9mm Parabellum Bullet, THE BACK HORN", "J-Rock, HR/HM", "/quetana/img/r-zoon.png", "youtube", "社会人になって4年ほどたちますが、今でもたまーにギターを触ったりしています。タイミングがあればライブにも出たいと思っています！！");
 		UserProfileBean userProfile = new UserProfileBean();
 
+		UserProfileDto userProfileDto = new UserProfileDto();
+		userProfileDto.setIdUser(idUser);
+
 		//ユーザIDからユーザプロフィールを取得
-		T_USER_PROFILE_DAO tUserProfile = new T_USER_PROFILE_DAO();
 		List<UserProfileDto> arrUserProfile = new ArrayList();
-		arrUserProfile = tUserProfile.selectUserProfile(idUser);
+		T_USER_PROFILE_DAO tUserProfile = new T_USER_PROFILE_DAO();
+		arrUserProfile = tUserProfile.selectUserProfile(userProfileDto);
 
 		if (arrUserProfile.size() == 1) {
 			// DBから取得したユーザプロフィールが1件の場合
-			UserProfileDto userProfileDto = new UserProfileDto();
 			userProfileDto = arrUserProfile.get(0);
 			// ユーザプロフィールをセット
 			userProfile.setIdUser(userProfileDto.getIdUser());
-			userProfile.setStUserName(userProfileDto.getStUserName());
+			userProfile.setStAccountName(userProfileDto.getStAccountName());
+			userProfile.setStDisplayName(userProfileDto.getStDisplayName());
 			userProfile.setNmAge(userProfileDto.getNmAge());
 			userProfile.setNmAddYear(userProfileDto.getNmAddYear());
 			userProfile.setStPart(userProfileDto.getStPart());

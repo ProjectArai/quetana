@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.UserInfoBean,model.TimeLineBean,java.util.List" %>
+<%@ page import="model.TimeLineBean,java.util.List" %>
 <%
-//セッションスコープからユーザ情報を取得
-UserInfoBean userInfo = (UserInfoBean) session.getAttribute("userInfo");
 //リクエストスコープからタイムラインを取得
 List<TimeLineBean> arrTimeLine = (List<TimeLineBean>) request.getAttribute("arrTimeLine");
 TimeLineBean timeLine = new TimeLineBean();
@@ -40,16 +38,16 @@ timeLine = (TimeLineBean) arrTimeLine.get(1);
 				</div>
 				<div id="TLContents">
 					<% for (TimeLineBean test : arrTimeLine){
-						test.getIdPost();
-						test.getIdUser();
-						test.getStTitle();
-						test.getStPart();
-						test.getStGenre();
-						test.getStPlace();
-						test.getDtEvent();
-						test.getStDetails();
-						test.getDtUpdate();
-						test.getDtResist();
+						out.println(test.getIdPost());
+						out.println(test.getIdUser());
+						out.println(test.getStTitle());
+						out.println(test.getStPart());
+						out.println(test.getStGenre());
+						out.println(test.getStPlace());
+						out.println(test.getDtEvent());
+						out.println(test.getStDetails());
+						out.println(test.getDtUpdate());
+						out.println(test.getDtResist());
 					} %>
 				</div>
 			</div>

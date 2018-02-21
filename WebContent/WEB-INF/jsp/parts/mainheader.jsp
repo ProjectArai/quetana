@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.UserInfoBean" %>
+<%@ page import="model.LoginUserInfoBean" %>
 <%
 //セッションスコープからユーザ情報を取得
-UserInfoBean userInfo = (UserInfoBean) session.getAttribute("userInfo");
+LoginUserInfoBean loginUserInfo = (LoginUserInfoBean) session.getAttribute("loginUserInfo");
 %>
 <div id="Header">
 	<div id="Logo">Quetana</div>
@@ -27,7 +27,7 @@ UserInfoBean userInfo = (UserInfoBean) session.getAttribute("userInfo");
 		</div>
 	</div>
 	<div id="LoginUser">
-		<div id="UserID"><%= userInfo.getIdUser() %></div>
-		<div id="Icon"><img src="<%= userInfo.getStIconURL() %>" width="30" height="30"></div>
+		<div id="AccountName"><%= loginUserInfo.getStAccountName() %></div>
+		<div id="Icon"><img src="<%= loginUserInfo.getStIconURL() %>" width="30" height="30"></div>
 	</div>
 </div>

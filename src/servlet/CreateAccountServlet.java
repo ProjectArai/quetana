@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.CreateAccountLogic;
-import model.UserInfoBean;
+import model.LoginUserInfoBean;
 
 
 /**
@@ -38,10 +38,10 @@ public class CreateAccountServlet extends HttpServlet {
 
 		// セッションスコープからインスタンスを取得
 		HttpSession session = request.getSession();
-		UserInfoBean userInfo = (UserInfoBean)session.getAttribute("userInfo");
+		LoginUserInfoBean loginUserInfo = (LoginUserInfoBean)session.getAttribute("loginUserInfo");
 
 		// 条件分岐：セッションスコープにインスタンスがない/ある
-		if(userInfo == null) {
+		if(loginUserInfo == null) {
 			// ない場合
 			// createAccount.jspにフォワードする
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/createAccount.jsp");

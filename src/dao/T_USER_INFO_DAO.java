@@ -14,8 +14,8 @@ import model.UserInfoDto;
 
 public class T_USER_INFO_DAO {
 
-	public int insertUserInfo(String stUserName, String stMailAddress, String stPassword, String stIconURL) {
-		int rowsInsert = 0;
+	public int insertUserInfo(UserInfoDto userInfoDto) {
+		int rowExec = 0;
 		Connection conn = null;
 
 		try {
@@ -28,17 +28,18 @@ public class T_USER_INFO_DAO {
 			// INSERT文を準備
 			String sql =
 				"insert into T_USER_INFO "
-				+ "(STUSERNAME, STPASSWORD, STMAILADDRESS, STICONURL, CFDELETE, DTUPDATE, DTRESIST) "
-				+ "values (?, ?, ?, ?, false, now(), now());";
+				+ "(IDUSER, STACCOUNTNAME, STMAILADDRESS, STPASSWORD, CFDELETE, DTUPDATE, DTRESIST) "
+				+ "values (?, ?, ?, ?, ?, now(), now());";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1, stUserName);
-			pStmt.setString(2, stPassword);
-			pStmt.setString(3, stMailAddress);
-			pStmt.setString(4, stIconURL);
+			pStmt.setString(1, userInfoDto.getIdUser());
+			pStmt.setString(2, userInfoDto.getStAccountName());
+			pStmt.setString(3, userInfoDto.getStMailAddress());
+			pStmt.setString(4, userInfoDto.getStPassword());
+			pStmt.setString(5, userInfoDto.getCfDelete());
 
-			// INSERTを実行し、実行結果をrowInsertに格納
-			rowsInsert = pStmt.executeUpdate();
+			// INSERTを実行し、実行結果をrowExecに格納
+			rowExec = pStmt.executeUpdate();
 
 		} catch(SQLException e) {
             e.printStackTrace();
@@ -57,14 +58,14 @@ public class T_USER_INFO_DAO {
 				}
 			}
 		}
-		return rowsInsert;
+		return rowExec;
 	}
 
 	/**
 	 * @param stUserName
 	 * @return 0 or 1 or 2 ： Selectの結果(行数)を返す。エラーの場合は 2 を返す。
 	 */
-	public int selectUserName(String stUserName) {
+	public int selectAccountName(UserInfoDto userInfoDto) {
 
 		Connection conn = null;
 		int rowsSelectCount = 0;
@@ -78,10 +79,10 @@ public class T_USER_INFO_DAO {
 
 			// SELECT文を準備
 			String sql =
-				"select STUSERNAME from T_USER_INFO where STUSERNAME = ?;";
+				"select STACCOUNTNAME from T_USER_INFO where STACCOUNTNAME = ?;";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1, stUserName);
+			pStmt.setString(1, userInfoDto.getStAccountName());
 
 			// SELECT文を実行し、結果(行数)をカウント
 			ResultSet rs = pStmt.executeQuery();
@@ -113,7 +114,7 @@ public class T_USER_INFO_DAO {
 	 * @param stUserName
 	 * @return 0 or 1 or 2 ： Selectの結果(行数)を返す。エラーの場合は 2 を返す。
 	 */
-	public int selectMailAddress(String stMailAddress) {
+	public int selectMailAddress(UserInfoDto userInfoDto) {
 
 		Connection conn = null;
 		int rowsSelectCount = 0;
@@ -130,7 +131,7 @@ public class T_USER_INFO_DAO {
 				"select STMAILADDRESS from T_USER_INFO where STMAILADDRESS = ?;";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1, stMailAddress);
+			pStmt.setString(1, userInfoDto.getStMailAddress());
 
 			// SELECT文を実行し、結果(行数)をカウント
 			ResultSet rs = pStmt.executeQuery();
@@ -163,7 +164,7 @@ public class T_USER_INFO_DAO {
 	 * @param stLoginUser ：ユーザ名またはメールアドレス
 	 * @return arrUserInfo ：該当するユーザ情報、DB処理失敗の場合はnull
 	 */
-	public List<UserInfoDto> selectUserInfo(String stLoginUser) {
+	public List<UserInfoDto> selectUserInfo(UserInfoDto userInfoDto) {
 
 		List<UserInfoDto> arrUserInfo = new ArrayList();
 
@@ -178,18 +179,19 @@ public class T_USER_INFO_DAO {
 
 			// SELECT文を準備
 			String sql =
-					"select IDUSER, STMAILADDRESS, STPASSWORD, CFDELETE, DTUPDATE, DTRESIST from T_USER_INFO"
-					+ " where IDUSER = ? or STMAILADDRESS = ?;";
+					"select IDUSER, STACCOUNTNAME, STMAILADDRESS, STPASSWORD, CFDELETE, DTUPDATE, DTRESIST from T_USER_INFO"
+					+ " where STACCOUNTNAME = ? or STMAILADDRESS = ?;";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1, stLoginUser);
-			pStmt.setString(2, stLoginUser);
+			pStmt.setString(1, userInfoDto.getStAccountName());
+			pStmt.setString(2, userInfoDto.getStMailAddress());
 
 			// SELECTを実行し、結果が取得できた場合DTO型のListに格納
 			ResultSet rs  = pStmt.executeQuery();
 			while (rs.next()) {
 				UserInfoDto dto = new UserInfoDto();
 				dto.setIdUser(rs.getString("IDUSER"));
+				dto.setStAccountName(rs.getString("STACCOUNTNAME"));
 				dto.setStMailAddress(rs.getString("STMAILADDRESS"));
 				dto.setStPassword(rs.getString("STPASSWORD"));
 				dto.setCfDelete(rs.getString("CFDELETE"));

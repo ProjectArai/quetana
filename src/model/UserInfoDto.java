@@ -1,9 +1,10 @@
 package model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class UserInfoDto {
 	private String idUser;        //ユーザID
+	private String stAccountName; //アカウント名
 	private String stMailAddress; //メールアドレス
 	private String stPassword;    //パスワード
 	private String cfDelete;      //削除FLG
@@ -12,21 +13,20 @@ public class UserInfoDto {
 
 	public UserInfoDto() {}
 
-	public UserInfoDto(String idUser, String stMailAddress, String stPassword, String cfDelete, Date dtUpdate, Date dtResist) {
-		this.idUser     = idUser;
-		this.stMailAddress = stMailAddress;
-		this.stPassword    = stPassword;
-		this.cfDelete    = cfDelete;
-		this.dtUpdate    = dtUpdate;
-		this.dtResist    = dtResist;
-	}
-
 	public String getIdUser() {
 		return idUser;
 	}
 
 	public void setIdUser(String idUser) {
 		this.idUser = idUser;
+	}
+
+	public String getStAccountName() {
+		return stAccountName;
+	}
+
+	public void setStAccountName(String stAccountName) {
+		this.stAccountName = stAccountName;
 	}
 
 	public String getStPassword() {

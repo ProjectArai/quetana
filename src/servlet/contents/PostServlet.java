@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.PostLogic;
-import model.UserInfoBean;
+import model.LoginUserInfoBean;
 
 /**
  * Servlet implementation class HomeServlet
@@ -49,14 +49,14 @@ public class PostServlet extends HttpServlet {
 
 		// セッションスコープからユーザ情報を取得
 		HttpSession session = request.getSession();
-		UserInfoBean userInfo = (UserInfoBean)session.getAttribute("userInfo");
+		LoginUserInfoBean loginUserInfo = (LoginUserInfoBean)session.getAttribute("loginUserInfo");
 
 		// リクエストパラメータを取得
 		request.setCharacterEncoding("UTF-8");
 
 		// 投稿情報をマップに詰め込む
 		Map inParam = new HashMap();
-		inParam.put("idUser", userInfo.getIdUser());
+		inParam.put("idUser", loginUserInfo.getIdUser());
 		inParam.put("cfPost", request.getParameter("cfPost"));
 		inParam.put("stTitle", request.getParameter("stTitle"));
 		inParam.put("stPart", request.getParameter("stPart"));

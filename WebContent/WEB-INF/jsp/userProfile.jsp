@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.UserInfoBean,model.UserProfileBean" %>
+<%@ page import="model.UserProfileBean" %>
 <%
-//セッションスコープからユーザ情報を取得
-UserInfoBean userInfo = (UserInfoBean) session.getAttribute("userInfo");
 //リクエストスコープからプロフィールを取得
 UserProfileBean myProfile = (UserProfileBean) request.getAttribute("myProfile");
 %>
@@ -25,8 +23,8 @@ UserProfileBean myProfile = (UserProfileBean) request.getAttribute("myProfile");
 				<div id="TLContents">
 					<div id="TLTable">
 						<div id="TLIcon"><img src="<%= myProfile.getStIconURL() %>" width="56" height="56"></div>
-						<div id="TLUserName"><%= myProfile.getIdUser() %></div>
-						<div id="TLType"><%= myProfile.getStUserName() %></div>
+						<div id="TLUserName"><%= myProfile.getStAccountName() %></div>
+						<div id="TLType"><%= myProfile.getStDisplayName() %></div>
 						<div id="TLTitle"><%= myProfile.getNmAge() %></div>
 						<div id="TLTitle"><%= myProfile.getNmAddYear() %></div>
 						<div id="TLTitle"><%= myProfile.getStPart() %></div>

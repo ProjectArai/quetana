@@ -50,7 +50,7 @@ public class GetTimeLineDAO {
 				dto.setDtEvent(rs.getDate("DTEVENT"));
 				dto.setStDetails(rs.getString("STDETAILS"));
 				dto.setDtUpdate(rs.getDate("DTUPDATE"));
-				dto.setDtResist(rs.getDate("DTRESIT"));
+				dto.setDtResist(rs.getDate("DTRESIST"));
 
 				arrTimeLine.add(dto);
 			}

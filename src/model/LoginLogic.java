@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,35 +14,34 @@ public class LoginLogic {
 
 		Map rtnMap = new HashMap();
 		String errMsg;
-		UserInfoBean loginUserInfo = new UserInfoBean();
+		LoginUserInfoBean loginUserInfo = new LoginUserInfoBean();
+		UserInfoDto userInfoDto = new UserInfoDto();
 
 		//ユーザ名またはメールアドレスを基にDBからユーザ情報を取得
+		userInfoDto.setStAccountName(stLoginUser);
+		userInfoDto.setStMailAddress(stLoginUser);
 		T_USER_INFO_DAO tUserInfo = new T_USER_INFO_DAO();
-		List<UserInfoDto> arrUserInfo = new ArrayList();
-		arrUserInfo = tUserInfo.selectUserInfo(stLoginUser);
+		List<UserInfoDto> arrUserInfo = tUserInfo.selectUserInfo(userInfoDto);
 
 		//Daoの返却値によって処理分岐
 		if (arrUserInfo.size() == 1) {
 			// DBから取得したユーザ情報が1件の場合
-			UserInfoDto userInfoDto = new UserInfoDto();
 			userInfoDto = arrUserInfo.get(0);
 			//入力パスワードと登録パスワードを照合
 			if (stPassword.equals(userInfoDto.getStPassword())) {
 				//パスワードが一致した場合
-				String idUser = userInfoDto.getIdUser();
-
-				//ユーザIDからユーザプロフィールを取得
+				//ユーザIDを基にユーザプロフィールを取得
+				UserProfileDto userProfileDto = new UserProfileDto();
+				userProfileDto.setIdUser(userInfoDto.getIdUser());
 				T_USER_PROFILE_DAO tUserProfile = new T_USER_PROFILE_DAO();
-				List<UserProfileDto> arrUserProfile = new ArrayList();
-				arrUserProfile = tUserProfile.selectUserProfile(idUser);
+				List<UserProfileDto> arrUserProfile = tUserProfile.selectUserProfile(userProfileDto);
 
 				if (arrUserProfile.size() == 1) {
 					// DBから取得したユーザプロフィールが1件の場合
-					UserProfileDto userProfileDto = new UserProfileDto();
 					userProfileDto = arrUserProfile.get(0);
 					// ログインユーザ情報をセット
 					loginUserInfo.setIdUser(userProfileDto.getIdUser());
-					loginUserInfo.setStUserName(userProfileDto.getStUserName());
+					loginUserInfo.setStAccountName(userProfileDto.getStAccountName());
 					loginUserInfo.setStIconURL(userProfileDto.getStIconURL());
 					errMsg = "";
 				} else {
