@@ -65,6 +65,16 @@ public class PostLogic {
 			resultExecute = tEventAnnounce.insertEventAnnounce(eventAnnounceDto);
 		}
 
+		// UPDATE実行結果の判定
+		if (resultExecute.equals("1")) {
+			// 更新件数が1件の場合(成功)
+			errMsg = "";
+		} else {
+			// 更新件数が1件以外またはnullの場合(失敗)
+			// ★2件更新されちゃった場合どうしよう？WHERE句にUNIQUEカラム指定してるからおｋ？
+			errMsg = "システムエラー 管理者に連絡して下さい";
+		}
+
 
 		rtnMap.put("errMsg", errMsg);
 		return rtnMap;

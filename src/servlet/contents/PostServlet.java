@@ -68,18 +68,18 @@ public class PostServlet extends HttpServlet {
 		// 投稿内容のDB登録処理の実行
 		Map resultPost = PostLogic.postTimeLine(inParam);
 
-//		String errMsg = (String)resultPost.get("errMsg");
-//
-//		if (errMsg.equals("")) {
-//			// 更新処理が成功した場合
-//			// プロフィール画面を表示（/UserProfileにリダイレクト）
-//			response.sendRedirect("/quetana/Contents/UserProfile");
+		String errMsg = (String)resultPost.get("errMsg");
+
+		if (errMsg.equals("")) {
+			// 投稿処理が成功した場合
+			// ホーム画面を表示（/Homeにリダイレクト）
+			response.sendRedirect("/quetana/Contents/Home");
 //		} else {
 //			//ログインユーザ情報の判定が否の場合、
 //			//エラーメッセージをリクエストスコープに持たせ、editProfile.jspにフォワード
 //			request.setAttribute("errMsg", errMsg);
 //			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/editProfile.jsp");
 //			dispatcher.forward(request, response);
-//		}
+		}
 	}
 }
