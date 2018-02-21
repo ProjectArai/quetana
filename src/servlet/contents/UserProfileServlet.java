@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.UserInfoBean;
+import model.LoginUserInfoBean;
 import model.UserProfileBean;
 import model.ViewUserProfile;
 
@@ -39,8 +39,8 @@ public class UserProfileServlet extends HttpServlet {
 
 		// セッションスコープからログインユーザ情報を取得
 		HttpSession session = request.getSession();
-		UserInfoBean userInfo = (UserInfoBean)session.getAttribute("userInfo");
-		String idUser = userInfo.getIdUser();
+		LoginUserInfoBean loginUserInfo = (LoginUserInfoBean)session.getAttribute("loginUserInfo");
+		String idUser = loginUserInfo.getIdUser();
 
 		//ユーザIDを基にプロフィールを取得
 		Map result = ViewUserProfile.getUserProfile(idUser);

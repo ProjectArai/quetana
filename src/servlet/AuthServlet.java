@@ -32,7 +32,7 @@ public class AuthServlet implements Filter{
 				((HttpServletResponse)response).sendRedirect("/quetana/Login");
 			} else {
 				//セッションからログイン情報の有無を判定
-				Object loginUserInfo = session.getAttribute("userInfo");
+				Object loginUserInfo = session.getAttribute("loginUserInfo");
 				if (loginUserInfo == null) {
 					//ログイン情報がない場合、ログイン画面へ
 					session.setAttribute("target", targetURI);

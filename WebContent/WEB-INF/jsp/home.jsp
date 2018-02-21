@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.UserInfoBean,model.TimeLineBean,java.util.List" %>
+<%@ page import="model.TimeLineBean,java.util.List" %>
 <%
-//セッションスコープからユーザ情報を取得
-UserInfoBean userInfo = (UserInfoBean) session.getAttribute("userInfo");
 //リクエストスコープからタイムラインを取得
 List<TimeLineBean> arrTimeLine = (List<TimeLineBean>) request.getAttribute("arrTimeLine");
 TimeLineBean timeLine = new TimeLineBean();

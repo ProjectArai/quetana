@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.UserInfoBean,model.UserProfileBean" %>
+<%@ page import="model.UserProfileBean" %>
 <%
-//セッションスコープからユーザ情報を取得
-UserInfoBean userInfo = (UserInfoBean) session.getAttribute("userInfo");
 //リクエストスコープからプロフィールを取得
 UserProfileBean myProfile = (UserProfileBean) request.getAttribute("myProfile");
 %>
@@ -25,8 +23,8 @@ UserProfileBean myProfile = (UserProfileBean) request.getAttribute("myProfile");
 				<div id="TLContents">
 					<div id="TLTable">
 						<div id="TLIcon"><img src="<%= myProfile.getStIconURL() %>" width="56" height="56"></div>
-						<div id="TLUserName"><%= myProfile.getIdUser() %></div>
-						<div id="TLType"><%= myProfile.getStUserName() %></div>
+						<div id="TLUserName"><%= myProfile.getStAccountName() %></div>
+						<div id="TLType"><%= myProfile.getStDisplayName() %></div>
 						<div id="TLTitle"><%= myProfile.getNmAge() %></div>
 						<div id="TLTitle"><%= myProfile.getNmAddYear() %></div>
 						<div id="TLTitle"><%= myProfile.getStPart() %></div>
@@ -37,8 +35,7 @@ UserProfileBean myProfile = (UserProfileBean) request.getAttribute("myProfile");
 					</div>
 				</div>
 				<form action="/quetana/Contents/EditProfile" method="post">
-					<input type="text" name="idUser" maxlength="8" placeholder="ユーザID" required value="<%= myProfile.getIdUser() %>"><br>
-					<input type="text" name="stUserName" maxlength="8" placeholder="ユーザ名" required value="<%= myProfile.getStUserName() %>"><br>
+					<input type="text" name="stDisplayName" maxlength="8" placeholder="ユーザ名" required value="<%= myProfile.getStDisplayName() %>"><br>
 					<input type="text" name="nmAge" maxlength="3" placeholder="年齢" required value="<%= myProfile.getNmAge() %>"><br>
 					<input type="text" name="nmAddYear" maxlength="4" placeholder="入学年度" required value="<%= myProfile.getNmAddYear() %>"><br>
 					<input type="text" name="stPart" maxlength="128" placeholder="担当パート" required value="<%= myProfile.getStPart() %>"><br>

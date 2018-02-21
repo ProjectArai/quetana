@@ -18,7 +18,7 @@ public class SeqNoDto {
 		return noSeq;
 	}
 
-	public void seqNoSeq(int noSeq) {
+	public void setNoSeq(int noSeq) {
 		this.noSeq = noSeq;
 	}
 

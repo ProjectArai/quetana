@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.LoginLogic;
-import model.UserInfoBean;
+import model.LoginUserInfoBean;
 
 /**
  * Servlet implementation class LoginServlet
@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
 
 		// セッションスコープからログイン情報を取得
 		HttpSession session = request.getSession();
-		UserInfoBean userInfo = (UserInfoBean)session.getAttribute("userInfo");
+		LoginUserInfoBean loginUserInfo = (LoginUserInfoBean)session.getAttribute("loginUserInfo");
 
 		//本来アクセスしたかったURL(リクエストがあったURL)を取得
 		String targetURI = ((HttpServletRequest)request).getRequestURI();
@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
 		}
 
 		// セッション上のログイン情報の有無を判定
-		if (userInfo == null) {
+		if (loginUserInfo == null) {
 			// ログイン情報がない場合、login.jspにフォワード
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/login.jsp");
 			dispatcher.forward(request, response);
@@ -76,10 +76,9 @@ public class LoginServlet extends HttpServlet {
 		if (errMsg.equals("")) {
 			//ログインユーザ情報の判定が正の場合
 			//ユーザ情報をセッションに保存
-			UserInfoBean loginUserInfo = new UserInfoBean();
-			loginUserInfo = (UserInfoBean)resultJudge.get("loginUserInfo");
+			LoginUserInfoBean loginUserInfo = (LoginUserInfoBean)resultJudge.get("loginUserInfo");
 			HttpSession session = request.getSession();
-			session.setAttribute("userInfo", loginUserInfo);//★
+			session.setAttribute("loginUserInfo", loginUserInfo);
 			//本来アクセスしたかった画面(のServlet)にリダイレクト
 			String target = (String)session.getAttribute("target");
 			response.sendRedirect(target);

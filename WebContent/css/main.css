@@ -55,14 +55,13 @@ div#LoginUser{
 	border-radius: 5px;
 	font-size:11px;
 }
-div#UserID{
+div#AccountName{
 	float:right;
 	padding:7px 0px;
 	width:70px;
 	height:16px;
 	background-color: #fa8072;
 	text-align: center;
-	color: #ffffff;
 	font-size:11px;
 }
 div#Icon{

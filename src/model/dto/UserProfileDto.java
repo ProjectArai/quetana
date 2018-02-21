@@ -4,7 +4,8 @@ import java.util.Date;
 
 public class UserProfileDto {
 	private String idUser;     //ユーザID
-	private String stUserName; //名前
+	private String stAccountName; //アカウント名
+	private String stDisplayName; //表示名
 	private String nmAge;      //年齢
 	private String nmAddYear;  //入学年度
 	private String stPart;     //担当パート
@@ -19,32 +20,6 @@ public class UserProfileDto {
 
 	public UserProfileDto() {}
 
-	/**
-	 * テスト用コンストラクタ（本コーディングに使いまわしてもおｋ
-	 * @param idUser
-	 * @param stUserName
-	 * @param nmAge
-	 * @param nmAddYear
-	 * @param stPart
-	 * @param stFBand
-	 * @param stFGenre
-	 * @param stIconURL
-	 * @param stVideoURL
-	 * @param stComment
-	 */
-	public UserProfileDto(String idUser, String stUserName, String nmAge, String nmAddYear, String stPart, String stFBand,String stFGenre, String stIconURL, String stVideoURL, String stComment) {
-		this.setIdUser(idUser);
-		this.setStUserName(stUserName);
-		this.setNmAge(nmAge);
-		this.setNmAddYear(nmAddYear);
-		this.setStPart(stPart);
-		this.setStFBand(stFBand);
-		this.setStFGenre(stFGenre);
-		this.setStIconURL(stIconURL);
-		this.setStVideoURL(stVideoURL);
-		this.setStComment(stComment);
-	}
-
 	public String getIdUser() {
 		return idUser;
 	}
@@ -53,12 +28,20 @@ public class UserProfileDto {
 		this.idUser = idUser;
 	}
 
-	public String getStUserName() {
-		return stUserName;
+	public String getStAccountName() {
+		return stAccountName;
 	}
 
-	public void setStUserName(String stUserName) {
-		this.stUserName = stUserName;
+	public void setStAccountName(String stAccountName) {
+		this.stAccountName = stAccountName;
+	}
+
+	public String getStDisplayName() {
+		return stDisplayName;
+	}
+
+	public void setStDisplayName(String stDisplayName) {
+		this.stDisplayName = stDisplayName;
 	}
 
 	public String getNmAge() {
