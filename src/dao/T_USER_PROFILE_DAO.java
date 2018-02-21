@@ -211,7 +211,7 @@ public class T_USER_PROFILE_DAO {
 			String sql =
 					"UPDATE T_USER_PROFILE"
 							+ " SET"
-							+ " STUSERNAME = ?"
+							+ " STDISPLAYNAME = ?"
 							+ " , NMAGE = ?"
 							+ " , NMADDYEAR = ?"
 							+ " , STPART = ?"
@@ -227,7 +227,7 @@ public class T_USER_PROFILE_DAO {
 							+ ";";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1, userProfileDto.getStAccountName());
+			pStmt.setString(1, userProfileDto.getStDisplayName());
 			pStmt.setString(2, userProfileDto.getNmAge());
 			pStmt.setString(3, userProfileDto.getNmAddYear());
 			pStmt.setString(4, userProfileDto.getStPart());

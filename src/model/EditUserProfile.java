@@ -16,7 +16,7 @@ public class EditUserProfile {
 		//inParamをDTOに詰め直し
 		UserProfileDto userProfileDto = new UserProfileDto();
 		userProfileDto.setIdUser((String)inParam.get("idUser"));
-		userProfileDto.setStUserName((String)inParam.get("stUserName"));
+		userProfileDto.setStDisplayName((String)inParam.get("stDisplayName"));
 		userProfileDto.setNmAge((String)inParam.get("nmAge"));
 		userProfileDto.setNmAddYear((String)inParam.get("nmAddYear"));
 		userProfileDto.setStPart((String)inParam.get("stPart"));
