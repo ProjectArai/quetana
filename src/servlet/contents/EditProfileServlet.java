@@ -69,11 +69,14 @@ public class EditProfileServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		// セッションスコープからログインユーザ情報を取得
+		HttpSession session = request.getSession();
+		LoginUserInfoBean loginUserInfo = (LoginUserInfoBean)session.getAttribute("loginUserInfo");
 		//リクエストパラメータを取得し、マップに詰め込む
 		request.setCharacterEncoding("UTF-8");
 		Map inParam = new HashMap();
-		inParam.put("idUser", request.getParameter("idUser"));
-		inParam.put("stUserName", request.getParameter("stUserName"));
+		inParam.put("idUser", loginUserInfo.getIdUser());
+		inParam.put("stDisplayName", request.getParameter("stDisplayName"));
 		inParam.put("nmAge", request.getParameter("nmAge"));
 		inParam.put("nmAddYear", request.getParameter("nmAddYear"));
 		inParam.put("stPart", request.getParameter("stPart"));
