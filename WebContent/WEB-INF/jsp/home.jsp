@@ -15,8 +15,8 @@ timeLine = (TimeLineBean) arrTimeLine.get(1);
 		<title>Quetana</title>
 		<link rel="stylesheet" type="text/css" href="/quetana/css/main.css">
 		<link rel="stylesheet" type="text/css" href="/quetana/css/menu.css">
+		<script src="/quetana/js/common.js"></script>
 	</head>
-	<script src="/quetana/js/test.js"></script>
 	<body onLoad="loadtest()">
 		<jsp:include page="../jsp/parts/mainheader.jsp" flush="true" />
 		<div id="ContentsHeader"></div>

@@ -1,6 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.Map" %>
 <%
+String stAccountName = "";
+String stMailAddress = "";
+String stPassword = "";
+String stConfirmPassword = "";
+Map inParam = (Map)request.getAttribute("inParam");
+if (inParam != null) {
+	stAccountName = (String)inParam.get("stAccountName");
+	stMailAddress = (String)inParam.get("stMailAddress");
+	stPassword = (String)inParam.get("stPassword");
+	stConfirmPassword = (String)inParam.get("stConfirmPassword");
+}
 String errMsg = (String)request.getAttribute("errMsg");
 %>
 <!DOCTYPE html>
@@ -10,6 +22,7 @@ String errMsg = (String)request.getAttribute("errMsg");
 		<meta name="viewport" content="width=device-width">
 		<title>Quetana</title>
 		<link rel="stylesheet" type="text/css" href="/quetana/css/top.css">
+		<script src="/quetana/js/common.js"></script>
 	</head>
 	<body>
 		<div id="Header">
@@ -19,10 +32,10 @@ String errMsg = (String)request.getAttribute("errMsg");
 		<div id="Contents">
 			<font id="Quetana">Quetana</font><font id="ToDo">&nbsp;のアカウントを作成</font>
 			<form name="f1" action="/quetana/CreateAccount" method="post" onsubmit="return checkPassword()">
-				<input type="text" name="stUserName" maxlength="8" placeholder="ユーザ名" required value="r-zoon"><br>
-				<input type="text" name="stMailAddress" maxlength="128" placeholder="メールアドレス" required value="zoon@gmail.com"><br>
-				<input type="text" name="stPassword" maxlength="16" placeholder="パスワード" required value="1234"><br>
-				<input type="text" name="stConfirmPassword" maxlength="16" placeholder="パスワード(確認用)" required value="1234"><br>
+				<input type="text" name="stAccountName" maxlength="8" placeholder="アカウント名" required value="<%=  stAccountName %>"><br>
+				<input type="text" name="stMailAddress" maxlength="128" placeholder="メールアドレス" required value="<%=  stMailAddress %>"><br>
+				<input type="text" name="stPassword" maxlength="16" placeholder="パスワード" required value="<%=  stPassword %>"><br>
+				<input type="text" name="stConfirmPassword" maxlength="16" placeholder="パスワード(確認用)" required value="<%=  stConfirmPassword %>"><br>
 				<div id="MsgArea">
 					<% if(errMsg != null) { %>
 						<font id="ErrMsg"><%= errMsg %></font>
@@ -30,17 +43,6 @@ String errMsg = (String)request.getAttribute("errMsg");
 				</div>
 				<input id="submit_btn" type="submit" id="button" name="createAccount" size="10" value="アカウント作成">
 			</form>
-			<script>
-			// パスワードの一致確認
-			function checkPassword() {
-				if(f1.stPassword.value != f1.stConfirmPassword.value) {
-					alert("パスワードと確認用パスワードが一致しません");
-					return false;
-				} else {
-					return true;
-				}
-			}
-			</script>
 			<a href="<%=request.getContextPath()%>/Login">キャンセル</a>
 		</div>
 	</body>

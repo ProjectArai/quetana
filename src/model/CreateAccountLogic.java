@@ -11,7 +11,11 @@ import model.dto.UserProfileDto;
 
 
 public class CreateAccountLogic {
-	public static String createAccount(String stAccountName, String stMailAddress, String stPassword) {
+	public static String createAccount(Map inParam) {
+
+		String stAccountName = (String)inParam.get("stAccountName");
+		String stMailAddress = (String)inParam.get("stMailAddress");
+		String stPassword = (String)inParam.get("stPassword");
 
 		// T_USER_INFO用のDTO作成
 		UserInfoDto userInfoDto = new UserInfoDto();
@@ -29,14 +33,14 @@ public class CreateAccountLogic {
 		if(cdErr == 1) {
 			return "既に登録されている" + stDup + "です";
 		} else if(cdErr == 2) {
-			return "アカウントを作成できませんでした";
+			return "アカウント作成に失敗しました";
 		}
 
 		// INSERTの準備
 		String idUser = generateSeqNo("UI");
 		if (idUser.equals("")) {
 			// SEQ番号のインクリメントに失敗したら即エラー
-			return "アカウントを作成できませんでした";
+			return "アカウント作成に失敗しました";
 		}
 		userInfoDto.setIdUser("UI" + idUser);
 		userInfoDto.setStPassword(stPassword);
@@ -51,12 +55,12 @@ public class CreateAccountLogic {
 		T_USER_INFO_DAO tUserInfoDao = new T_USER_INFO_DAO();
 		rowsInsert = tUserInfoDao.insertUserInfo(userInfoDto);
 		if(rowsInsert != 1) {
-			return "アカウントを作成できませんでした";
+			return "アカウント作成に失敗しました";
 		}
 		T_USER_PROFILE_DAO tUserProfileDao = new T_USER_PROFILE_DAO();
 		rowsInsert = tUserProfileDao.insertUserProfile(userProfileDto);
 		if(rowsInsert != 1) {
-			return "アカウントを作成できませんでした";
+			return "アカウント作成に失敗しました";
 		}
 		return null;
 	}

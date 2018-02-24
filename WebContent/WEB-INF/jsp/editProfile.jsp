@@ -20,30 +20,23 @@ UserProfileBean myProfile = (UserProfileBean) request.getAttribute("myProfile");
 		<div id="Contents">
 			<div id="TimeLine">
 				<div id="TLHeader">TimeLine</div>
+				<form action="/quetana/Contents/EditProfile" method="post">
 				<div id="TLContents">
 					<div id="TLTable">
 						<div id="TLIcon"><img src="<%= myProfile.getStIconURL() %>" width="56" height="56"></div>
 						<div id="TLUserName"><%= myProfile.getStAccountName() %></div>
-						<div id="TLType"><%= myProfile.getStDisplayName() %></div>
-						<div id="TLTitle"><%= myProfile.getNmAge() %></div>
-						<div id="TLTitle"><%= myProfile.getNmAddYear() %></div>
-						<div id="TLTitle"><%= myProfile.getStPart() %></div>
-						<div id="TLTitle"><%= myProfile.getStFBand() %></div>
-						<div id="TLTitle"><%= myProfile.getStFGenre() %></div>
-						<div id="TLTitle"><%= myProfile.getStVideoURL() %></div>
-						<div id="TLComment"><%= myProfile.getStComment() %></div>
+						<div id="TLType"><input type="text" name="stDisplayName" maxlength="8" placeholder="表示名" required value="<%= myProfile.getStDisplayName() %>"></div>
+						<div id="TLTitle"><input type="text" name="nmAge" maxlength="3" placeholder="年齢" required value="<%= myProfile.getNmAge() %>"></div>
+						<div id="TLTitle"><input type="text" name="nmAddYear" maxlength="4" placeholder="入学年度" required value="<%= myProfile.getNmAddYear() %>"></div>
+						<div id="TLTitle"><input type="text" name="stPart" maxlength="128" placeholder="担当パート" required value="<%= myProfile.getStPart() %>"></div>
+						<div id="TLTitle"><input type="text" name="stFBand" maxlength="512" placeholder="好きなバンド" required value="<%= myProfile.getStFBand() %>"></div>
+						<div id="TLTitle"><input type="text" name="stFGenre" maxlength="512" placeholder="好きなジャンル" required value="<%= myProfile.getStFGenre() %>"></div>
+						<div id="TLTitle"><input type="text" name="stVideoURL" maxlength="512" placeholder="YoutubeURL" required value="<%= myProfile.getStVideoURL() %>"></div>
+						<div id="TLComment"><textarea name="stComment" rows="4" cols="32" placeholder="コメント"><%= myProfile.getStComment() %></textarea></div>
 					</div>
 				</div>
-				<form action="/quetana/Contents/EditProfile" method="post">
-					<input type="text" name="stDisplayName" maxlength="8" placeholder="ユーザ名" required value="<%= myProfile.getStDisplayName() %>"><br>
-					<input type="text" name="nmAge" maxlength="3" placeholder="年齢" required value="<%= myProfile.getNmAge() %>"><br>
-					<input type="text" name="nmAddYear" maxlength="4" placeholder="入学年度" required value="<%= myProfile.getNmAddYear() %>"><br>
-					<input type="text" name="stPart" maxlength="128" placeholder="担当パート" required value="<%= myProfile.getStPart() %>"><br>
-					<input type="text" name="stFBand" maxlength="512" placeholder="好きなバンド" required value="<%= myProfile.getStFBand() %>"><br>
-					<input type="text" name="stFGenre" maxlength="512" placeholder="好きなジャンル" required value="<%= myProfile.getStFGenre() %>"><br>
-					<input type="text" name="stVideoURL" maxlength="512" placeholder="Youtube" required value="<%= myProfile.getStVideoURL() %>"><br>
-					<textarea name="stComment" rows="4" cols="40" placeholder="コメント"><%= myProfile.getStComment() %></textarea><br>
-					<input id="edit_btn" type="submit" name="save" value="保存">
+				<input id="edit_btn" type="submit" name="save" value="保存">
+				<a href="<%=request.getContextPath()%>/Contents/UserProfile">キャンセル</a>
 				</form>
 			</div>
 	</body>

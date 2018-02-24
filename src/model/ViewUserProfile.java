@@ -31,14 +31,42 @@ public class ViewUserProfile {
 			userProfile.setIdUser(userProfileDto.getIdUser());
 			userProfile.setStAccountName(userProfileDto.getStAccountName());
 			userProfile.setStDisplayName(userProfileDto.getStDisplayName());
-			userProfile.setNmAge(userProfileDto.getNmAge());
-			userProfile.setNmAddYear(userProfileDto.getNmAddYear());
-			userProfile.setStPart(userProfileDto.getStPart());
-			userProfile.setStFBand(userProfileDto.getStFBand());
-			userProfile.setStFGenre(userProfileDto.getStFGenre());
+			if (userProfileDto.getNmAge() == null) {
+				userProfile.setNmAge("");
+			} else {
+				userProfile.setNmAge(userProfileDto.getNmAge());
+			}
+			if (userProfileDto.getNmAddYear() == null) {
+				userProfile.setNmAddYear("");
+			} else {
+				userProfile.setNmAddYear(userProfileDto.getNmAddYear());
+			}
+			if (userProfileDto.getStPart() == null) {
+				userProfile.setStPart("");
+			} else {
+				userProfile.setStPart(userProfileDto.getStPart());
+			}
+			if (userProfileDto.getStFBand() == null) {
+				userProfile.setStFBand("");
+			} else {
+				userProfile.setStFBand(userProfileDto.getStFBand());
+			}
+			if (userProfileDto.getStFGenre() == null) {
+				userProfile.setStFGenre("");
+			} else {
+				userProfile.setStFGenre(userProfileDto.getStFGenre());
+			}
 			userProfile.setStIconURL(userProfileDto.getStIconURL());
-			userProfile.setStVideoURL(userProfileDto.getStVideoURL());
-			userProfile.setStComment(userProfileDto.getStComment());
+			if (userProfileDto.getStVideoURL() == null) {
+				userProfile.setStVideoURL("");
+			} else {
+				userProfile.setStVideoURL(userProfileDto.getStVideoURL());
+			}
+			if (userProfileDto.getStComment() == null) {
+				userProfile.setStComment("");
+			} else {
+				userProfile.setStComment(userProfileDto.getStComment());
+			}
 			errMsg = "";
 		} else {
 			// DBから取得したユーザプロフィールが1件以外の場合
