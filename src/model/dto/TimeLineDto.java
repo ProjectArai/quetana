@@ -13,7 +13,7 @@ public class TimeLineDto {
 	private String stPlace;   //開催場所
 	private Date dtEvent;     //開催日
 	private String stDetails; //詳細
-	private Boolean cfDelete; //削除フラグ
+	private String cfDelete; //削除フラグ
 	private Date dtUpdate;    //更新日付
 	private Date dtResist;    //登録日付
 
@@ -99,11 +99,11 @@ public class TimeLineDto {
 		this.stDetails = stDetails;
 	}
 
-	public Boolean getCfDelete() {
+	public String getCfDelete() {
 		return cfDelete;
 	}
 
-	public void setCfDelete(Boolean cfDelete) {
+	public void setCfDelete(String cfDelete) {
 		this.cfDelete = cfDelete;
 	}
 

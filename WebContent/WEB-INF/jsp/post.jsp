@@ -1,56 +1,74 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.TimeLineBean,java.util.List" %>
+<%@ page import="model.TimeLineBean,java.util.Map" %>
+<%
+String stTitle = "";
+String stPart = "";
+String stPlace = "";
+String stGenre = "";
+String dtEvent = "";
+String stDetails = "";
+String chkM = "checked";
+String chkE = "";
+Map inParam = (Map)request.getAttribute("inParam");
+if (inParam != null) {
+	stTitle = (String)inParam.get("stTitle");
+	stPart = (String)inParam.get("stPart");
+	stPlace = (String)inParam.get("stPlace");
+	stGenre = (String)inParam.get("stGenre");
+	dtEvent = (String)inParam.get("dtEvent");
+	stDetails = (String)inParam.get("stDetails");
+	String cfPost = (String)inParam.get("cfPost");
+	if (cfPost.equals("E")) {
+		chkM = "";
+		chkE = "checked";
+	}
+}
+String errMsg = (String)request.getAttribute("errMsg");
+%>
 <!DOCTYPE html>
 <html>
-<script>
-function displayMember() {
-    document.getElementById("stPart").style.display="block";
-    document.getElementById("stGenre").style.display="block";
-    document.getElementById("stPlace").style.display="none";
-    document.getElementById("dtEvent").style.display="none";
-}
-
-function displayEvent() {
-    document.getElementById("stPart").style.display="none";
-    document.getElementById("stGenre").style.display="none";
-    document.getElementById("stPlace").style.display="block";
-    document.getElementById("dtEvent").style.display="block";
-}
-</script>
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width">
 		<title>Quetana</title>
 		<link rel="stylesheet" type="text/css" href="/quetana/css/main.css">
 		<link rel="stylesheet" type="text/css" href="/quetana/css/menu.css">
+		<script src="/quetana/js/common.js"></script>
 	</head>
-	<body>
+	<body onLoad="displayMember()">
 		<jsp:include page="../jsp/parts/mainheader.jsp" flush="true" />
 		<div id="ContentsHeader"></div>
 		<div id="Contents">
 			<div id="TimeLine">
-				<div id="TLHeader">TimeLine</div>
+			<form action="/quetana/Contents/Post" method="post">
+				<div id="TLHeader">投稿ページ</div>
 				<div id="TLMenu">
-					<div id="main">こんにちは</div>
+					<label for="RadioAll">
+						<input id="RadioAll" name="cfPost" type="radio" class="nav-unshown" value="M" onclick="displayMember()" <%= chkM %>>
+						<div id="TLMenuTab">メンバー募集</div>
+					</label>
+					<label for="RadioEvent">
+						<input id="RadioEvent" name="cfPost" type="radio" class="nav-unshown" value="E" onclick="displayEvent()" <%= chkE %>>
+						<div id="TLMenuTab">イベント告知</div>
+					</label>
 				</div>
 				<div id="TLContents">
 					<div id="TLTable">
-						<form action="/quetana/Contents/Post" method="post">
-							<p>
-								<input type="radio" name="cfPost" value="M" onclick="displayMember()" checked>
-								<input type="radio" name="cfPost" value="E" onclick="displayEvent()">
-							</p>
-							<input type="text" name="stTitle" maxlength="32" placeholder="タイトル" required><br>
-							<input id="stPart" type="text" name="stPart" maxlength="32" placeholder="募集パート"><br>
-							<input id="stGenre" type="text" name="stGenre" maxlength="32" placeholder="演奏ジャンル"><br>
-							<input id="stPlace" type="text" name="stPlace" maxlength="32" placeholder="場所"><br>
-							<input id="dtEvent" type="date" name="dtEvent" maxlength="32" placeholder="開催日"><br>
-							<textarea name="stDetails" rows="4" cols="40" placeholder="詳細"></textarea><br>
-							<input id="post_btn" type="submit" name="post" value="投稿">
-						</form>
+						<div id="TLTitle"><input type="text" name="stTitle" maxlength="32" placeholder="タイトル" required value="<%=  stTitle %>"></div>
+						<div id="TLTitle"><input id="stPart" type="text" name="stPart" maxlength="32" placeholder="募集パート" value="<%=  stPart %>">
+											<input id="stPlace" type="text" name="stPlace" maxlength="32" placeholder="場所" value="<%=  stPlace %>"></div>
+						<div id="TLTitle"><input id="stGenre" type="text" name="stGenre" maxlength="32" placeholder="演奏ジャンル" value="<%=  stGenre %>">
+											<input id="dtEvent" type="date" name="dtEvent" maxlength="32" placeholder="開催日" value="<%=  dtEvent %>"></div>
+						<div id="TLTitle"><textarea name="stDetails" rows="4" cols="32" placeholder="詳細"><%=  stDetails %></textarea></div>
 					</div>
 				</div>
+				<input id="post_btn" type="submit" name="post" value="投稿">
+				<a href="<%=request.getContextPath()%>/Contents/Home">キャンセル</a>
+			</form>
+				<% if(errMsg != null) { %>
+						<font id="ErrMsg"><%= errMsg %></font>
+				<% } %>
 			</div>
 	</body>
 </html>

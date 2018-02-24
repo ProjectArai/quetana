@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import model.dto.TimeLineDto;
 
+// ★このクラス破棄
 public class T_TIMELINE_DAO {
 
 	/**

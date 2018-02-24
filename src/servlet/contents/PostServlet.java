@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.PostLogic;
 import model.LoginUserInfoBean;
+import model.PostLogic;
 
 /**
  * Servlet implementation class HomeServlet
@@ -67,19 +67,18 @@ public class PostServlet extends HttpServlet {
 
 		// 投稿内容のDB登録処理の実行
 		Map resultPost = PostLogic.postTimeLine(inParam);
-
 		String errMsg = (String)resultPost.get("errMsg");
 
+		// 投稿処理の結果で分岐
 		if (errMsg.equals("")) {
-			// 投稿処理が成功した場合
-			// ホーム画面を表示（/Homeにリダイレクト）
+			// 成功した場合、ホーム画面を表示（/Homeにリダイレクト）
 			response.sendRedirect("/quetana/Contents/Home");
-//		} else {
-//			//ログインユーザ情報の判定が否の場合、
-//			//エラーメッセージをリクエストスコープに持たせ、editProfile.jspにフォワード
-//			request.setAttribute("errMsg", errMsg);
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/editProfile.jsp");
-//			dispatcher.forward(request, response);
+		} else {
+			// 失敗した場合、errMsgとinParamを持たせて、post.jspにフォワード
+			request.setAttribute("errMsg", errMsg);
+			request.setAttribute("inParam", inParam);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/post.jsp");
+			dispatcher.forward(request, response);
 		}
 	}
 }

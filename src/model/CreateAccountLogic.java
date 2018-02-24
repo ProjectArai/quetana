@@ -3,15 +3,15 @@ package model;
 import java.util.HashMap;
 import java.util.Map;
 
-import dao.M_SEQ_NO_DAO;
 import dao.T_USER_INFO_DAO;
 import dao.T_USER_PROFILE_DAO;
-import model.dto.SeqNoDto;
 import model.dto.UserProfileDto;
 
 
 public class CreateAccountLogic {
 	public static String createAccount(Map inParam) {
+
+		int rowsInsert;
 
 		String stAccountName = (String)inParam.get("stAccountName");
 		String stMailAddress = (String)inParam.get("stMailAddress");
@@ -37,26 +37,27 @@ public class CreateAccountLogic {
 		}
 
 		// INSERTの準備
-		String idUser = generateSeqNo("UI");
+		String idUser = CommonLogic.generateSeqNo("UI");
 		if (idUser.equals("")) {
 			// SEQ番号のインクリメントに失敗したら即エラー
 			return "アカウント作成に失敗しました";
 		}
-		userInfoDto.setIdUser("UI" + idUser);
+
+		// アカウント作成処理（ユーザ情報）
+		userInfoDto.setIdUser(idUser);
 		userInfoDto.setStPassword(stPassword);
 		userInfoDto.setCfDelete("0");
-		userProfileDto.setIdUser("UI" + idUser);
-		userProfileDto.setStDisplayName(stAccountName); //デフォルトはアカウント名＝表示名
-		userProfileDto.setStIconURL("/quetana/img/r-zoon.png"); // デフォルトアイコンの格納先を指定
-		userProfileDto.setCfDelete("0");
-
-		// アカウント作成処理
-		int rowsInsert;
 		T_USER_INFO_DAO tUserInfoDao = new T_USER_INFO_DAO();
 		rowsInsert = tUserInfoDao.insertUserInfo(userInfoDto);
 		if(rowsInsert != 1) {
 			return "アカウント作成に失敗しました";
 		}
+
+		// アカウント作成処理（ユーザプロフィール）
+		userProfileDto.setIdUser(idUser);
+		userProfileDto.setStDisplayName(stAccountName); //デフォルトはアカウント名＝表示名
+		userProfileDto.setStIconURL("/quetana/img/r-zoon.png"); // デフォルトアイコンの格納先を指定
+		userProfileDto.setCfDelete("0");
 		T_USER_PROFILE_DAO tUserProfileDao = new T_USER_PROFILE_DAO();
 		rowsInsert = tUserProfileDao.insertUserProfile(userProfileDto);
 		if(rowsInsert != 1) {
@@ -104,36 +105,6 @@ public class CreateAccountLogic {
 		rtnMap.put("stDup", "");
 		return rtnMap;
 	}
-
-	/**
-	 * SEQ番号の取得とインクリメント
-	 * @param cfPost
-	 * @return stSeqNo  :失敗したら空文字
-	 */
-	private static String generateSeqNo (String idType) {
-
-		SeqNoDto seqNoDto = new SeqNoDto();
-		seqNoDto.setIdType(idType);
-
-		// M_SEQ_NOから投稿IDのSEQ番号を取得
-		M_SEQ_NO_DAO mSeqNoDao = new M_SEQ_NO_DAO();
-		String stSeqNo = mSeqNoDao.selectSeqNo(seqNoDto);
-
-		// 現SEQ番号をインクリメント
-		int noSeq = Integer.parseInt(stSeqNo);
-		noSeq = noSeq + 1;
-		seqNoDto.setNoSeq(noSeq);
-		int rowExec = mSeqNoDao.updateSeqNo(seqNoDto);
-
-		if (rowExec == 1) {
-			//ゼロ埋め処理
-			stSeqNo = String.format("%06d", noSeq);
-		} else {
-			stSeqNo = "";
-		}
-		return stSeqNo;
-	}
-
 
 	private static int checkDuplicateName(String dbType, UserInfoDto userInfoDto) {
 		T_USER_INFO_DAO tUserInfoDao = new T_USER_INFO_DAO();
