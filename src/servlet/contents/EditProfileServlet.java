@@ -96,8 +96,22 @@ public class EditProfileServlet extends HttpServlet {
 			// プロフィール画面を表示（/UserProfileにリダイレクト）
 			response.sendRedirect("/quetana/Contents/UserProfile");
 		} else {
-			//ログインユーザ情報の判定が否の場合、
-			//エラーメッセージをリクエストスコープに持たせ、editProfile.jspにフォワード
+			// ログインユーザ情報の判定が否の場合
+			// 入力情報を格納（★とりあえず初期表示時にmyProfileって入れ物使ったので使いまわし
+			UserProfileBean myProfile = new UserProfileBean();
+			myProfile.setIdUser(loginUserInfo.getIdUser());
+			myProfile.setStAccountName(loginUserInfo.getStAccountName());
+			myProfile.setStDisplayName((String)inParam.get("stDisplayName"));
+			myProfile.setNmAge((String)inParam.get("nmAge"));
+			myProfile.setNmAddYear((String)inParam.get("nmAddYear"));
+			myProfile.setStPart((String)inParam.get("stPart"));
+			myProfile.setStFBand((String)inParam.get("stFBand"));
+			myProfile.setStFGenre((String)inParam.get("stFGenre"));
+			myProfile.setStIconURL("/quetana/img/r-zoon.png");
+			myProfile.setStVideoURL((String)inParam.get("stVideoURL"));
+			myProfile.setStComment((String)inParam.get("stComment"));
+			// errMsgとinParamを持たせてeditProfile.jspにフォワード
+			request.setAttribute("myProfile", myProfile);
 			request.setAttribute("errMsg", errMsg);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/editProfile.jsp");
 			dispatcher.forward(request, response);

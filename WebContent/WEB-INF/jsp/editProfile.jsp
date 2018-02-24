@@ -4,6 +4,7 @@
 <%
 //リクエストスコープからプロフィールを取得
 UserProfileBean myProfile = (UserProfileBean) request.getAttribute("myProfile");
+String errMsg = (String)request.getAttribute("errMsg");
 %>
 <!DOCTYPE html>
 <html>
@@ -38,6 +39,10 @@ UserProfileBean myProfile = (UserProfileBean) request.getAttribute("myProfile");
 				<input id="edit_btn" type="submit" name="save" value="保存">
 				<a href="<%=request.getContextPath()%>/Contents/UserProfile">キャンセル</a>
 				</form>
+				<% if(errMsg != null) { %>
+						<font id="ErrMsg"><%= errMsg %></font>
+				<% } %>
 			</div>
+		</div>
 	</body>
 </html>

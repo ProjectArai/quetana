@@ -189,14 +189,11 @@ public class T_USER_PROFILE_DAO {
 	/**
 	 * ユーザIDをWHERE句に指定し、T_USER_PROFILEを更新
 	 * @param userProfileDto  ：T_USER_PROFILEのDTO
-	 * @return rtnExecute  ：実行件数、DB処理失敗の場合null
+	 * @return rowExecute  ：実行件数 0:更新なし？、1:更新成功、2:DB処理失敗
 	 */
-	public String updateUserProfile(UserProfileDto userProfileDto) {
+	public int updateUserProfile(UserProfileDto userProfileDto) {
 
 		int rowExecute = 0;
-		String rtnExecute = null;
-
-		List<UserProfileDto> arrUserProfile = new ArrayList();
 
 		Connection conn = null;
 
@@ -244,10 +241,10 @@ public class T_USER_PROFILE_DAO {
 
 		} catch(SQLException e) {
 			e.printStackTrace();
-			return null;
+			return 2;
 		} catch(ClassNotFoundException e) {
 			e.printStackTrace();
-			return null;
+			return 2;
 		} finally {
 			// DB切断
 			if(conn != null) {
@@ -255,13 +252,10 @@ public class T_USER_PROFILE_DAO {
 					conn.close();
 				} catch(SQLException e) {
 					e.printStackTrace();
-					return null;
+					return 2;
 				}
 			}
 		}
-
-		// 実行件数をString型にキャストしてreturn
-		rtnExecute = String.valueOf(rowExecute);
-		return rtnExecute;
+		return rowExecute;
 	}
 }

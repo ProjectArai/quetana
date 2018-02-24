@@ -29,18 +29,16 @@ public class EditUserProfile {
 
 		// UPDATE処理の実行
 		T_USER_PROFILE_DAO tUserProfile = new T_USER_PROFILE_DAO();
-		String resultExecute = tUserProfile.updateUserProfile(userProfileDto);
+		int resultExecute = tUserProfile.updateUserProfile(userProfileDto);
 
 		// UPDATE実行結果の判定
-		if (resultExecute.equals("1")) {
+		if (resultExecute == 1) {
 			// 更新件数が1件の場合(成功)
 			errMsg = "";
 		} else {
-			// 更新件数が1件以外またはnullの場合(失敗)
-			// ★2件更新されちゃった場合どうしよう？WHERE句にUNIQUEカラム指定してるからおｋ？
+			// 更新件数が1件以外の場合(失敗)
 			errMsg = "システムエラー 管理者に連絡して下さい";
 		}
-
 		rtnMap.put("errMsg", errMsg);
 		return rtnMap;
 	}
