@@ -4,8 +4,6 @@
 <%
 //リクエストスコープからタイムラインを取得
 List<TimeLineBean> arrTimeLine = (List<TimeLineBean>) request.getAttribute("arrTimeLine");
-TimeLineBean timeLine = new TimeLineBean();
-timeLine = (TimeLineBean) arrTimeLine.get(1);
 %>
 <!DOCTYPE html>
 <html>
@@ -15,6 +13,7 @@ timeLine = (TimeLineBean) arrTimeLine.get(1);
 		<title>Quetana</title>
 		<link rel="stylesheet" type="text/css" href="/quetana/css/main.css">
 		<link rel="stylesheet" type="text/css" href="/quetana/css/menu.css">
+		<link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
 		<script src="/quetana/js/common.js"></script>
 	</head>
 	<body>
@@ -30,7 +29,7 @@ timeLine = (TimeLineBean) arrTimeLine.get(1);
 					</label>
 					<label for="RadioEvent">
 						<input id="RadioEvent" name="TLMenuTabRadio" type="radio" class="nav-unshown">
-						<div id="TLMenuTab" class="aaa">イベント</div>
+						<div id="TLMenuTab">イベント</div>
 					</label>
 					<label for="RadioMember">
 						<input id="RadioMember" name="TLMenuTabRadio" type="radio" class="nav-unshown">
@@ -39,22 +38,18 @@ timeLine = (TimeLineBean) arrTimeLine.get(1);
 				</div>
 				<div id="TLContents">
 					<% for (TimeLineBean test : arrTimeLine){ %>
-					    <div id="TLTitle">■■■■■■■■■■■■■■■■■■■■</div>
-					    <div id="TLTitle">投稿日：<%= test.getDtResist() %><br>更新日：<%= test.getDtUpdate() %></div>
-						<div id="TLIcon"><img src="<%= test.getStIconURL() %>" width="56" height="56"></div>
-						<div id="TLUserName"><%= test.getStAccountName() %></div>
-						<% if ((test.getIdPost()).charAt(1) == 'E') { %>
-							<div id="TLType">ライブ/イベント</div>
-						<% } else if ((test.getIdPost()).charAt(1) == 'M') { %>
-							<div id="TLType">メンバー募集</div>
-						<% } %>
-						<div id="TLTitle"><%= test.getStTitle() %></div>
-						<% if ((test.getIdPost()).charAt(1) == 'E') { %>
-							<div id="TLTitle">場所：<%= test.getStPlace() %><br>開催日：<%= test.getDtEvent() %></div>
-						<% } else if ((test.getIdPost()).charAt(1) == 'M') { %>
-							<div id="TLTitle">募集パート：<%= test.getStPart() %><br>演奏ジャンル：<%= test.getStGenre() %></div>
-						<% } %>
-						<div id="TLComment"><%= test.getStDetails() %></div>
+						<div id="TLTable">
+							<div id="TLTitle"><%= test.getStTitle() %></div>
+							<div id="TLIcon"><img src="<%= test.getStIconURL() %>" width="50" height="50" class="BorderRadius"></div>
+							<div id="TLUserName"><%= test.getStDisplayName() %></div>
+							<div id="TLUpdateDate"><%= test.getDtUpdate() %></div>
+							<% if ((test.getIdPost()).charAt(1) == 'E') { %>
+								<div id="TLComment">■ライブ/イベント情報<br>場所　：<%= test.getStPlace() %><br>開催日：<%= test.getDtEvent() %></div>
+							<% } else if ((test.getIdPost()).charAt(1) == 'M') { %>
+								<div id="TLComment">■メンバー募集情報<br>募集パート　：<%= test.getStPart() %><br>演奏ジャンル：<%= test.getStGenre() %></div>
+							<% } %>
+							<div id="TLComment"><%= test.getStDetails() %></div>
+						</div>
 					<% } %>
 				</div>
 			</div>

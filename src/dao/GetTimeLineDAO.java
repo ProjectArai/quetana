@@ -40,7 +40,7 @@ public class GetTimeLineDAO {
 						+ "order by DTUPDATE desc"
 					+ ") V1 "
 					+ "join ("
-						+ "select IDUSER, STACCOUNTNAME, STICONURL from T_USER_PROFILE"
+						+ "select IDUSER, STACCOUNTNAME, STDISPLAYNAME, STICONURL from T_USER_PROFILE"
 					+ ") V2 "
 					+ "on V1.IDUSER = V2.IDUSER;";
 
@@ -53,6 +53,7 @@ public class GetTimeLineDAO {
 				dto.setIdPost(rs.getString("IDPOST"));
 				dto.setIdUser(rs.getString("IDUSER"));
 				dto.setStAccountName(rs.getString("STACCOUNTNAME"));
+				dto.setStDisplayName(rs.getString("STDISPLAYNAME"));
 				dto.setStIconURL(rs.getString("STICONURL"));
 				dto.setStTitle(rs.getString("STTITLE"));
 				dto.setStPart(rs.getString("STPART"));

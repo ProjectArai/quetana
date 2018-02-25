@@ -55,9 +55,13 @@ public class PostLogic {
 				return rtnMap;
 			}
 
+			//inParamの日付をSQLDate値へ変換
+//			SimpleDateFormat sqlDate = strToDate((String)inParam.get("dtEvent"));
+//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//			String a = sdf.format((String)inParam.get("dtEvent"));
+//			Date dtEvent = sdf.parse((String)inParam.get("dtEvent"));
+			Date dtEvent = Date.valueOf((String)inParam.get("dtEvent"));
 			// T_EVENT_ANNOUNCEへInsert
-			Date dtEvent = Date.valueOf((String)inParam.get("dtEvent")); //inParamの日付をSQLDate値へ変換
-
 			EventAnnounceDto eventAnnounceDto = new EventAnnounceDto();
 			eventAnnounceDto.setIdPost(idPost);
 			eventAnnounceDto.setIdUser((String)inParam.get("idUser"));

@@ -63,11 +63,11 @@ input#submit_btn {
  * TLメニュータブ
  */
 input#RadioAll:checked ~ div#TLMenuTab{
-	background: #ffa07a;
+	background: #ffffff;
 }
 input#RadioEvent:checked ~ div#TLMenuTab{
-	background: #ffa07a;
+	background: #ffffff;
 }
 input#RadioMember:checked ~ div#TLMenuTab{
-	background: #ffa07a;
+	background: #ffffff;
 }

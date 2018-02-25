@@ -28,6 +28,6 @@ LoginUserInfoBean loginUserInfo = (LoginUserInfoBean) session.getAttribute("logi
 	</div>
 	<div id="LoginUser">
 		<div id="AccountName"><%= loginUserInfo.getStAccountName() %></div>
-		<div id="Icon"><img src="<%= loginUserInfo.getStIconURL() %>" width="30" height="30"></div>
+		<div id="Icon"><img src="<%= loginUserInfo.getStIconURL() %>" width="30" height="30" class="BorderRadius"></div>
 	</div>
 </div>

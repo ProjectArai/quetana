@@ -6,6 +6,7 @@ public class TimeLineBean {
 	private String idPost;    //投稿ID
 	private String idUser;    //ユーザID
 	private String stAccountName;    //アカウント名
+	private String stDisplayName;    //表示名
 	private String stIconURL; //アイコンURL
 	private String stTitle;   //タイトル
 	private String stPart;    //募集パート
@@ -40,6 +41,14 @@ public class TimeLineBean {
 
 	public void setStAccountName(String stAccountName) {
 		this.stAccountName = stAccountName;
+	}
+
+	public String getStDisplayName() {
+		return stDisplayName;
+	}
+
+	public void setStDisplayName(String stDisplayName) {
+		this.stDisplayName = stDisplayName;
 	}
 
 	public String getStIconURL() {

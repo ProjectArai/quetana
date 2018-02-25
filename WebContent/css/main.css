@@ -5,8 +5,8 @@
 	margin:0;
 }
 body {
-	background: #eeeeee;
-	font-family: ;
+	background: #bbbbbb;
+	font-family: Lato;
 	font-size:14px;
 }
 a:link {
@@ -30,7 +30,7 @@ div#Logo{
 	padding: 5px 15px;
 	width: 120px;
 	height: 40px;
-	background-color: #696969;
+	background-color: #120A2A;
 	color: #FFFFFF;
 	font-size: 28px;
 }
@@ -39,7 +39,7 @@ div#MenuButton{
 	padding:5px 15px;
 	width:20px;
 	height: 40px;
-	background-color: #696969;
+	background-color: #120A2A;
 	color: #FFFFFF;
 	font-size:28px;
 }
@@ -50,7 +50,7 @@ div#LoginUser{
 	padding:5px;
 	width:100px;
 	height: 30px;
-	background-color: #fa8072;
+	background-color: #463D5D;
 	border-style: none;
 	border-radius: 5px;
 	font-size:11px;
@@ -60,21 +60,22 @@ div#AccountName{
 	padding:7px 0px;
 	width:70px;
 	height:16px;
-	background-color: #fa8072;
+	background-color: #463D5D;
 	text-align: center;
 	font-size:11px;
+	color: #ffffff;
 }
 div#Icon{
 	float:right;
 	width:30px;
 	height: 30px;
-	background-color: #fa8072;
+	background-color: #463D5D;
 }
 div#Header {
 	position:fixed;
 	width: 100%;                /* ヘッダーの横幅を指定する */
 	height: 50px;               /* ヘッダーの高さを指定する */
-	background-color: #696969;  /* ヘッダーの背景色を指定する */
+	background-color: #120A2A;  /* ヘッダーの背景色を指定する */
 	color: #000000;             /* フォントの色を指定する */
 }
 div#MenuContents{
@@ -94,13 +95,13 @@ div#ContentsHeader{
 	overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
 	width: 100%;    /* コンテンツの横幅を指定する */
 	height: 50px;               /* ヘッダーの高さを指定する */
-	background: #eeeeee;
+	background: #bbbbbb;
 }
 div#Contents {
 	overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
 	width: 100%;
 	align: center;
-	background: #ffffff;
+	background: #ffccff;
 	margin: auto;
 }
 
@@ -109,72 +110,114 @@ div#Contents {
  */
 div#TimeLine {
 	overflow:hidden;
-	margin:10px auto;
-	padding:3px;
-	width: 300px;
-	background: #fa8072;
+	margin:0px auto;
+	/*padding:3px;*/
+	width: 100%;
+	background: #eeeeee;
 	border-style: none;
-	border-radius: 5px;
 }
 div#TLHeader {
-	padding:5px;
-	width: 290px;
-	height: 30px;
-	background: #fa8072;
+	margin:auto;
+	padding:15px;
+	width: 95%;
+	max-width: 470px;
+	height: 20px;
+	background: #eeeeee;
 	font-size: 20px;
-	color: #ffffff;
+	color: #000000;
 }
 div#TLMenu {
-	width: 300px;
-	height: 30px;
-	background: #fa8072;
+	margin:auto;
+	padding:0px 5px;
+	width: 95%;
+	max-width: 490px;
+	height: 40px;
+	background: #eeeeee;
 }
 div#TLMenuTab {
 	float:left;
-	padding:5px;
-	width: 90px;
+	padding:10px 0px;
+	width: 33.3%;
 	height: 20px;
-	background: #fa8072;
+	background: #eeeeee;
 	text-align: center;
 	font-size: 14px;
 	border-radius: 5px 5px 0px 0px;
-	color: #ffffff;
+	color: #000000;
 }
 div#TLContents {
-	padding:3px;
-	width: 294px;
-	background: #ffa07a;
+	margin:0px auto 5px;
+	padding:10px 5px 5px;
+	width: 95%;
+	max-width: 490px;
+	border-radius: 5px;
+	background: #ffffff;
 }
 div#TLTable {
 	overflow:hidden;
-	padding:3px;
-	width: 288px;
-	background: #696969;
-	border-style: none;
+	margin:0px auto 10px;
+	padding:5px;
+	width: 95%;
+	background: #ffffff;
+	border: 1px solid #848484;
+	/*border-style: none;*/
 	border-radius: 5px;
 	font-size: 14px;
 	}
+div#TLTitle {
+	float:left;
+	/*margin:2px;*/
+	padding:5px;
+	width: 97%;
+	height: 25px;
+	background: #ffffff;
+	word-wrap:break-word;
+	font-size:16px;
+}
 div#TLIcon {
 	float:left;
-	margin:2px;
-	width: 56px;
-	height: 56px;
+	/*margin:2px;*/
+	width: 50px;
+	height: 50px;
 	background: #ffffff;
 }
-div#TLUserName, #TLType {
+div#TLUserName {
 	float:left;
-	margin:2px;
-	padding:3px;
-	width: 218px;
+	/*margin:2px;*/
+	padding:5px;
+	width: 79%;
 	height: 20px;
 	background: #ffffff;
 }
-div#TLTitle, #TLComment {
+div#TLUpdateDate {
 	float:left;
-	margin:2px;
-	padding:3px;
-	width: 278px;
+	/*margin:2px;*/
+	padding:0px 5px;
+	width: 79%;
+	height: 20px;
 	background: #ffffff;
+	font-size:11px;
+	color: #666666;
+}
+div#TLType {
+	float:left;
+	/*margin:2px;*/
+	padding:5px;
+	width: 97%;
+	height: 20px;
+	background: #ffffff;
+}div#TLComment {
+	float:left;
+	/*margin:2px;*/
+	padding:5px;
+	width: 97%;
+	background: #ffffff;
+	word-wrap:break-word;
+}
+.BorderRadius {
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
 }
 font#ErrMsg {
 	font-size: 12px;

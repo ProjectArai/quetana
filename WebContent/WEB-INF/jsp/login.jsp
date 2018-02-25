@@ -11,7 +11,8 @@ String errMsg = (String)request.getAttribute("errMsg");
 		<title>Quetana</title>
 		<link rel="stylesheet" type="text/css" href="/quetana/css/top.css">
 		<link href="https://fonts.googleapis.com/earlyaccess/notosansjapanese.css" rel="stylesheet">
-		<link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">	</head>
+		<link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+	</head>
 	<body>
 		<div id="Header">
 			<div id="HeaderLogo">Quetana</div>
