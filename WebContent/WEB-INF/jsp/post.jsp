@@ -2,14 +2,17 @@
     pageEncoding="UTF-8"%>
 <%@ page import="model.TimeLineBean,java.util.Map" %>
 <%
+// デフォルトで使用する値達
 String stTitle = "";
 String stPart = "";
 String stPlace = "";
 String stGenre = "";
 String dtEvent = "";
 String stDetails = "";
+String cfPost = "M"; //デフォルトはとりあえずM
 String chkM = "checked";
 String chkE = "";
+// エラーで画面再描画する際に使う値達
 Map inParam = (Map)request.getAttribute("inParam");
 if (inParam != null) {
 	stTitle = (String)inParam.get("stTitle");
@@ -18,7 +21,7 @@ if (inParam != null) {
 	stGenre = (String)inParam.get("stGenre");
 	dtEvent = (String)inParam.get("dtEvent");
 	stDetails = (String)inParam.get("stDetails");
-	String cfPost = (String)inParam.get("cfPost");
+	cfPost = (String)inParam.get("cfPost");
 	if (cfPost.equals("E")) {
 		chkM = "";
 		chkE = "checked";
@@ -36,7 +39,7 @@ String errMsg = (String)request.getAttribute("errMsg");
 		<link rel="stylesheet" type="text/css" href="/quetana/css/menu.css">
 		<script src="/quetana/js/common.js"></script>
 	</head>
-	<body onLoad="displayMember()">
+	<body onLoad="dispPostForm('<%=  cfPost %>')">
 		<jsp:include page="../jsp/parts/mainheader.jsp" flush="true" />
 		<div id="ContentsHeader"></div>
 		<div id="Contents">
@@ -45,11 +48,11 @@ String errMsg = (String)request.getAttribute("errMsg");
 				<div id="TLHeader">投稿ページ</div>
 				<div id="TLMenu">
 					<label for="RadioAll">
-						<input id="RadioAll" name="cfPost" type="radio" class="nav-unshown" value="M" onclick="displayMember()" <%= chkM %>>
+						<input id="RadioAll" name="cfPost" type="radio" class="nav-unshown" value="M" onclick="dispPostForm('M')" <%= chkM %>>
 						<div id="TLMenuTab">メンバー募集</div>
 					</label>
 					<label for="RadioEvent">
-						<input id="RadioEvent" name="cfPost" type="radio" class="nav-unshown" value="E" onclick="displayEvent()" <%= chkE %>>
+						<input id="RadioEvent" name="cfPost" type="radio" class="nav-unshown" value="E" onclick="dispPostForm('E')" <%= chkE %>>
 						<div id="TLMenuTab">イベント告知</div>
 					</label>
 				</div>
@@ -70,5 +73,6 @@ String errMsg = (String)request.getAttribute("errMsg");
 						<font id="ErrMsg"><%= errMsg %></font>
 				<% } %>
 			</div>
+		</div>
 	</body>
 </html>

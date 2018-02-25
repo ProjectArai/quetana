@@ -13,16 +13,16 @@ LoginUserInfoBean loginUserInfo = (LoginUserInfoBean) session.getAttribute("logi
 		<label class="nav-unshown" id="nav-close" for="nav-input"></label>
 		<div id="nav-content">
 			<form action="/quetana/Contents/Home" method="get">
-				<input id="submit_btn" type="submit" name="Home"value="ホーム">
+				<input id="submit_btn" type="submit" name="Home" value="ホーム">
 			</form>
 			<form action="/quetana/Contents/UserProfile" method="get">
-				<input id="submit_btn" type="submit" name="mypage"value="マイページ">
+				<input id="submit_btn" type="submit" name="mypage" value="マイページ">
 			</form>
 			<form action="/quetana/Contents/Post" method="get">
-				<input id="submit_btn" type="submit" name="post"value="投稿ページ">
+				<input id="submit_btn" type="submit" name="post" value="投稿ページ">
 			</form>
 			<form action="/quetana/Logout" method="get">
-				<input id="submit_btn" type="submit" name="logout"value="ログアウト">
+				<input id="submit_btn" type="submit" name="logout" value="ログアウト">
 			</form>
 		</div>
 	</div>
