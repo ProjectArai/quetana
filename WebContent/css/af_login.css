@@ -1,0 +1,45 @@
+/*
+ * コンテンツの要素
+ */
+div#ContentsBase {
+	overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
+	width: 100%;
+	background: #eeeeee;
+	/*margin: auto;*/
+}
+div#TitleHeader {
+	margin:auto;
+	padding:15px;
+	width: 90%;
+	max-width: 470px;
+	height: 20px;
+	background: #eeeeee;
+	font-size: 20px;
+	color: #000000;
+}
+div#SubMenuBase {
+	margin:auto;
+	padding:0px 5px;
+	width: 95%;
+	max-width: 490px;
+	height: 40px;
+	background: #eeeeee;
+}
+div#Contents {
+	margin:0px auto 5px;
+	padding:10px 5px 5px;
+	width: 95%;
+	max-width: 490px;
+	border-radius: 5px;
+	background: #ffffff;
+}
+div#ContentsTable {
+	overflow:hidden;
+	margin:0px auto 10px;
+	padding:5px;
+	width: 95%;
+	background: #ffffff;
+	border: 1px solid #888888;
+	border-radius: 5px;
+	font-size: 14px;
+}

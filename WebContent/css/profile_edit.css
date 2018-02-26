@@ -1,0 +1,52 @@
+/*
+ * プロフィール編集の要素
+ */
+input[type="text"],textarea {
+	-webkit-appearance: none; /* iOSでもボタンレイアウトを保持 */
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	border: 0px solid;
+	border-radius: 0;
+	font-family: Lato;
+	font-size:16px; /* 16px未満だとiOSでズームする */
+	color: #1e90ff;
+}
+input#PFShortVar {
+	width: -webkit-calc(100% - 65px);
+	height: 30px;
+}
+input#PFMiddleVar {
+	width: -webkit-calc(100% - 120px);
+	height: 30px;
+}
+input#PFLongVar {
+	width: 100%;
+	height: 30px;
+}
+textarea#PFBand{
+	width: 100%;
+	height: 75px;
+}
+textarea#PFComment{
+	width: 100%;
+	height: 200px;
+}
+input#EditBtn {
+	-webkit-appearance: none; /* iOSでもボタンレイアウトを保持 */
+	margin: 0px 5px 5px;
+	padding: 5px 10px;
+	width: 110px;
+	height: 30px;
+	background: #463D5D;
+	border-style: none;
+	border-radius: 5px;
+	font-family: Lato;
+	font-size:14px;
+	color: #ffffff;
+}
+div#MsgArea {
+	padding: 5px;
+	width: -webkit-calc(100% - 10px);
+	background: #ffffff;
+}

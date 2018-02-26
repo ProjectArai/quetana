@@ -1,0 +1,8 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=branch 'dev/minimal' of https\://github.com/ProjectArai/quetana
+css-profile//WebContent/WEB-INF/jsp/createAccount.jsp=org.eclipse.wst.css.core.cssprofile.css3
+css-profile//WebContent/WEB-INF/jsp/home.jsp=org.eclipse.wst.css.core.cssprofile.css3
+css-profile//WebContent/WEB-INF/jsp/login.jsp=org.eclipse.wst.css.core.cssprofile.css3
+css-profile//WebContent/WEB-INF/jsp/parts/mainheader.jsp=org.eclipse.wst.css.core.cssprofile.css3
+eclipse.preferences.version=1
