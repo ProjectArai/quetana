@@ -24,7 +24,7 @@ String infoMsg = (String)request.getAttribute("infoMsg");
 		<div id="ContentsBase">
 				<div id="TitleHeader"><%= myProfile.getStAccountName() %>&nbsp;のプロフィール</div>
 				<div id="Contents">
-					<div id="PFTable">
+					<div id="ContentsTable">
 						<div id="PFIcon"><img src="<%= myProfile.getStIconURL() %>" width="90" height="90"></div>
 						<div id="PFShort">
 							<div id="PFShortLabel">表示名：</div>
@@ -57,7 +57,7 @@ String infoMsg = (String)request.getAttribute("infoMsg");
 								<div id="PFVideoURL"><a href="<%= myProfile.getStVideoURL() %>">▶演奏動画を視聴</a></div>
 						<% } %>
 					</div>
-					<div id="PFEditBtn" class="EditLink">プロフィールを編集<a href="/quetana/Contents/EditProfile"></a></div>
+					<input id="LinkBtn" type="button" value="プロフィールを編集" onClick="location.href='/quetana/Contents/EditProfile'">
 				</div>
 		</div>
 	</body>

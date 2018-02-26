@@ -25,16 +25,6 @@ input#RadioMember:checked ~ div#SubMenuTab{
 /*
  * タイムラインの要素
  */
-div#TLTable {
-	overflow:hidden;
-	margin:0px auto 10px;
-	padding:5px;
-	width: 95%;
-	background: #ffffff;
-	border: 1px solid #888888;
-	border-radius: 5px;
-	font-size: 14px;
-	}
 div#TLType {
 	float:left;
 	padding:0px 5px;

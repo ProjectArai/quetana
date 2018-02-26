@@ -26,7 +26,7 @@ String errMsg = (String)request.getAttribute("errMsg");
 				<div id="TitleHeader">プロフィールを編集する</div>
 				<div id="Contents">
 					<form action="/quetana/Contents/EditProfile" method="post">
-					<div id="PFTable">
+					<div id="ContentsTable">
 						<div id="PFIcon"><img src="<%= myProfile.getStIconURL() %>" width="90" height="90"></div>
 						<div id="PFShort">
 							<div id="PFShortLabel">表示名：</div>
@@ -61,7 +61,8 @@ String errMsg = (String)request.getAttribute("errMsg");
 							<input id="PFLongVar" type="text" name="stVideoURL" maxlength="512" placeholder="YoutubeURL" value="<%= myProfile.getStVideoURL() %>">
 						</div>
 					</div>
-					<input id="edit_btn" type="submit" name="edit" value="変更を保存"><a href="<%=request.getContextPath()%>/Contents/UserProfile">キャンセル</a>
+					<input id="EditBtn" type="submit" name="edit" value="変更を保存">
+					<a href="<%=request.getContextPath()%>/Contents/UserProfile">キャンセル</a>
 					</form>
 					<% if(errMsg != null) { %>
 						<div id="MsgArea">

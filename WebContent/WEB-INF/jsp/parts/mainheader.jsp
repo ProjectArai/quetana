@@ -7,29 +7,40 @@ LoginUserInfoBean loginUserInfo = (LoginUserInfoBean) session.getAttribute("logi
 %>
 <div id="HeaderBase">
 	<div id="HeaderLogo">Quetana</div>
-	<div id="nav-drawer">
-		<input id="nav-input" type="checkbox" class="nav-unshown">
-		<label id="nav-open" for="nav-input"><div id="MenuButton">≡</div></label>
-		<label class="nav-unshown" id="nav-close" for="nav-input"></label>
-		<div id="nav-content">
-			<form action="/quetana/Contents/Home" method="get">
-				<input id="menu_btn" type="submit" name="Home" value="ホーム">
-			</form>
-			<form action="/quetana/Contents/UserProfile" method="get">
-				<input id="menu_btn" type="submit" name="mypage" value="マイページ">
-			</form>
-			<form action="/quetana/Contents/Post" method="get">
-				<input id="menu_btn" type="submit" name="post" value="投稿ページ">
-			</form>
-			<form action="/quetana/Logout" method="get">
-				<input id="menu_btn" type="submit" name="logout" value="ログアウト">
-			</form>
+	<div id="HBMenuBase">
+		<input id="HBMenuCheck" type="checkbox" class="unshown">
+		<label for="HBMenuCheck">
+			<div id="HBMenuBtn">
+				<div id="HBMenuMark">
+					<hr id="HBMenuMarkLine">
+					<hr id="HBMenuMarkLine">
+					<hr id="HBMenuMarkLine">
+					<!-- ≡ -->
+				</div>
+			</div>
+		</label>
+		<label for="HBMenuCheck" id="HBMenuBG"></label>
+		<div id="HBMenuContents">
+			<div id=HBMenuUser>
+				<div id="HBMIcon"><img src="<%= loginUserInfo.getStIconURL() %>" width="40" height="40" class="IconRound"></div>
+				<div id="HBMAccountName"><%= loginUserInfo.getStAccountName() %></div>
+			</div>
+			<input id="HBMenuElement" type="button" value="ホーム" onClick="location.href='/quetana/Contents/Home'">
+			<input id="HBMenuElement" type="button" value="マイプロフィール" onClick="location.href='/quetana/Contents/UserProfile'">
+			<input id="HBMenuElement" type="button" value="投稿ページ" onClick="location.href='/quetana/Contents/Post'">
+			<div id=HBMenuBreak></div>
+			<input id="HBMenuElement" type="button" value="設定">
+			<div id=HBMenuBreak></div>
+			<input id="HBMenuElement" type="button" value="ログアウト" onClick="location.href='/quetana/Logout'">
+			<div id=HBMenuMSG>Copyright 2018 Quetana by ProjectArai</div>
 		</div>
 	</div>
+<!--
 	<div id="LoginUser">
 		<div id="AccountName"><%= loginUserInfo.getStAccountName() %></div>
 		<div id="Icon"><img src="<%= loginUserInfo.getStIconURL() %>" width="30" height="30" class="HeaderIconRound"></div>
 	</div>
+-->
 </div>
 <div id="HiddenHeader"></div>
 

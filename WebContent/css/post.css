@@ -1,0 +1,81 @@
+/*
+ * 投稿ページ用のSubMenu要素
+ */
+div#SubMenuTab {
+	float:left;
+	padding:10px 0px;
+	width: 50%;
+	height: 20px;
+	background: #eeeeee;
+	text-align: center;
+	font-size: 14px;
+	border-radius: 5px 5px 0px 0px;
+	color: #000000;
+}
+input#RadioEvent:checked ~ div#SubMenuTab{
+	background: #ffffff;
+}
+input#RadioMember:checked ~ div#SubMenuTab{
+	background: #ffffff;
+}
+
+/*
+ * 投稿ページの要素
+ */
+input,textarea {
+	-webkit-appearance: none; /* iOSでもボタンレイアウトを保持 */
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	border: 1px solid #eeeeee;
+	border-radius: 0;
+	font-family: Lato;
+	font-size:16px; /* 16px未満だとiOSでズームする */
+	/*color: #1e90ff;*/
+}
+div#PostTitle {
+	float:left;
+	width: 100%;
+	background: #ffffff;
+}
+div#PostMember {
+	float:left;
+	width: 100%;
+	background: #ffffff;
+}
+div#PostEvent {
+	float:left;
+	width: 100%;
+	background: #ffffff;
+}
+div#PostDetails {
+	float:left;
+	width: 100%;
+	background: #ffffff;
+}
+input#PostElement {
+	width: 100%;
+	height: 30px;
+}
+textarea#PostDetails{
+	width: 100%;
+	height: 150px;
+}
+input#PostBtn {
+	-webkit-appearance: none; /* iOSでもボタンレイアウトを保持 */
+	margin: 0px 5px 5px;
+	padding: 5px 10px;
+	width: 110px;
+	height: 30px;
+	background: #463D5D;
+	border-style: none;
+	border-radius: 5px;
+	font-family: Lato;
+	font-size:14px;
+	color: #ffffff;
+}
+div#MsgArea {
+	padding: 5px;
+	width: -webkit-calc(100% - 10px);
+	background: #ffffff;
+}

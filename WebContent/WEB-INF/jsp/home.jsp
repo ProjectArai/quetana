@@ -24,21 +24,21 @@ List<TimeLineBean> arrTimeLine = (List<TimeLineBean>) request.getAttribute("arrT
 				<div id="TitleHeader">TimeLine</div>
 				<div id="SubMenuBase">
 					<label for="RadioAll">
-						<input id="RadioAll" type="radio" name="SubMenuRadio" class="nav-unshown" checked>
+						<input id="RadioAll" type="radio" name="SubMenuRadio" class="unshown" checked>
 						<div id="SubMenuTab">すべて</div>
 					</label>
 					<label for="RadioEvent">
-						<input id="RadioEvent" type="radio" name="SubMenuRadio" class="nav-unshown">
+						<input id="RadioEvent" type="radio" name="SubMenuRadio" class="unshown">
 						<div id="SubMenuTab">イベント</div>
 					</label>
 					<label for="RadioMember">
-						<input id="RadioMember" type="radio" name="SubMenuRadio" class="nav-unshown">
+						<input id="RadioMember" type="radio" name="SubMenuRadio" class="unshown">
 						<div id="SubMenuTab">メンバー募集</div>
 					</label>
 				</div>
 				<div id="Contents">
 					<% for (TimeLineBean test : arrTimeLine){ %>
-						<div id="TLTable">
+						<div id="ContentsTable">
 							<% if ((test.getIdPost()).charAt(1) == 'E') { %>
 								<div id="TLType">ライブ/イベント</div>
 							<% } else if ((test.getIdPost()).charAt(1) == 'M') { %>
