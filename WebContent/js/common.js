@@ -9,15 +9,6 @@ function dispMsg() {
 	    alert(infoMsg);
 	}
 }
-// パスワードの一致確認
-function checkPassword() {
-	if(f1.stPassword.value != f1.stConfirmPassword.value) {
-		alert("パスワードと確認用パスワードが一致しません");
-		return false;
-	} else {
-		return true;
-	}
-}
 // 投稿画面・メンバー募集フォーム表示
 function displayMember() {
     document.getElementById("stPart").style.display="block";
@@ -44,5 +35,16 @@ function dispPostForm(cfPost) {
 		document.getElementById("stGenre").style.display="none";
 		document.getElementById("stPlace").style.display="block";
 		document.getElementById("dtEvent").style.display="block";
+	}
+}
+
+//バリデーションチェック
+//パスワードの一致確認
+function checkPassword() {
+	if(f1.stPassword.value != f1.stConfirmPassword.value) {
+		alert("パスワードと確認用パスワードが一致しません");
+		return false;
+	} else {
+		return true;
 	}
 }

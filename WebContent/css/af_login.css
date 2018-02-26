@@ -1,0 +1,111 @@
+/*
+ * ヘッダーの要素
+ */
+div#HeaderBase {
+	position:fixed;
+	width: 100%;
+	height: 50px;
+	background-color: #120A2A;
+	color: #000000;
+}
+div#HeaderLogo{
+	float: left;
+	padding: 5px 15px;
+	width: 120px;
+	height: 40px;
+	background-color: #120A2A;
+	color: #FFFFFF;
+	font-size: 28px;
+}
+div#MenuButton{
+	float:right;
+	padding:5px 15px;
+	width:20px;
+	height: 40px;
+	background-color: #120A2A;
+	color: #FFFFFF;
+	font-size:28px;
+}
+div#LoginUser{
+	overflow:hidden;
+	float:right;
+	margin:5px;
+	padding:5px;
+	width:100px;
+	height: 30px;
+	background-color: #463D5D;
+	border-style: none;
+	border-radius: 5px;
+	font-size:11px;
+}
+div#AccountName{
+	float:right;
+	padding:7px 0px;
+	width:70px;
+	height:16px;
+	background-color: #463D5D;
+	text-align: center;
+	font-size:11px;
+	color: #ffffff;
+}
+div#Icon{
+	float:right;
+	width:30px;
+	height: 30px;
+	background-color: #463D5D;
+}
+.HeaderIconRound {
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+div#HBMenuTab{
+	padding:10px 0px;
+	width: 250px;
+	height: 30px;
+	background-color: #fa8072;  /* ヘッダーの背景色を指定する */
+	text-align: center;
+	color: #000000;
+	font-size:18px;
+}
+div#HiddenHeader{
+	overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
+	width: 100%;    /* コンテンツの横幅を指定する */
+	height: 50px;               /* ヘッダーの高さを指定する */
+}
+
+/*
+ * コンテンツの要素
+ */
+div#ContentsBase {
+	overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
+	width: 100%;
+	background: #eeeeee;
+	/*margin: auto;*/
+}
+div#TitleHeader {
+	margin:auto;
+	padding:15px;
+	width: 90%;
+	max-width: 470px;
+	height: 20px;
+	background: #eeeeee;
+	font-size: 20px;
+	color: #000000;
+}
+div#SubMenuBase {
+	margin:auto;
+	padding:0px 5px;
+	width: 95%;
+	max-width: 490px;
+	height: 40px;
+	background: #eeeeee;
+}
+div#Contents {
+	margin:0px auto 5px;
+	padding:10px 5px 5px;
+	width: 95%;
+	max-width: 490px;
+	border-radius: 5px;
+	background: #ffffff;
+}

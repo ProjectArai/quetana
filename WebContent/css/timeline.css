@@ -1,0 +1,99 @@
+/*
+ * タイムライン用のSubMenu要素
+ */
+div#SubMenuTab {
+	float:left;
+	padding:10px 0px;
+	width: 33.3%;
+	height: 20px;
+	background: #eeeeee;
+	text-align: center;
+	font-size: 14px;
+	border-radius: 5px 5px 0px 0px;
+	color: #000000;
+}
+input#RadioAll:checked ~ div#SubMenuTab{
+	background: #ffffff;
+}
+input#RadioEvent:checked ~ div#SubMenuTab{
+	background: #ffffff;
+}
+input#RadioMember:checked ~ div#SubMenuTab{
+	background: #ffffff;
+}
+
+/*
+ * タイムラインの要素
+ */
+div#TLTable {
+	overflow:hidden;
+	margin:0px auto 10px;
+	padding:5px;
+	width: 95%;
+	background: #ffffff;
+	border: 1px solid #888888;
+	border-radius: 5px;
+	font-size: 14px;
+	}
+div#TLType {
+	float:left;
+	padding:0px 5px;
+	width: -webkit-calc(100% - 10px);
+	height: 15px;
+	background: #ffffff;
+	font-size:11px;
+	color: #666666;
+}
+div#TLTitle {
+	float:left;
+	padding:5px;
+	width: -webkit-calc(100% - 10px);
+	background: #ffffff;
+	border-bottom: 1px solid #888888;
+	word-wrap:break-word;
+	font-size:16px;
+}
+div#TLComment {
+	float:left;
+	padding:5px 5px;
+	width: -webkit-calc(100% - 10px);
+	background: #ffffff;
+	border-bottom: 1px solid #dddddd;
+	word-wrap:break-word;
+}
+div#TLDetails {
+	float:left;
+	padding:5px 5px;
+	width: -webkit-calc(100% - 10px);
+	background: #ffffff;
+	border-bottom: 1px solid #888888;
+	word-wrap:break-word;
+}
+div#TLIcon {
+	float:left;
+	padding:5px;
+	width: 40px;
+	height: 40px;
+	background: #ffffff;
+}
+div#TLUserName {
+	float:left;
+	padding:7px 5px 3px;
+	width: -webkit-calc(100% - 60px);
+	height: 15px;
+	background: #ffffff;
+}
+div#TLUpdateDate {
+	float:left;
+	padding:3px 5px 7px;
+	width: -webkit-calc(100% - 60px);
+	height: 15px;
+	background: #ffffff;
+	font-size:11px;
+	color: #666666;
+}
+.TLIconRound {
+    border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -moz-border-radius: 25px;
+}

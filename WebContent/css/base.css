@@ -1,0 +1,27 @@
+/*
+ * ページ全体の基準
+ */
+*{
+	margin: 0px;
+}
+body {
+	background: #bbbbbb;
+	font-family: Lato;
+	font-size:14px;
+}
+a:link {
+	color: #1e90ff;
+}
+a:visited {
+	color: #1e90ff;
+}
+a:hover {
+	color: #1e90ff;
+}
+a:active {
+	color: #fa8072;
+}
+font#ErrMsg {
+	font-size: 12px;
+	color: #ff0000;
+}

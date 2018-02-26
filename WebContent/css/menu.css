@@ -48,7 +48,7 @@
 	transform: translateX(0%);/*中身を表示（左へスライド）*/
 	box-shadow: 6px 0 5px rgba(0,0,10,10);
 }
-input#submit_btn {
+input#menu_btn {
 	-webkit-appearance: none; /* iOSでもボタンレイアウトを保持 */
 	width: 250px;
 	height: 50px;
@@ -57,17 +57,4 @@ input#submit_btn {
 	text-align: center;
 	color: #000000;
 	font-size:18px;
-}
-
-/*
- * TLメニュータブ
- */
-input#RadioAll:checked ~ div#TLMenuTab{
-	background: #ffffff;
-}
-input#RadioEvent:checked ~ div#TLMenuTab{
-	background: #ffffff;
-}
-input#RadioMember:checked ~ div#TLMenuTab{
-	background: #ffffff;
 }

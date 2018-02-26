@@ -21,7 +21,9 @@ String errMsg = (String)request.getAttribute("errMsg");
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width">
 		<title>Quetana</title>
-		<link rel="stylesheet" type="text/css" href="/quetana/css/top.css">
+		<link rel="stylesheet" type="text/css" href="/quetana/css/base.css">
+		<link rel="stylesheet" type="text/css" href="/quetana/css/bf_login.css">
+		<link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
 		<script src="/quetana/js/common.js"></script>
 	</head>
 	<body>
