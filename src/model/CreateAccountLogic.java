@@ -12,6 +12,8 @@ public class CreateAccountLogic {
 	public static String createAccount(Map inParam) {
 
 		int rowsInsert;
+		// Gitテスト用変数
+		int git;
 
 		String stAccountName = (String)inParam.get("stAccountName");
 		String stMailAddress = (String)inParam.get("stMailAddress");
