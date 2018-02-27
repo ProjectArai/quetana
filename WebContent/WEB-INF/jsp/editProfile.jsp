@@ -23,11 +23,11 @@ String errMsg = (String)request.getAttribute("errMsg");
 	<body>
 		<jsp:include page="../jsp/parts/mainheader.jsp" flush="true" />
 		<div id="ContentsBase">
-				<div id="TitleHeader">プロフィールを編集する</div>
+				<div id="TitleHeader">プロフィール編集</div>
 				<div id="Contents">
 					<form action="/quetana/Contents/EditProfile" method="post">
 					<div id="ContentsTable">
-						<div id="PFIcon"><img src="<%= myProfile.getStIconURL() %>" width="90" height="90"></div>
+						<div id="PFIcon"><img src="<%= myProfile.getStIconURL() %>" width="72" height="72"></div>
 						<div id="PFShort">
 							<div id="PFShortLabel">表示名：</div>
 							<input id="PFShortVar" type="text" name="stDisplayName" maxlength="8" placeholder="表示名" value="<%= myProfile.getStDisplayName() %>">
@@ -53,7 +53,7 @@ String errMsg = (String)request.getAttribute("errMsg");
 							<textarea id="PFBand" name="stFBand" placeholder="好きなバンド"><%= myProfile.getStFBand() %></textarea>
 						</div>
 						<div id="PFLong">
-							<div id="PFLongLabel">コメント　　　：</div>
+							<div id="PFLongLabel">自己紹介　　　：</div>
 							<textarea id="PFComment" name="stComment" placeholder="コメント"><%= myProfile.getStComment() %></textarea>
 						</div>
 						<div id="PFLong">
@@ -69,6 +69,9 @@ String errMsg = (String)request.getAttribute("errMsg");
 							<font id="ErrMsg"><%= errMsg %></font>
 						</div>
 					<% } %>
+<input type="file" onChange="imgPreView(event)">
+<div id="preview">
+</div>
 				</div>
 		</div>
 	</body>

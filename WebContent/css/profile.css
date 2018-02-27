@@ -3,8 +3,9 @@
  */
 div#PFIcon {
 	float: left;
-	width: 90px;
-	height: 90px;
+	padding:3px;
+	width: 84px;
+	height: 84px;
 	background: #ffffff;
 }
 div#PFShort {
@@ -16,15 +17,15 @@ div#PFShort {
 }
 div#PFShortLabel {
 	float:left;
-	padding:5px 0px 5px 5px;
-	width: 60px;
+	padding:5px 0px 5px 3px;
+	width: 57px;
 	height: 20px;
 	background: #ffffff;
 }
 div#PFShortVar {
 	float:left;
-	padding:5px 5px 5px 0px;
-	width: -webkit-calc(100% - 70px);
+	padding:5px 3px 5px 0px;
+	width: -webkit-calc(100% - 63px);
 	height: 20px;
 	background: #ffffff;
 }
@@ -36,33 +37,33 @@ div#PFMiddle {
 }
 div#PFMiddleLabel {
 	float:left;
-	padding:5px 0px 5px 5px;
-	width: 115px;
+	padding:5px 0px 5px 3px;
+	width: 112px;
 	height: 20px;
 	background: #ffffff;
 }
 div#PFMiddleVar {
 	float:left;
-	padding:5px 5px 5px 0px;
-	width: -webkit-calc(100% - 125px);
+	padding:5px 3px 5px 0px;
+	width: -webkit-calc(100% - 118px);
 	height: 20px;
 	background: #ffffff;
 }
 div#PFLong {
 	float:left;
 	width: 100%;
-	background: #ffffff;
+	background: #fffff;
 }
 div#PFLongLabel {
 	float:left;
-	padding:5px 5px 0px 5px;
-	width: -webkit-calc(100% - 10px);
+	padding:5px 3px 0px;
+	width: -webkit-calc(100% - 6px);
 	background: #ffffff;
 }
 div#PFLongVar {
 	float:left;
-	padding:0px 5px 5px 5px;
-	width: -webkit-calc(100% - 10px);
+	padding:0px 3px 5px;
+	width: -webkit-calc(100% - 6px);
 	background: #ffffff;
 	word-wrap:break-word;
 }
@@ -76,10 +77,25 @@ div#PFCommentVar {
 }
 div#PFVideoURL {
 	float:left;
-	padding:5px 5px;
-	width: -webkit-calc(100% - 10px);
+	padding:3px;
+	width: -webkit-calc(100% - 6px);
+	height: 24px;
 	background: #ffffff;
-	border-top: 1px solid #BDBDBD;
+}
+div#PFYoutube{
+	overflow:hidden;
+	float:left;
+	background: #ccffff;
+	width: 100%;
+	padding-top:56.25%;
+/*	height: 56.25%;*/
+}
+iframe{
+/*	position:absolute;*/
+	top:0;
+	right:0;
+	width: 100%;
+	height: 100%;
 }
 div#PFEditBtn {
 	position:relative;

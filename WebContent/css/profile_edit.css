@@ -13,24 +13,24 @@ input[type="text"],textarea {
 	color: #1e90ff;
 }
 input#PFShortVar {
-	width: -webkit-calc(100% - 65px);
-	height: 30px;
+	width: -webkit-calc(100% - 60px);
+	height: 25px;
 }
 input#PFMiddleVar {
-	width: -webkit-calc(100% - 120px);
-	height: 30px;
-}
-input#PFLongVar {
-	width: 100%;
-	height: 30px;
+	width: -webkit-calc(100% - 115px);
+	height: 25px;
 }
 textarea#PFBand{
 	width: 100%;
-	height: 75px;
+	height: 60px;
 }
 textarea#PFComment{
 	width: 100%;
-	height: 200px;
+	height: 100px;
+}
+input#PFLongVar {
+	width: 100%;
+	height: 25px;
 }
 input#EditBtn {
 	-webkit-appearance: none; /* iOSでもボタンレイアウトを保持 */
@@ -49,4 +49,11 @@ div#MsgArea {
 	padding: 5px;
 	width: -webkit-calc(100% - 10px);
 	background: #ffffff;
+}
+
+.input-file .preview {
+  background-image: url(/hoge.jpg);
+}
+.input-file input[type="file"] {
+  opacity: 0;
 }

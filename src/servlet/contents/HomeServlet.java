@@ -36,13 +36,6 @@ public class HomeServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 
-		//天下一テスト会
-		List<String> testList = new ArrayList<String>();
-		testList.add("1;a;A");
-		testList.add("2;b;B");
-		testList.add("3;c;C");
-		request.setAttribute("testList", testList);
-
 		//タイムラインを取得し、リクエストスコープに保存
 		List<TimeLineBean> arrTimeLine = new ArrayList();
 		arrTimeLine = ViewTimeLine.getTimeLineList();

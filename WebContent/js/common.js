@@ -9,6 +9,10 @@ function dispMsg() {
 	    alert(infoMsg);
 	}
 }
+//TLの表示変更(cssで制御)
+function changesytle(cssfile) {
+	document.getElementById("TLStyle").href = cssfile;
+}
 //投稿画面フォーム表示・非表示
 function dispPostForm(cfPost) {
 	if (cfPost == "M") {
@@ -30,8 +34,22 @@ function checkPassword() {
 		return true;
 	}
 }
+function imgPreView(event){
+	  var file = event.target.files[0];
+	  var reader = new FileReader();
+	  var preview = document.getElementById("preview");
+	  var previewImage = document.getElementById("previewImage");
 
-//アレをアレする処理
-function viewTimeLineTest(arrTimeLine) {
+	  if(previewImage != null)
+	    preview.removeChild(previewImage);
 
-}
+	  reader.onload = function(event) {
+	     var img = document.createElement("img");
+	     img.setAttribute("src", reader.result);
+	     img.setAttribute("id", "previewImage");
+	     preview.appendChild(img);
+
+	  };
+
+	  reader.readAsDataURL(file);
+	}

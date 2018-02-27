@@ -1,0 +1,9 @@
+/*
+ * メンバー募集を表示、イベント告知を非表示
+ */
+div.TLEvent {
+	display: none;
+}
+div.TLMember {
+	display: block;
+}

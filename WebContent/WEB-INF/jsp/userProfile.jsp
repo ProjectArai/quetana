@@ -25,7 +25,7 @@ String infoMsg = (String)request.getAttribute("infoMsg");
 				<div id="TitleHeader"><%= myProfile.getStAccountName() %>&nbsp;のプロフィール</div>
 				<div id="Contents">
 					<div id="ContentsTable">
-						<div id="PFIcon"><img src="<%= myProfile.getStIconURL() %>" width="90" height="90"></div>
+						<div id="PFIcon"><img src="<%= myProfile.getStIconURL() %>" width="84" height="84"></div>
 						<div id="PFShort">
 							<div id="PFShortLabel">表示名：</div>
 							<div id="PFShortVar"><%= myProfile.getStDisplayName() %></div>
@@ -51,10 +51,11 @@ String infoMsg = (String)request.getAttribute("infoMsg");
 							<div id="PFLongVar"><%= myProfile.getStFBand() %></div>
 						</div>
 						<div id="PFLong">
-							<div id="PFCommentVar"><%= myProfile.getStComment() %></div>
+							<div id="PFLongLabel">自己紹介　　　：</div>
+							<div id="PFLongVar"><%= myProfile.getStComment() %></div>
 						</div>
 						<% if (!(myProfile.getStVideoURL()).equals("")) { %>
-								<div id="PFVideoURL"><a href="<%= myProfile.getStVideoURL() %>">▶演奏動画を視聴</a></div>
+							<div id="PFVideoURL"><a href="<%= myProfile.getStVideoURL() %>">▶演奏動画を見る</a></div>
 						<% } %>
 					</div>
 					<input id="LinkBtn" type="button" value="プロフィールを編集" onClick="location.href='/quetana/Contents/EditProfile'">
