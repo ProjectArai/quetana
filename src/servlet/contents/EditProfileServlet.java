@@ -6,11 +6,13 @@ import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import model.EditUserProfile;
 import model.LoginUserInfoBean;
@@ -21,6 +23,7 @@ import model.ViewUserProfile;
  * Servlet implementation class HomeServlet
  */
 @WebServlet("/Contents/EditProfile")
+@MultipartConfig
 public class EditProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -72,8 +75,15 @@ public class EditProfileServlet extends HttpServlet {
 		// セッションスコープからログインユーザ情報を取得
 		HttpSession session = request.getSession();
 		LoginUserInfoBean loginUserInfo = (LoginUserInfoBean)session.getAttribute("loginUserInfo");
-		//リクエストパラメータを取得し、マップに詰め込む
+
+		//リクエストパラメータを取得
 		request.setCharacterEncoding("UTF-8");
+
+		// ファイルのアップロード処理(格納場所は暫定)
+		Part part = request.getPart("file");
+		part.write(getServletContext().getRealPath("/img") + "/" + loginUserInfo.getIdUser() + ".jpg");
+
+		//マップに詰め込む
 		Map inParam = new HashMap();
 		inParam.put("idUser", loginUserInfo.getIdUser());
 		inParam.put("stDisplayName", request.getParameter("stDisplayName"));
@@ -82,7 +92,7 @@ public class EditProfileServlet extends HttpServlet {
 		inParam.put("stPart", request.getParameter("stPart"));
 		inParam.put("stFBand", request.getParameter("stFBand"));
 		inParam.put("stFGenre", request.getParameter("stFGenre"));
-		inParam.put("stIconURL", "/quetana/img/r-zoon.png"); //一旦デフォルトアイコン
+		inParam.put("stIconURL", "/quetana/img/" + loginUserInfo.getIdUser() + ".jpg");
 		inParam.put("stVideoURL", request.getParameter("stVideoURL"));
 		inParam.put("stComment", request.getParameter("stComment"));
 

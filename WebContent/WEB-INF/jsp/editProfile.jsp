@@ -25,7 +25,7 @@ String errMsg = (String)request.getAttribute("errMsg");
 		<div id="ContentsBase">
 				<div id="TitleHeader">プロフィール編集</div>
 				<div id="Contents">
-					<form action="/quetana/Contents/EditProfile" method="post">
+					<form enctype="multipart/form-data" action="/quetana/Contents/EditProfile" method="post">
 					<div id="ContentsTable">
 						<div id="PFIcon"><img src="<%= myProfile.getStIconURL() %>" width="72" height="72"></div>
 						<div id="PFShort">
@@ -60,6 +60,10 @@ String errMsg = (String)request.getAttribute("errMsg");
 							<div id="PFLongLabel">YoutubeURL　　：</div>
 							<input id="PFLongVar" type="text" name="stVideoURL" maxlength="512" placeholder="YoutubeURL" value="<%= myProfile.getStVideoURL() %>">
 						</div>
+						<div id="PFimg">
+							<input type="file" name="file" onChange="imgPreView(event)">
+							<div id="preview"></div>
+						</div>
 					</div>
 					<input id="EditBtn" type="submit" name="edit" value="変更を保存">
 					<a href="<%=request.getContextPath()%>/Contents/UserProfile">キャンセル</a>
@@ -69,9 +73,6 @@ String errMsg = (String)request.getAttribute("errMsg");
 							<font id="ErrMsg"><%= errMsg %></font>
 						</div>
 					<% } %>
-<input type="file" onChange="imgPreView(event)">
-<div id="preview">
-</div>
 				</div>
 		</div>
 	</body>

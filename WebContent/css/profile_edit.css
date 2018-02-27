@@ -51,9 +51,8 @@ div#MsgArea {
 	background: #ffffff;
 }
 
-.input-file .preview {
-  background-image: url(/hoge.jpg);
-}
-.input-file input[type="file"] {
-  opacity: 0;
+div#PFImg {
+	float:left;
+	width: 100%;
+	background: #ffccff;
 }
