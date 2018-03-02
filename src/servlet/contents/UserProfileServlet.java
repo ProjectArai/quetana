@@ -37,10 +37,25 @@ public class UserProfileServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 
-		// セッションスコープからログインユーザ情報を取得
+		// セッションスコープからログインユーザ情報(のID)を取得
 		HttpSession session = request.getSession();
 		LoginUserInfoBean loginUserInfo = (LoginUserInfoBean)session.getAttribute("loginUserInfo");
-		String idUser = loginUserInfo.getIdUser();
+		String idLoginUser = loginUserInfo.getIdUser();
+
+		// プロフィールを表示するユーザを設定
+		String idUser;
+		String perEdit = "N";
+		if (request.getParameter("idUser") == null) {
+			// idUser指定なし(MENUから遷移)の場合＝ログインユーザ本人
+			idUser = idLoginUser;
+		} else {
+			idUser = request.getParameter("idUser");
+		}
+
+		// ログインユーザ本人の場合は編集可の権限を付与
+		if (idUser.equals(idLoginUser)) {
+			perEdit = "Y";
+		}
 
 		//ユーザIDを基にプロフィールを取得
 		Map result = ViewUserProfile.getUserProfile(idUser);
@@ -50,8 +65,10 @@ public class UserProfileServlet extends HttpServlet {
 		if (errMsg.equals("")) {
 			//プロフィール取得に成功した場合
 			//ユーザプロフィールをリクエストスコープに保存
-			UserProfileBean myProfile = (UserProfileBean)result.get("userProfile");
-			request.setAttribute("myProfile", myProfile);
+			UserProfileBean userProfile = (UserProfileBean)result.get("userProfile");
+			request.setAttribute("userProfile", userProfile);
+			//プロフィール編集権限をリクエストスコープに保存
+			request.setAttribute("perEdit", perEdit);
 			// userProfile.jspにフォワード
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/userProfile.jsp");
 			dispatcher.forward(request, response);

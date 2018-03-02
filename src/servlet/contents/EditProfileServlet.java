@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
 import model.EditUserProfile;
 import model.LoginUserInfoBean;
@@ -55,8 +54,8 @@ public class EditProfileServlet extends HttpServlet {
 		if (errMsg.equals("")) {
 			//プロフィール取得に成功した場合
 			//ユーザプロフィールをリクエストスコープに保存
-			UserProfileBean myProfile = (UserProfileBean)result.get("userProfile");
-			request.setAttribute("myProfile", myProfile);
+			UserProfileBean userProfile = (UserProfileBean)result.get("userProfile");
+			request.setAttribute("userProfile", userProfile);
 			// editProfile.jspにフォワード
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/editProfile.jsp");
 			dispatcher.forward(request, response);
@@ -76,14 +75,8 @@ public class EditProfileServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		LoginUserInfoBean loginUserInfo = (LoginUserInfoBean)session.getAttribute("loginUserInfo");
 
-		//リクエストパラメータを取得
+		//リクエストパラメータを取得し、更新処理に使用するマップに詰め込む
 		request.setCharacterEncoding("UTF-8");
-
-		// ファイルのアップロード処理(格納場所は暫定)
-		Part part = request.getPart("file");
-		part.write(getServletContext().getRealPath("/img") + "/" + loginUserInfo.getIdUser() + ".jpg");
-
-		//マップに詰め込む
 		Map inParam = new HashMap();
 		inParam.put("idUser", loginUserInfo.getIdUser());
 		inParam.put("stDisplayName", request.getParameter("stDisplayName"));
@@ -92,36 +85,45 @@ public class EditProfileServlet extends HttpServlet {
 		inParam.put("stPart", request.getParameter("stPart"));
 		inParam.put("stFBand", request.getParameter("stFBand"));
 		inParam.put("stFGenre", request.getParameter("stFGenre"));
-		inParam.put("stIconURL", "/quetana/img/" + loginUserInfo.getIdUser() + ".jpg");
+		inParam.put("stIconURL_org", request.getParameter("stIconURL"));
+		inParam.put("imgIcon", request.getPart("imgIcon"));
+		inParam.put("stImgSavePath", getServletContext().getRealPath("/img"));
 		inParam.put("stVideoURL", request.getParameter("stVideoURL"));
 		inParam.put("stComment", request.getParameter("stComment"));
 
 		// 更新処理の実行
 		Map resultUpdate = EditUserProfile.editUserProfile(inParam);
-
+		Boolean cfIconUpdate = (Boolean)resultUpdate.get("cfIconUpdate");
 		String errMsg = (String)resultUpdate.get("errMsg");
 
 		if (errMsg.equals("")) {
-			// 更新処理が成功した場合
+			// DB更新処理が成功した場合
+			if (cfIconUpdate) {
+				// アイコンを更新した場合、セッションのユーザ情報を更新
+				// ★エラーの場合のとか考えなきゃ
+				Map resultLUUpdate = EditUserProfile.updateLoginUserInfo(loginUserInfo.getIdUser());
+				loginUserInfo = (LoginUserInfoBean)resultLUUpdate.get("loginUserInfo");
+				session.setAttribute("loginUserInfo", loginUserInfo);
+			}
 			// プロフィール画面を表示（/UserProfileにリダイレクト）
 			response.sendRedirect("/quetana/Contents/UserProfile");
 		} else {
-			// ログインユーザ情報の判定が否の場合
-			// 入力情報を格納（★とりあえず初期表示時にmyProfileって入れ物使ったので使いまわし
-			UserProfileBean myProfile = new UserProfileBean();
-			myProfile.setIdUser(loginUserInfo.getIdUser());
-			myProfile.setStAccountName(loginUserInfo.getStAccountName());
-			myProfile.setStDisplayName((String)inParam.get("stDisplayName"));
-			myProfile.setNmAge((String)inParam.get("nmAge"));
-			myProfile.setNmAddYear((String)inParam.get("nmAddYear"));
-			myProfile.setStPart((String)inParam.get("stPart"));
-			myProfile.setStFBand((String)inParam.get("stFBand"));
-			myProfile.setStFGenre((String)inParam.get("stFGenre"));
-			myProfile.setStIconURL("/quetana/img/r-zoon.png");
-			myProfile.setStVideoURL((String)inParam.get("stVideoURL"));
-			myProfile.setStComment((String)inParam.get("stComment"));
+			// DB更新処理が失敗した場合
+			// 入力情報を格納（★とりあえず初期表示時にuserProfileって入れ物使ったので使いまわし
+			UserProfileBean userProfile = new UserProfileBean();
+			userProfile.setIdUser(loginUserInfo.getIdUser());
+			userProfile.setStAccountName(loginUserInfo.getStAccountName());
+			userProfile.setStDisplayName((String)inParam.get("stDisplayName"));
+			userProfile.setNmAge((String)inParam.get("nmAge"));
+			userProfile.setNmAddYear((String)inParam.get("nmAddYear"));
+			userProfile.setStPart((String)inParam.get("stPart"));
+			userProfile.setStFBand((String)inParam.get("stFBand"));
+			userProfile.setStFGenre((String)inParam.get("stFGenre"));
+			userProfile.setStIconURL((String)inParam.get("stIconURL_org"));
+			userProfile.setStVideoURL((String)inParam.get("stVideoURL"));
+			userProfile.setStComment((String)inParam.get("stComment"));
 			// errMsgとinParamを持たせてeditProfile.jspにフォワード
-			request.setAttribute("myProfile", myProfile);
+			request.setAttribute("userProfile", userProfile);
 			request.setAttribute("errMsg", errMsg);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/editProfile.jsp");
 			dispatcher.forward(request, response);

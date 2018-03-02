@@ -77,6 +77,7 @@ div#HiddenHeader{
 	overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
 	width: 100%;    /* コンテンツの横幅を指定する */
 	height: 50px;               /* ヘッダーの高さを指定する */
+	background: #ccffcc;
 }
 
 /*
@@ -121,10 +122,10 @@ div#HiddenHeader{
 #HBMenuCheck:checked ~ #HBMenuContents {
 	-webkit-transform: translateX(0%);
 	transform: translateX(0%);/*中身を表示（左へスライド）*/
-	box-shadow: 6px 0 5px rgba(0,0,10,10);
+	box-shadow: 0px 0px 25px 0px rgba(0,0,0,0.5);
 }
 /*メニューに表示するものたち*/
-input#HBMenuElement{
+input#HBMenuLink{
 	-webkit-appearance: none; /* iOSでもボタンレイアウトを保持 */
 	width: 250px;
 	height: 50px;
@@ -133,27 +134,24 @@ input#HBMenuElement{
 	border-bottom: 1px solid #eeeeee;
 	border-radius: 0;
 	text-align: center;
-	color: #000000;
 	font-size:14px;
 }
-div#HBMenuBreak{
+div#HBMenuBlank{
 	overflow:hidden;
 	width: 250px;
 	height: 20px;
-	background: #eeeeee;
 }
 div#HBMenuMSG{
 	padding:15px;
 	width: 220px;
 	height: 20px;
-	background: #eeeeee;
 	font-size: 11px;
 }
 div#HBMenuUser{
 	overflow:hidden;
 	padding:10px 65px;
 	width: 120px;
-	height: 40px;
+	height: 39px;
 	border-bottom: 1px solid #eeeeee;
 	background: #463D5D;
 }
@@ -161,7 +159,6 @@ div#HBMIcon{
 	float: left;
 	width: 40px;
 	height: 40px;
-	background-color: #463D5D;
 }
 .IconRound {
     border-radius: 20px;
@@ -173,7 +170,6 @@ div#HBMAccountName{
 	padding: 8px 0px;
 	width: 80px;
 	height: 24px;
-	background-color: #463D5D;
 	text-align: center;
 	font-size: 18px;
 	color: #ffffff;

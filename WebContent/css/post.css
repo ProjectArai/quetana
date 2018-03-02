@@ -29,6 +29,7 @@ input,textarea {
 	box-sizing: border-box;
 	border: 1px solid #eeeeee;
 	border-radius: 0;
+	background: #f6f6f6;
 	font-family: Lato;
 	font-size:16px; /* 16px未満だとiOSでズームする */
 	/*color: #1e90ff;*/

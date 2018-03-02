@@ -5,7 +5,6 @@ div#ContentsBase {
 	overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
 	width: 100%;
 	background: #eeeeee;
-	/*margin: auto;*/
 }
 div#TitleHeader {
 	margin:auto;
@@ -41,5 +40,4 @@ div#ContentsTable {
 	background: #ffffff;
 	border: 1px solid #888888;
 	border-radius: 5px;
-	font-size: 14px;
 }

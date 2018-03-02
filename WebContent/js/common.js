@@ -1,12 +1,7 @@
-//画面表示時にメッセージ出す
-function loadtest() {
-    alert("test");
-}
-
-//画面表示時にメッセージ出す
-function dispMsg() {
-	if (infoMsg != "") {
-	    alert(infoMsg);
+//画面表示時にエラーメッセージを出す
+function dispErrMsg(errMsg) {
+	if (errMsg != "null") {
+	    alert(errMsg);
 	}
 }
 //TLの表示変更(cssで制御)
@@ -34,22 +29,17 @@ function checkPassword() {
 		return true;
 	}
 }
-function imgPreView(event){
-	  var file = event.target.files[0];
-	  var reader = new FileReader();
-	  var preview = document.getElementById("preview");
-	  var previewImage = document.getElementById("previewImage");
 
-	  if(previewImage != null)
-	    preview.removeChild(previewImage);
+//プロフィール画像変更時、submit前にプレビューさせる処理
+function setImage(event){
+	var file = event.target.files[0];
+	var reader = new FileReader();
+	var divIconView = document.getElementById("PFIconView");
 
-	  reader.onload = function(event) {
-	     var img = document.createElement("img");
-	     img.setAttribute("src", reader.result);
-	     img.setAttribute("id", "previewImage");
-	     preview.appendChild(img);
+	reader.onload = function(event) {
+		var style = 'background-image: url(' + reader.result + ')'
+		divIconView.setAttribute('style', style);
+	};
 
-	  };
-
-	  reader.readAsDataURL(file);
-	}
+	reader.readAsDataURL(file);
+}

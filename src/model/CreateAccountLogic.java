@@ -58,7 +58,7 @@ public class CreateAccountLogic {
 		// アカウント作成処理（ユーザプロフィール）
 		userProfileDto.setIdUser(idUser);
 		userProfileDto.setStDisplayName(stAccountName); //デフォルトはアカウント名＝表示名
-		userProfileDto.setStIconURL("/quetana/img/r-zoon.png"); // デフォルトアイコンの格納先を指定
+		userProfileDto.setStIconURL("/quetana/img/default-icon.jpg"); // デフォルトアイコンの格納先を指定
 		userProfileDto.setCfDelete("0");
 		T_USER_PROFILE_DAO tUserProfileDao = new T_USER_PROFILE_DAO();
 		rowsInsert = tUserProfileDao.insertUserProfile(userProfileDto);

@@ -39,12 +39,11 @@ String errMsg = (String)request.getAttribute("errMsg");
 		<title>Quetana</title>
 		<link rel="stylesheet" type="text/css" href="/quetana/css/base.css">
 		<link rel="stylesheet" type="text/css" href="/quetana/css/af_login.css">
-		<link rel="stylesheet" type="text/css" href="/quetana/css/menu.css">
 		<link rel="stylesheet" type="text/css" href="/quetana/css/post.css">
 		<link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
 		<script src="/quetana/js/common.js"></script>
 	</head>
-	<body onLoad="dispPostForm('<%=  cfPost %>')">
+	<body onLoad="dispPostForm('<%=  cfPost %>');dispErrMsg('<%= errMsg %>')">
 		<jsp:include page="../jsp/parts/mainheader.jsp" flush="true" />
 		<div id="ContentsBase">
 				<div id="TitleHeader">投稿ページ</div>

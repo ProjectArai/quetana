@@ -13,7 +13,6 @@ List<TimeLineBean> arrTimeLine = (List<TimeLineBean>) request.getAttribute("arrT
 		<title>Quetana</title>
 		<link rel="stylesheet" type="text/css" href="/quetana/css/base.css">
 		<link rel="stylesheet" type="text/css" href="/quetana/css/af_login.css">
-		<link rel="stylesheet" type="text/css" href="/quetana/css/menu.css">
 		<link rel="stylesheet" type="text/css" href="/quetana/css/timeline.css">
 		<link rel="stylesheet" type="text/css" href="/quetana/css/disp_tl_all.css" id="TLStyle">
 		<link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
@@ -47,7 +46,9 @@ List<TimeLineBean> arrTimeLine = (List<TimeLineBean>) request.getAttribute("arrT
 								<div id="TLComment">場所　：<%= test.getStPlace() %><br>開催日：<%= test.getDtEvent() %></div>
 								<div id="TLDetails"><%= test.getStDetails() %></div>
 								<div id="TLIcon"><img src="<%= test.getStIconURL() %>" width="40" height="40" class="TLIconRound"></div>
-								<div id="TLUserName"><%= test.getStDisplayName() %></div>
+								<div id="TLUserName">
+									<a href="/quetana/Contents/UserProfile?idUser=<%= test.getIdUser() %>"><%= test.getStDisplayName() %></a>
+								</div>
 								<div id="TLUpdateDate"><%= test.getDtUpdate() %></div>
 							</div>
 						</div>
@@ -59,7 +60,9 @@ List<TimeLineBean> arrTimeLine = (List<TimeLineBean>) request.getAttribute("arrT
 								<div id="TLComment">募集パート　：<%= test.getStPart() %><br>演奏ジャンル：<%= test.getStGenre() %></div>
 								<div id="TLDetails"><%= test.getStDetails() %></div>
 								<div id="TLIcon"><img src="<%= test.getStIconURL() %>" width="40" height="40" class="TLIconRound"></div>
-								<div id="TLUserName"><%= test.getStDisplayName() %></div>
+								<div id="TLUserName">
+									<a href="/quetana/Contents/UserProfile?idUser=<%= test.getIdUser() %>"><%= test.getStDisplayName() %></a>
+								</div>
 								<div id="TLUpdateDate"><%= test.getDtUpdate() %></div>
 							</div>
 						</div>
