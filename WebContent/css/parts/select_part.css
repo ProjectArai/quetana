@@ -1,0 +1,23 @@
+/*
+ * パート選択部分の要素
+ */
+.PartArea {
+	float: left;
+	width: -webkit-calc(100% - 70px);
+	background: #fafafa;
+}
+div.part {
+	float: left;
+	margin: 1px;
+	padding: 5px 5px;
+	width: 35px;
+	height: 20px;
+	border-radius: 15px;
+	background: #aaaaaa;
+	text-align: center;
+	font-size: 11px;
+	color: #ffffff;
+}
+.PartCheck:checked ~ div.part{
+	background: #1e90ff;
+}

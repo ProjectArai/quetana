@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width">
+		<title>Quetana</title>
+		<link rel="stylesheet" type="text/css" href="/quetana/css/base.css">
+		<link rel="stylesheet" type="text/css" href="/quetana/css/af_login.css">
+		<link rel="stylesheet" type="text/css" href="/quetana/css/timeline.css">
+		<link rel="stylesheet" type="text/css" href="/quetana/css/disp_tl_all.css" id="TLStyle">
+		<link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
+		<script src="/quetana/js/common.js"></script>
+	</head>
+	<body>
+		<jsp:include page="../jsp/parts/mainheader.jsp" flush="true" />
+		<div id="ContentsBase">
+			<div id="TitleHeader">TimeLine</div>
+			<div class="SubMenu" id="SubMenuBase">
+				<label for="RadioAll">
+					<input id="RadioAll" type="radio" name="SubMenuRadio" class="unshown" onclick="changesytle('/quetana/css/disp_tl_all.css')" checked>
+					<div class="SubMenu" id="SubMenuTab">すべて</div>
+				</label>
+				<label for="RadioEvent">
+					<input id="RadioEvent" type="radio" name="SubMenuRadio" class="unshown" onclick="changesytle('/quetana/css/disp_tl_e.css')">
+					<div class="SubMenu" id="SubMenuTab">イベント</div>
+				</label>
+				<label for="RadioMember">
+					<input id="RadioMember" type="radio" name="SubMenuRadio" class="unshown" onclick="changesytle('/quetana/css/disp_tl_m.css')" >
+					<div class="SubMenu" id="SubMenuTab">メンバー募集</div>
+				</label>
+			</div>
+			<div id="Contents">
+					<div class="TLMember" id="TLElement">
+						<a id="TLLink" href="/quetana/Contents/UserProfile?idUser=UI000001">
+							<div id="TLTable">
+								<div id="TLType">メンバー募集（Ba, Dr）</div>
+								<div id="TLTitle">Beatles（コピー）のメンバーを探しています！</div>
+								<div id="TLDetails">ライブの日取りはまだ決まっていないのですが、theBeatlesのコピーバンドを組んでスタジオで合わせたいと思っています！！興味のある方は …</div>
+								<img id="TLIconA" src="/quetana/img/UI000007.png" width="25" height="25" class="TLIconRound">
+								<div id="TLUserName">by まえぞのりょうた</div>
+								<div id="TLUpdateDate">2018-12-31</div>
+							</div>
+						</a>
+					</div>
+					<div class="TLEvent" id="TLElement">
+						<a id="TLLink" href="/quetana/Contents/UserProfile?idUser=UI000001">
+							<div id="TLTable">
+								<div id="TLType">イベント（2018-02-09＠池袋ロサ）</div>
+								<div id="TLTitle">OB/OGライブ 2018</div>
+								<div id="TLDetails">皆様、いかがお過ごしでしょうか。今年もOB/OGライブの季節がやってまいりました。OB/OGの方も、現役のみんなも、ごちゃまぜのライブを楽 …</div>
+								<img id="TLIconA" src="/quetana/img/default-icon.jpg" width="25" height="25" class="TLIconRound">
+								<div id="TLUserName">by まえぞのりょうた</div>
+								<div id="TLUpdateDate">2018-12-31</div>
+							</div>
+						</a>
+					</div>
+			</div>
+		</div>
+	</body>
+</html>

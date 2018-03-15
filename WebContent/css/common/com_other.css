@@ -1,0 +1,66 @@
+/*
+ * コンテンツを配置する基礎部分
+ */
+div.Foundation {
+	overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
+	padding-top: 50px;
+	width: 100%;
+	height: calc(100% - 50px);
+	background: #ffffff;
+}
+div.ContentsMargin {
+	width: 100%;
+	height: calc(50% - 150px);
+}
+div.ContentsArea {
+	margin: auto;
+	width: 100%;
+	height: 300px;
+	text-align: center;
+}
+div.TitleArea {
+	overflow: hidden;
+	padding: 7px 0px 3px;
+	width: 100%;
+	height: 30px;
+}
+font.XL {
+	font-size: 36px;
+}
+font.L {
+	font-size: 22px;
+}
+font.M {
+	font-size: 16px;
+}
+font.ErrMsg {
+	color: #ff0000;
+}
+form.InputForm {
+	margin: 10px 0px;
+}
+input[type=text],input[type=password] {
+	margin: 2px;
+	width: 250px;
+	height: 30px;
+	background: #fafafa;
+	border: 1px solid #eeeeee;
+	border-radius: 2px;
+	font-size: 13px;
+}
+input[type=submit] {
+	margin: 2px;
+	width: 250px;
+	height: 30px;
+	background: #463D5D;
+	border-style: none;
+	border-radius: 2px;
+	color: #ffffff;
+}
+div.MsgArea {
+	overflow: hidden;
+	margin: 5px 0px;
+	width: 100%;
+	min-height: 20px;
+	text-align: center;
+}

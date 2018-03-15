@@ -1,0 +1,29 @@
+/*
+ * プロフィール画面共通
+ */
+div.Tab {
+	width: -webkit-calc(100% / 3 - 2px);
+}
+.IconView {
+	overflow: hidden;
+	float: right;
+	margin-right: -webkit-calc(50% - 105px);
+	width: 150px;
+	height: 150px;
+	background: #ffccff;
+}
+
+/*
+ * プロフィール編集画面専用
+ */
+div.AfChangeIcon {
+	background-size: 150px 150px;
+}
+div.IconCover {
+	padding: 120px 10px 10px 114px;
+	width: 26px;
+	height: 20px;
+	background: rgba(0,0,0,0.3);
+	font-size: 32px;
+	color: #cccccc;
+}

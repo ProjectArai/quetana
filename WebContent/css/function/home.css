@@ -1,0 +1,35 @@
+/*
+ * ホーム画面用の要素
+ */
+.BackBtn {
+	display: none;
+}
+div.Tab {
+	width: -webkit-calc(100% / 3 - 2px);
+}
+font.more {
+	font-size:10px;
+	color: #1e90ff;
+}
+.size-S {
+	font-size: 12px;
+	line-height: 18px;
+}
+.TblHeadOutline {
+	float: left;
+	padding: 0px 3px;
+	width: -webkit-calc(100% - 6px);
+	height: 15px;
+	font-size: 10px;
+	color: #555555;
+}
+input[type="submit"].newpage {
+/*	padding: 10px;*/
+	width: 60px;
+	height: 30px;
+	background-color: #463D5D;
+	border-style: none;
+	border-radius: 30px;
+	text-align: center;
+	color: #ffffff;
+}

@@ -1,0 +1,35 @@
+/*
+ * 投稿ページ専用の要素
+ */
+#PostMember {
+	display: none;
+}
+#PostEvent {
+	display: none;
+}
+.PostSend {
+	float: right;
+	margin: 2.5px;
+	padding: 5px;
+	width: 70px;
+	height: 30px;
+	background: #463D5D;
+	border-style: none;
+	border-radius: 30px;
+	color: #ffffff;
+}
+input[type="submit"].write {
+	margin: 2.5px;
+	padding-right: 10px;
+	width: 100px;
+	height: 30px;
+	background-color: #463D5D;
+	border-style: none;
+	border-radius: 30px;
+	text-align: right;
+	color: #ffffff;
+	background-image: url('/quetana/img/comment.jpg');
+	background-size: 30px 30px;
+	background-repeat: no-repeat;
+	background-position: top left;
+}

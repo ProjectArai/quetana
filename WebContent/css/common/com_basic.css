@@ -1,0 +1,272 @@
+/*
+ * コンテンツを配置する基礎部分
+ */
+div.Foundation {
+	overflow: auto; /* コンテンツの表示を自動に設定（スクロール） */
+	padding-top: 50px;
+	width: 100%;
+	background: #eeeeee;
+}
+div.PageTitle {
+	margin:auto;
+	padding:15px;
+	width: -webkit-calc(100% - 30px);
+	max-width: 570px;
+	height: 20px;
+	background: #eeeeee;
+	font-size: 20px;
+	color: #000000;
+}
+div.ContentsHead {
+	margin:auto;
+	padding:0px 5px;
+	width: -webkit-calc(100% - 10px);
+	max-width: 590px;
+	height: 39px;
+	background: #eeeeee;
+	border-bottom: 1px solid #dddddd;
+}
+div.ContentsHeadLine {
+	margin:auto;
+	width: 100%;
+	height: 0px;
+	max-width: 600px;
+	border-bottom: 1px solid #dddddd;
+}
+div.Tab {
+	float:left;
+	padding:10px 0px;
+	height: 18px;
+	background: #eeeeee;
+	text-align: center;
+	font-size: 14px;
+	border: 1px solid #eeeeee;
+	border-bottom: 1px solid #dddddd;
+	border-radius: 5px 5px 0px 0px;
+	color: #000000;
+}
+.TabCheck:checked ~ div.Tab{
+	/* 選択中Tabの色を変更 */
+	background: #ffffff;
+	border: 1px solid #dddddd;
+	border-bottom: 1px solid #ffffff;
+}
+div.ContentsArea {
+	margin: auto;
+	padding: 5px 0px;
+	width: -webkit-calc(100% - 2px);
+	max-width: 598px;
+	background: #ffffff;
+	border-right: 1px solid #dddddd;
+	border-left: 1px solid #dddddd;
+	border-bottom: 1px solid #dddddd;
+}
+div.FotterArea {
+	overflow: hidden;
+	margin: auto;
+	padding: 5px 10px;
+	width: -webkit-calc(100% - 20px);
+	max-width: 580px;
+	background: #dddddd;
+	border: none;
+}
+/*
+ * コンテンツ本体の部品
+ */
+div.ContentsShadow {
+	overflow: hidden;
+	margin: 5px 10px;
+	width: -webkit-calc(100% - 20px);
+	border-radius: 5px;
+	box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.3);
+}
+div.ContentsFull {
+	overflow: hidden;
+	padding: 5px;
+	width: -webkit-calc(100% - 10px);
+	background: #ffffff;
+	border-radius: 5px;
+}
+div.ContentsTop {
+	overflow:hidden;
+	padding: 5px;
+	width: -webkit-calc(100% - 10px);
+	background: #ffffff;
+	border-radius: 5px 5px 0px 0px;
+}
+div.ContentsMiddle {
+	overflow:hidden;
+	padding: 2.5px;
+	width: -webkit-calc(100% - 5px);
+	background: #eeeeee;
+}
+div.ContentsBottom {
+	overflow:hidden;
+	padding: 2.5px;
+	width: -webkit-calc(100% - 5px);
+	background: #dddddd;
+	border-radius: 0px 0px 5px 5px;
+}
+a.ContentsLink {
+	color: #000000;
+}
+
+/*
+ * テーブルの構成部品
+ */
+.TblHead {
+	float: left;
+	width: 100%;
+	border-bottom: 1px solid #463D5D;
+}
+.TblHeadBlock {
+	overflow:hidden;
+	float: left;
+	margin-top: 5px;
+	width: 10px;
+	height: 28px;
+	background: #463D5D;
+}
+.TblHeadTitleS {
+	float: left;
+	margin-top: 5px;
+	padding: 3px;
+	font-size: 12px;
+	color: #555555;
+}
+.TblHeadTitleL {
+	float: left;
+	padding: 4px 0px;
+	width: 100%;
+	font-size: 16px;
+}
+.TblBody {
+	float: left;
+	padding: 1px;
+	width: -webkit-calc(100% - 2px);
+}
+.TblKey {
+	float: left;
+	padding: 4px 0px;
+	width: 70px;
+	font-size: 12px;
+	color: #555555;
+}
+.TblValue {
+	float: left;
+	padding: 4px 0px;
+	width: -webkit-calc(100% - 70px);
+}
+.FullWide {
+	float: left;
+	width: 100%;
+}
+
+/*
+ * その他ラベルの部品
+ */
+.UserName20 {
+	float:left;
+	padding: 0px 5px;
+	width: -webkit-calc(100% - 125px);
+	height: 20px;
+	font-size: 10px;
+	color: #555555;
+}
+.UserName30 {
+	float: left;
+	padding: 5px;
+	width: -webkit-calc(100% - 165px);
+	height: 20px;
+	font-size : 12px;
+	color: #555555;
+}
+.Update20 {
+	float: right;
+	padding: 0px 5px;
+	width: 85px;
+	height: 20px;
+	text-align: right;
+	font-size: 10px;
+	color: #aaaaaa;
+}
+.Update30 {
+	float: right;
+	padding: 5px;
+	width: 85px;
+	height: 20px;
+	text-align: right;
+	font-size: 10px;
+	color: #aaaaaa;
+}
+
+/*
+ * 入力form用の定義
+ */
+input[type="text"],input[type="date"],textarea,select {
+	padding: 4px 0px;
+	border: 0px solid;
+	border-radius: 0;
+	background: #fafafa;
+}
+input[type="date"] {
+	height: 30px;
+}
+
+/*
+ * アイコンや画像ボタン用
+ */
+.Left {
+	float: left;
+}
+.Right {
+	float: right;
+}
+.Icon20 {
+	width: 20px;
+	height: 20px;
+	border-radius: 20px;
+}
+.Icon25 {
+	width: 25px;
+	height: 25px;
+	border-radius: 25px;
+}
+.Icon30 {
+	width: 30px;
+	height: 30px;
+	border-radius: 30px;
+}
+.Button30 {
+	width: 30px;
+	height: 30px;
+}
+input[type="submit"].save {
+	background: url('/quetana/img/save.jpg');
+	background-size: 100% 100%;
+	border-style: none;
+}
+input[type="submit"].edit {
+	background: url('/quetana/img/edit.jpg');
+	background-size: 100% 100%;
+	border-style: none;
+}
+input[type="submit"].friend {
+	background: url('/quetana/img/friend_0.jpg');
+	background-size: 100% 100%;
+	border-style: none;
+}
+/*いらないかも*/
+input[type="submit"].post {
+	background: url('/quetana/img/post.jpg');
+	background-size: 100% 100%;
+	border-style: none;
+}
+
+/*
+ * フォント等
+ */
+font.Unset {
+	/* 未登録・未設定の色 */
+	color: #999999;
+}
