@@ -1,6 +1,6 @@
 var NOMAL_LINE_HEIGHT = "22px";
 var TITLE_LINE_HEIGHT = "22px";
-var DETAILS_HEIGHT = 118;
+var DETAILS_HEIGHT = 184;
 
 // 画面表示時にinfoメッセージを出す
 function dispInfoMsg(infoMsg) {
@@ -48,11 +48,6 @@ function closeMenu(){
 	}
 }
 
-// タブによる表示内容の制御(cssで制御)★
-function changesytle(elementId, cssfile) {
-	document.getElementById(elementId).href = cssfile;
-}
-
 //タブ選択によるコンテンツの表示制御
 function changeDispContents() {
 
@@ -68,67 +63,6 @@ function changeDispContents() {
 		}
 	}
 
-}
-
-// 入力内容の量に応じたtextareaの自動サイズ変更
-function dynamicHeightChangerBBB(id) {
-	var textarea = document.getElementById(id);
-	textarea.style.lineHeight = "22px";
-
-	textarea.addEventListener("input",function(evt){
-		if(evt.target.scrollHeight > evt.target.offsetHeight){
-			evt.target.style.height = evt.target.scrollHeight + "px";
-		}else{
-			var height,lineHeight;
-			while (true){
-				height = Number(evt.target.style.height.split("px")[0]);
-				lineHeight = Number(evt.target.style.lineHeight.split("px")[0]);
-				evt.target.style.height = height - lineHeight + "px";
-				if(evt.target.scrollHeight > evt.target.offsetHeight){
-					evt.target.style.height = evt.target.scrollHeight + "px";
-					break;
-				}
-			}
-		}
-	});
-}
-
-// 入力内容の量に応じたtextareaの自動サイズ変更(詳細やコメント=高さ100px専用)
-function dynamicHeightChangerDetail(id) {
-	var textarea = document.getElementById(id);
-	textarea.style.lineHeight = "22px";
-
-	textarea.addEventListener("input",function(evt){
-		//デフォルトの高さを100+paddin上下2.5px=105pxとして固定
-		var defaultHeight = 105;
-		//scrollHeight（入力内容全体）とoffsetHeight（要素の大きさ）とを比較して
-		if(evt.target.scrollHeight > evt.target.offsetHeight){
-			//入力内容の方が大きい場合は、textareaのheightをscrollHeightに合わせる
-			evt.target.style.height = evt.target.scrollHeight + "px";
-		}else{
-			//scrollHeightの方がoffsetHeightよりも小さい、あるいは同じ場合にはheightを減らす
-			var height,lineHeight;
-			while (true){
-				//textareaのheightを1ラインずつ減らしていく
-				height = Number(evt.target.style.height.split("px")[0]);
-				lineHeight = Number(evt.target.style.lineHeight.split("px")[0]);
-				evt.target.style.height = height - lineHeight + "px";
-
-				//scrollHeightがoffsetHeightよりも大きくなったところでtextareaの高さを決定
-				if(evt.target.scrollHeight > evt.target.offsetHeight){
-					if (evt.target.scrollHeight > defaultHeight){
-						//scrollHeightがデフォルトより大きい場合、textareaの高さをscrollHeightに合わせる
-						evt.target.style.height = evt.target.scrollHeight + "px";
-						break;
-					} else {
-						//scrollHeightがデフォルトよりも小さい、あるいは同じ場合、デフォルトの高さを採用
-						evt.target.style.height = defaultHeight + "px";
-						break;
-					}
-				}
-			}
-		}
-	});
 }
 
 // 入力内容の量に応じたtextareaの自動サイズ変更(★)
@@ -201,7 +135,7 @@ function getHeightTextare(arrTextareaId) {
     ele.setAttribute('value', arrHeight);
 
     // 編集画面遷移用のformに上記input要素を追加
-    document.editProf.appendChild(ele);
+    document.formEdit.appendChild(ele);
 }
 
 //各要素の高さ・行の高さを初期設定

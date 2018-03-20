@@ -22,12 +22,12 @@ public class PostViewLogic {
 		PostViewBean beanPV = new PostViewBean();
 		List<TimeLineDto> arrPostInfo = new ArrayList();
 
-		String cfPost = idPost.substring(1, 2);
+		String cfPostType = idPost.substring(1, 2);
 
-		if (cfPost.equals("E")) {
+		if (cfPostType.equals("E")) {
 			T_EVENT_ANNOUNCE_DAO daoEA = new T_EVENT_ANNOUNCE_DAO();
 			arrPostInfo = daoEA.selectEventAnnounce(idPost);
-		} else if (cfPost.equals("M")) {
+		} else if (cfPostType.equals("M")) {
 			T_MEMBER_RECRUIT_DAO daoMR = new T_MEMBER_RECRUIT_DAO();
 			arrPostInfo = daoMR.selectMemberRecruit(idPost);
 		} else {
@@ -48,13 +48,13 @@ public class PostViewLogic {
 			beanPV.setStAccountName(dtoTL.getStAccountName());
 			beanPV.setStDisplayName(dtoTL.getStDisplayName());
 			beanPV.setStIconURL(dtoTL.getStIconURL());
-			beanPV.setCfPost(dtoTL.getIdPost().substring(1, 2));
+			beanPV.setCfPostType(dtoTL.getIdPost().substring(1, 2));
 			beanPV.setStTitle(dtoTL.getStTitle());
 
-			if (cfPost.equals("E")) {
+			if (cfPostType.equals("E")) {
 				beanPV.setDtEvent(new SimpleDateFormat("yyyy/MM/dd").format(dtoTL.getDtEvent()));
 				beanPV.setStPlace(dtoTL.getStPlace());
-			} else if (cfPost.equals("M")) {
+			} else if (cfPostType.equals("M")) {
 				// パートはコードを名前に変換して渡す
 				Map<String, String> mapPart = CommonLogic.getStPartName();
 				String stPart = "";

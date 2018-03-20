@@ -24,9 +24,9 @@ String perEdit = (String) request.getAttribute("perEdit");
 	<body>
 		<div class="Foundation">
 			<div class="PageTitle">
-			<% if ((beanPV.getCfPost()).equals("E")) { %>
+			<% if ((beanPV.getCfPostType()).equals("E")) { %>
 				イベント告知
-			<% } else if ((beanPV.getCfPost()).equals("M")) { %>
+			<% } else if ((beanPV.getCfPostType()).equals("M")) { %>
 				バンドメンバー募集
 			<% } %>
 			</div>
@@ -34,9 +34,11 @@ String perEdit = (String) request.getAttribute("perEdit");
 			<div class="ContentsArea">
 				<div class="ContentsShadow">
 					<div class="ContentsTop">
+						<param id="cfPostType" value="<%= beanPV.getCfPostType() %>">
 						<% if (perEdit.equals("Y")) { %>
-							<form name="formPostEdit" action="/quetana/postedit_t1.jsp" method="Get">
-								<input type="submit" name="btnPostRdit" class="Button30 Right edit" value="">
+							<form name="formEdit" action="/quetana/Contents/PostView" method="Post">
+								<input type="submit" class="Button30 Right edit" value="" onclick="getHeightTextare(arrTextareaId)">
+								<input type="hidden" name="idPost" value="<%= beanPV.getIdPost() %>">
 							</form>
 						<% } %>
 						<a class="noshadow" id="TLLink" href="/quetana/Contents/UserProfile?idUser=<%= beanPV.getIdUser() %>">
@@ -44,29 +46,37 @@ String perEdit = (String) request.getAttribute("perEdit");
 							<div class="UserName30"><%= beanPV.getStDisplayName() %></div>
 						</a>
 						<div class="TblBody">
-							<div class="TblHeadTitleL"><%= beanPV.getStTitle() %></div>
+							<div class="TblHeadTitleL" id="stTitle"><%= beanPV.getStTitle() %></div>
 						</div>
 						<div class="TblHead">
 							<div class="TblHeadBlock"></div>
 							<div class="TblHeadTitleS">概略</div>
 						</div>
-						<% if ((beanPV.getCfPost()).equals("E")) { %>
+						<% if ((beanPV.getCfPostType()).equals("E")) { %>
 							<div class="TblBody">
-								<div class="TblKey">開催日</div><div class="TblValue"><%= beanPV.getDtEvent() %></div>
+								<div class="TblKey">開催日</div>
+								<div class="TblValue"><%= beanPV.getDtEvent() %></div>
 							</div>
 							<div class="TblBody">
-								<div class="TblKey">開催場所</div><div class="TblValue"><%= beanPV.getStPlace() %></div>
+								<div class="TblKey">開催場所</div>
+								<div class="TblValue" id="stPlace"><%= beanPV.getStPlace() %></div>
 							</div>
-						<% } else if ((beanPV.getCfPost()).equals("M")) { %>
+						<% } else if ((beanPV.getCfPostType()).equals("M")) { %>
 							<div class="TblBody">
-								<div class="TblKey">募集パート</div><div class="TblValue"><%= beanPV.getStPart() %></div>
+								<div class="TblKey">募集パート</div>
+								<div class="TblValue"><%= beanPV.getStPart() %></div>
 							</div>
 							<div class="TblBody">
-								<div class="TblKey">ジャンル</div><div class="TblValue"><%= beanPV.getStGenre() %></div>
+								<div class="TblKey">ジャンル</div>
+								<div class="TblValue" id="stGenre"><%= beanPV.getStGenre() %></div>
 							</div>
 						<% } %>
+						<div class="TblHead">
+							<div class="TblHeadBlock"></div>
+							<div class="TblHeadTitleS">詳細</div>
+						</div>
 						<div class="TblBody">
-							<div class="TblValue FullWide"><pre><%= beanPV.getStDetails() %></pre></div>
+							<div class="TblValue FullWide" id="stDetails"><pre><%= beanPV.getStDetails() %></pre></div>
 						</div>
 						<div class="Update20"><%= beanPV.getDtUpdate() %></div>
 					</div>

@@ -39,8 +39,8 @@ String perEdit = (String) request.getAttribute("perEdit");
 						<div class="ContentsFull">
 							<% if (perEdit.equals("Y")) { %>
 								<!-- ログインユーザ自身の場合、プロフィール編集ボタンを表示 -->
-								<form name="editProf" action="/quetana/Contents/UserProfile" method="post">
-									<input type="submit" name="edit" class="Button30 Right edit" value="" onclick="getHeightTextare(arrTextareaId)">
+								<form name="formEdit" action="/quetana/Contents/UserProfile" method="post">
+									<input type="submit" class="Button30 Right edit" value="" onclick="getHeightTextare(arrTextareaId)">
 								</form>
 							<% } else if (perEdit.equals("N")) { %>
 								<!-- ログインユーザ以外の場合、友達申請ボタン？とDM送信ボタンを表示 -->

@@ -1,16 +1,16 @@
 //投稿画面のtextareaの初期heightを設定
-var arrHeight = "stTitle=30,stGenre=30,stPlace=30,stDetails=118";
+//var arrHeight = "stTitle=30,stGenre=30,stPlace=30,stDetails=118";
 
 //投稿種別によるフォームの表示・非表示を制御
-function dispPostForm() {
+function dispPostOutline() {
 
-	cfPost = document.getElementById("cfPost").value;
+	cfPostType = document.getElementById("cfPostType").value;
 
-	 if (cfPost == "M") {
+	 if (cfPostType == "M") {
 	    document.getElementById("PostMember").style.display="block";
 	    document.getElementById("PostEvent").style.display="none";
 
-	} else if (cfPost == "E") {
+	} else if (cfPostType == "E") {
 		document.getElementById("PostMember").style.display="none";
 		document.getElementById("PostEvent").style.display="block";
 
@@ -22,28 +22,13 @@ function dispPostForm() {
 }
 
 // 新規or修正による投稿種別プルダウンの表示・非表示を制御(onLoad時のみ)
-function dispPostType(stStatus) {
+function dispPostTypePulldown(cfPostMode) {
 
-	 if (stStatus == "new") {
+	 if (cfPostMode == "N") {
 	    document.getElementById("PostType").style.display="block";
 
-	} else if (stStatus == "fix") {
+	} else if (cfPostMode == "F") {
 		document.getElementById("PostType").style.display="none";
 	}
 
-}
-
-function dispReqMember(){
-	document.getElementById("PostMember").style.display="block";
-	document.getElementById("PostEvent").style.display="none";
-}
-
-function dispAnnEvent(){
-	document.getElementById("PostMember").style.display="none";
-	document.getElementById("PostEvent").style.display="block";
-}
-
-function dispUnSelect(){
-	document.getElementById("PostMember").style.display="none";
-	document.getElementById("PostEvent").style.display="none";
 }

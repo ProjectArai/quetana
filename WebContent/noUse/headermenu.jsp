@@ -11,7 +11,7 @@
 	</div>
 	<input id="HBMenuLink" type="button" value="ホーム" onClick="location.href='/quetana/Contents/Home'">
 	<input id="HBMenuLink" type="button" value="マイプロフィール" onClick="location.href='/quetana/Contents/UserProfile'">
-	<input id="HBMenuLink" type="button" value="投稿ページ" onClick="location.href='/quetana/Contents/Post'">
+	<input id="HBMenuLink" type="button" value="投稿ページ" onClick="location.href='/quetana/Contents/PostSend'">
 	<div id=HBMenuBlank></div>
 	<input id="HBMenuLink" type="button" value="設定">
 	<div id=HBMenuBlank></div>

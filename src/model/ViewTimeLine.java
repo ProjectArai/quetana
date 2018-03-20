@@ -28,10 +28,10 @@ public class ViewTimeLine {
 			timeLineBean.setStDisplayName(timeLine.getStDisplayName());
 			timeLineBean.setStIconURL(timeLine.getStIconURL());
 
-			String cfPost = "";
+			String cfPostType = "";
 			String stOutLine = "";
 			if (idPost.charAt(1) == 'E') {
-				cfPost = "E";
+				cfPostType = "E";
 				stOutLine = new SimpleDateFormat("yyyy/MM/dd").format(timeLine.getDtEvent());
 				stOutLine +=  "＠";
 				//stPlaceが17文字以上かどうか判定、16文字以下だったらそのまま
@@ -44,7 +44,7 @@ public class ViewTimeLine {
 					stOutLine += stPlace;
 				}
 			} else if (idPost.charAt(1) == 'M') {
-				cfPost = "M";
+				cfPostType = "M";
 				//いずれコードが入るので、コードに紐づくパート名を取得してカンマ区切りで結合する
 				Map<String, String> mapPart = CommonLogic.getStPartName();
 
@@ -62,7 +62,7 @@ public class ViewTimeLine {
 				}
 				stOutLine = stPart;
 			}
-			timeLineBean.setCfPost(cfPost);
+			timeLineBean.setCfPostType(cfPostType);
 			timeLineBean.setStOutLine(stOutLine);
 
 			timeLineBean.setStTitle(timeLine.getStTitle());

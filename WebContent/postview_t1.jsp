@@ -44,14 +44,13 @@
 						<div class="TblBody">
 							<div class="TblKey">ジャンル</div><div class="TblValue">Rock</div>
 						</div>
+						<div class="TblHead">
+							<div class="TblHeadBlock"></div>
+							<div class="TblHeadTitleS">詳細</div>
+						</div>
 						<div class="TblBody">
 							<div class="TblValue FullWide">
 								ライブの日取りはまだ決まっていないのですが、theBeatlesのコピーバンドを組んでスタジオで合わせたいと思っています！！興味のある方は是非コメントやDMを送って下さい！よろしくお願いします！！！
-								<br>
-								【コピー中の曲】<br>
-								・Hey Jude<br>
-								・I Want To Hold Your Hand<br>
-								・She Loves You
 							</div>
 						</div>
 						<div class="Update20">2018/12/31 23:55</div>

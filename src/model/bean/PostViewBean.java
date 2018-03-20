@@ -1,14 +1,17 @@
 package model.bean;
 
+import java.util.Map;
+
 public class PostViewBean {
 	private String idPost;    //投稿ID
 	private String idUser;    //ユーザID
 	private String stAccountName; //アカウント名
 	private String stDisplayName; //表示名
 	private String stIconURL; //アイコンURL
-	private String cfPost;   //投稿区分
+	private String cfPostType;   //投稿区分
 	private String stTitle;   //タイトル
 	private String stPart;    //募集パート
+	private Map chkPart;      //募集パートの選択状況★
 	private String stGenre;   //演奏ジャンル
 	private String stPlace;   //開催場所
 	private String dtEvent;     //開催日
@@ -57,12 +60,12 @@ public class PostViewBean {
 		this.stIconURL = stIconURL;
 	}
 
-	public String getCfPost() {
-		return cfPost;
+	public String getCfPostType() {
+		return cfPostType;
 	}
 
-	public void setCfPost(String cfPost) {
-		this.cfPost = cfPost;
+	public void setCfPostType(String cfPostType) {
+		this.cfPostType = cfPostType;
 	}
 
 	public String getStTitle() {
@@ -79,6 +82,14 @@ public class PostViewBean {
 
 	public void setStPart(String stPart) {
 		this.stPart = stPart;
+	}
+
+	public Map getChkPart() {
+		return chkPart;
+	}
+
+	public void setChkPart(Map chkPart) {
+		this.chkPart = chkPart;
 	}
 
 	public String getStGenre() {

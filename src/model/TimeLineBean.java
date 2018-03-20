@@ -8,7 +8,7 @@ public class TimeLineBean {
 	private String stAccountName; //アカウント名
 	private String stDisplayName; //表示名
 	private String stIconURL; //アイコンURL
-	private String cfPost;   //投稿区分
+	private String cfPostType;   //投稿区分
 	private String stTitle;   //タイトル
 	private String stOutLine;   //概略
 	private String stPart;    //募集パート
@@ -63,12 +63,12 @@ public class TimeLineBean {
 		this.stIconURL = stIconURL;
 	}
 
-	public String getCfPost() {
-		return cfPost;
+	public String getCfPostType() {
+		return cfPostType;
 	}
 
-	public void setCfPost(String cfPost) {
-		this.cfPost = cfPost;
+	public void setCfPostType(String cfPostType) {
+		this.cfPostType = cfPostType;
 	}
 
 	public String getStTitle() {

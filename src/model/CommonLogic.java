@@ -49,18 +49,36 @@ public class CommonLogic {
 	public static Map<String, String> getStPartName () {
 
 		Map<String, String> mapPart = new HashMap<String, String>(){
-            {
-                put("01", "Vo.");
-                put("02", "Gt.");
-                put("03", "Ba.");
-                put("04", "Key.");
-                put("05", "Dr.");
-                put("06", "Per.");
-                put("07", "Cho.");
-                put("08", "Other");
-            }
-        };
+			{
+				put("01", "Vo.");
+				put("02", "Gt.");
+				put("03", "Ba.");
+				put("04", "Key.");
+				put("05", "Dr.");
+				put("06", "Per.");
+				put("07", "Cho.");
+				put("08", "Other");
+			}
+		};
 
 		return mapPart;
+	}
+
+	public static Map<String, String> getPartCheck () {
+
+		Map<String, String> mapPartCheck = new HashMap<String, String>(){
+			{
+				put("01", "");
+				put("02", "");
+				put("03", "");
+				put("04", "");
+				put("05", "");
+				put("06", "");
+				put("07", "");
+				put("08", "");
+			}
+		};
+
+		return mapPartCheck;
 	}
 }

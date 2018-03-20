@@ -37,7 +37,7 @@ List<TimeLineBean> arrTimeLine = (List<TimeLineBean>) request.getAttribute("arrT
 			</div>
 			<div class="ContentsArea">
 				<% for (TimeLineBean tlRecord : arrTimeLine){ %>
-					<% if ((tlRecord.getCfPost()).equals("E")) { %>
+					<% if ((tlRecord.getCfPostType()).equals("E")) { %>
 						<div class="TLEvent">
 							<div class="ContentsShadow">
 								<a class="ContentsLink" href="/quetana/Contents/PostView?idPost=<%= tlRecord.getIdPost() %>">
@@ -56,7 +56,7 @@ List<TimeLineBean> arrTimeLine = (List<TimeLineBean>) request.getAttribute("arrT
 								</a>
 							</div>
 						</div>
-					<% } else if ((tlRecord.getCfPost()).equals("M")) { %>
+					<% } else if ((tlRecord.getCfPostType()).equals("M")) { %>
 						<div class="TLMember">
 							<div class="ContentsShadow">
 								<a class="ContentsLink" href="/quetana/Contents/PostView?idPost=<%= tlRecord.getIdPost() %>">
@@ -83,7 +83,7 @@ List<TimeLineBean> arrTimeLine = (List<TimeLineBean>) request.getAttribute("arrT
 							<div class="ContentsFull">
 								<div class="TblHead">
 									<div class="TblHeadOutline">メンバー募集（Ba, Dr）</div>
-									<div class="TblHeadTitleL">Beatles（コピー）のメンバーを探しています！</div>
+									<div class="TblHeadTitleL">【モック用】Beatles（コピー）のメンバーを探しています！</div>
 								</div>
 								<div class="TblBody">
 									<div class="TblValue FullWide size-S">
@@ -103,7 +103,7 @@ List<TimeLineBean> arrTimeLine = (List<TimeLineBean>) request.getAttribute("arrT
 							<div class="ContentsFull">
 								<div class="TblHead">
 									<div class="TblHeadOutline">イベント（2018/02/09＠池袋ロサ）</div>
-									<div class="TblHeadTitleL">OB/OGライブ 2018</div>
+									<div class="TblHeadTitleL">【モック用】OB/OGライブ 2018</div>
 								</div>
 								<div class="TblBody">
 									<div class="TblValue FullWide size-S">
@@ -113,46 +113,6 @@ List<TimeLineBean> arrTimeLine = (List<TimeLineBean>) request.getAttribute("arrT
 								<img class="Icon20 Left" src="/quetana/img/UI000001.jpg">
 								<div class="UserName20">by まえぞのりょうた</div>
 								<div class="Update20">2018/12/31 23:55</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="TLMember">
-					<div class="ContentsShadow">
-						<a class="ContentsLink" href="/quetana/postview_t1.jsp">
-							<div class="ContentsFull">
-								<div class="TblHead">
-									<div class="TblHeadOutline">メンバー募集（Vo. Gt. Ba. Key. Dr. Per. Cho. Other）</div>
-									<div class="TblHeadTitleL">１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２</div>
-								</div>
-								<div class="TblBody">
-									<div class="TblValue FullWide size-S">
-										１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４ … <font class="more">もっと見る</font>
-									</div>
-								</div>
-								<img class="Icon20 Left" src="/quetana/img/default-icon.jpg">
-								<div class="UserName20">by １２３４５６７８９０</div>
-								<div class="Update20">9999/99/99 99:99</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="TLEvent">
-					<div class="ContentsShadow">
-						<a class="ContentsLink" href="/quetana/postview_t2.jsp">
-							<div class="ContentsFull">
-								<div class="TblHead">
-									<div class="TblHeadOutline">イベント（9999/99/99＠１２３４５６７８９０１２３４５６）</div>
-									<div class="TblHeadTitleL">１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２</div>
-								</div>
-								<div class="TblBody">
-									<div class="TblValue FullWide size-S">
-										１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４ … <font class="more">もっと見る</font>
-									</div>
-								</div>
-								<img class="Icon20 Left" src="/quetana/img/default-icon.jpg">
-								<div class="UserName20">by １２３４５６７８９０</div>
-								<div class="Update20">9999/99/99 99:99</div>
 							</div>
 						</a>
 					</div>
@@ -168,7 +128,7 @@ List<TimeLineBean> arrTimeLine = (List<TimeLineBean>) request.getAttribute("arrT
 				</div>
 			</div>
 		</div>
-		<input class="NewPostBtn" type="button" value="" onClick="location.href='/quetana/Contents/Post'">
+		<input class="NewPostBtn" type="button" value="" onClick="location.href='/quetana/Contents/PostSend'">
 		<jsp:include page="../jsp/parts/mainheader.jsp" flush="true" />
 		<script src="/quetana/js/common.js"></script>
 		<script src="/quetana/js/home.js"></script>

@@ -42,7 +42,7 @@ LoginUserInfoBean loginUserInfo = (LoginUserInfoBean) session.getAttribute("logi
 						</div>
 						<input class="MenuLinkBtn" type="button" value="ホーム" onClick="location.href='/quetana/Contents/Home';closeMenu()">
 						<input class="MenuLinkBtn" type="button" value="マイプロフィール" onClick="location.href='/quetana/Contents/UserProfile';closeMenu()">
-						<input class="MenuLinkBtn" type="button" value="新規投稿" onClick="location.href='/quetana/Contents/Post';closeMenu()">
+						<input class="MenuLinkBtn" type="button" value="新規投稿" onClick="location.href='/quetana/Contents/PostSend';closeMenu()">
 <!--
 						<input class="MenuLinkBtn" type="button" value="メッセージ" onClick="location.href='/quetana/dmList.jsp';closeMenu()">
  -->
