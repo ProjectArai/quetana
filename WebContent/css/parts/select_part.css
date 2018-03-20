@@ -8,11 +8,11 @@
 }
 div.part {
 	float: left;
-	margin: 1px;
-	padding: 5px 5px;
-	width: 35px;
-	height: 20px;
-	border-radius: 15px;
+	margin: 2px;
+	padding: 7px 5px;
+	width: 40px;
+	height: 21px;
+	border-radius: 20px;
 	background: #aaaaaa;
 	text-align: center;
 	font-size: 11px;

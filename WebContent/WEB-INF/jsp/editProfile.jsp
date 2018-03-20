@@ -24,6 +24,7 @@ session.removeAttribute("arrHeight");
 		<link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
 	</head>
 	<body onLoad="setVideoURLHeight();setTextareaHeight('<%= stHeightArray %>')">
+		<form enctype="multipart/form-data" action="/quetana/Contents/EditProfile" method="post">
 		<div class="Foundation">
 			<div class="PageTitle">プロフィール編集</div>
 			<div class="ContentsHead">
@@ -39,8 +40,6 @@ session.removeAttribute("arrHeight");
 			<div class="ContentsArea">
 				<div class="ContentsShadow">
 					<div class="ContentsFull">
-					<form enctype="multipart/form-data" action="/quetana/Contents/EditProfile" method="post">
-						<input type="submit" name="save" class="Button30 Right save" value="">
 						<label for="IconInput" class="noshadow">
 							<input id="IconInput" type="file" name="imgIcon" accept="image/*" class="unshown" onChange="setImage(event)">
 							<div id="IconArea" class="IconView AfChangeIcon" style="background-image: url(<%= userProfile.getStIconURL() %>)">
@@ -129,12 +128,12 @@ session.removeAttribute("arrHeight");
 						<input type="hidden" name="stIconURL" value="<%= userProfile.getStIconURL() %>">
 						<!-- ★この下のやつは一時的なやつなのでロジック直したら消す -->
 						<input type="hidden" name="stPart" value="<%= userProfile.getStPart() %>">
-					</form>
 					</div>
 				</div>
 			</div>
 		</div>
-		<jsp:include page="../jsp/parts/mainheader.jsp" flush="true" />
+		<jsp:include page="../jsp/parts/editheader.jsp" flush="true" />
+		</form>
 		<script src="/quetana/js/common.js"></script>
 		<script src="/quetana/js/profileEdit.js"></script>
 	</body>

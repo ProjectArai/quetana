@@ -8,8 +8,8 @@ div.Foundation {
 	background: #eeeeee;
 }
 div.PageTitle {
-	margin:auto;
-	padding:15px;
+	margin: auto;
+	padding: 15px;
 	width: -webkit-calc(100% - 30px);
 	max-width: 570px;
 	height: 20px;
@@ -18,8 +18,8 @@ div.PageTitle {
 	color: #000000;
 }
 div.ContentsHead {
-	margin:auto;
-	padding:0px 5px;
+	margin: auto;
+	padding: 0px 5px;
 	width: -webkit-calc(100% - 10px);
 	max-width: 590px;
 	height: 39px;
@@ -27,7 +27,7 @@ div.ContentsHead {
 	border-bottom: 1px solid #dddddd;
 }
 div.ContentsHeadLine {
-	margin:auto;
+	margin: auto;
 	width: 100%;
 	height: 0px;
 	max-width: 600px;
@@ -35,7 +35,7 @@ div.ContentsHeadLine {
 }
 div.Tab {
 	float:left;
-	padding:10px 0px;
+	padding: 10px 0px;
 	height: 18px;
 	background: #eeeeee;
 	text-align: center;
@@ -67,7 +67,7 @@ div.FotterArea {
 	padding: 5px 10px;
 	width: -webkit-calc(100% - 20px);
 	max-width: 580px;
-	background: #dddddd;
+/*	background: #dddddd;*/
 	border: none;
 }
 /*
@@ -88,27 +88,24 @@ div.ContentsFull {
 	border-radius: 5px;
 }
 div.ContentsTop {
-	overflow:hidden;
+	overflow: hidden;
 	padding: 5px;
 	width: -webkit-calc(100% - 10px);
 	background: #ffffff;
 	border-radius: 5px 5px 0px 0px;
 }
 div.ContentsMiddle {
-	overflow:hidden;
+	overflow: hidden;
 	padding: 2.5px;
 	width: -webkit-calc(100% - 5px);
 	background: #eeeeee;
 }
 div.ContentsBottom {
-	overflow:hidden;
+	overflow: hidden;
 	padding: 2.5px;
 	width: -webkit-calc(100% - 5px);
 	background: #dddddd;
 	border-radius: 0px 0px 5px 5px;
-}
-a.ContentsLink {
-	color: #000000;
 }
 
 /*
@@ -120,7 +117,7 @@ a.ContentsLink {
 	border-bottom: 1px solid #463D5D;
 }
 .TblHeadBlock {
-	overflow:hidden;
+	overflow: hidden;
 	float: left;
 	margin-top: 5px;
 	width: 10px;
@@ -145,6 +142,13 @@ a.ContentsLink {
 	padding: 1px;
 	width: -webkit-calc(100% - 2px);
 }
+.TblBodyBlock {
+	overflow: hidden;
+	float: left;
+	width: 10px;
+	height: 100%;
+	background: #463D5D;
+}
 .TblKey {
 	float: left;
 	padding: 4px 0px;
@@ -160,6 +164,39 @@ a.ContentsLink {
 .FullWide {
 	float: left;
 	width: 100%;
+}
+
+/*
+ * リスト表示(友達リスト・DM一覧)の部品
+ */
+.ListIconArea {
+	overflow: hidden;
+	float: left;
+	padding: 5px 0px;
+	width: 30px;
+	height: 30px;
+}
+.ListUserName {
+	float: left;
+	padding: 0px 5px;
+	width: -webkit-calc(100% - 155px);
+	height: 20px;
+	font-size: 12px;
+}
+.ListOutline {
+	float: left;
+	padding: 0px 5px;
+	width: -webkit-calc(100% - 60px);
+	height: 20px;
+	font-size: 10px;
+	color: #555555;
+}
+.ListBadgeArea {
+	overflow: hidden;
+	float: right;
+	padding: 10px 0px;
+	width: 20px;
+	height: 20px;
 }
 
 /*
@@ -256,9 +293,8 @@ input[type="submit"].friend {
 	background-size: 100% 100%;
 	border-style: none;
 }
-/*いらないかも*/
-input[type="submit"].post {
-	background: url('/quetana/img/post.jpg');
+input[type="submit"].dm {
+	background: url('/quetana/img/dm.jpg');
 	background-size: 100% 100%;
 	border-style: none;
 }
@@ -269,4 +305,19 @@ input[type="submit"].post {
 font.Unset {
 	/* 未登録・未設定の色 */
 	color: #999999;
+}
+a.ContentsLink {
+	/* コンテンツそのものをリンクにしたときは黒字？ */
+	color: #000000;
+}
+
+/*
+ * EditHeader用
+ */
+input[type="submit"].fix {
+	width: 50px;
+	height: 50px;
+	background: url('/quetana/img/fix.jpg');
+	background-size: 50px 50px;
+	border-style: none;
 }

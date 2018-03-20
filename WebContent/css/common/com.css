@@ -53,7 +53,7 @@ textarea {
  * ヘッダーの要素
  */
 div.HeaderBase {
-	position:fixed;
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -103,10 +103,12 @@ hr.HamburgerMark{
 	border-radius: 1px;
 	width: 18px;
 }
+.HeaderBtn {
+	float: left;
+	width: 50px;
+	height: 50px;
+}
 
-/*
- * ハンバーガーメニュー関連
- */
 /*メニュー表示時の薄黒カバー*/
 .ContentsCover {
 	display: none;/*はじめは隠しておく*/
@@ -169,8 +171,9 @@ div.MenuUserName{
 	font-size: 18px;
 	color: #ffffff;
 }
-input.MenuLinkBtn{
+.MenuLinkBtn{
 	-webkit-appearance: none; /* iOSでもボタンレイアウトを保持 */
+	box-sizing: border-box;
 	width: 250px;
 	height: 50px;
 	background: #ffffff;
@@ -179,6 +182,17 @@ input.MenuLinkBtn{
 	border-radius: 0;
 	text-align: center;
 	font-size:14px;
+}
+.LinkLabel {
+	margin: 14px 5px 15px 65px;
+	width: 120px;
+	height: 19px;
+}
+.LinkBadgeArea {
+	margin-top: 15px;
+	margin-bottom: 14px;
+	width: 20px;
+	height: 20px;
 }
 div.MenuBlank{
 	overflow:hidden;
@@ -190,4 +204,17 @@ div.MenuMSG{
 	width: 220px;
 	height: 20px;
 	font-size: 11px;
+}
+
+/*
+ * バッヂ
+ */
+.Badge {
+	width: 20px;
+	height: 20px;
+	background: #ff0000;
+	border-radius: 20px;
+	text-align: center;
+	font-size: 10px;
+	color: #ffffff;
 }

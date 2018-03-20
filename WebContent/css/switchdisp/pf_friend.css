@@ -1,0 +1,9 @@
+/*
+ * 友達リストを表示
+ */
+div.PfBasic {
+	display: none;
+}
+div.PfFriend {
+	display: block;
+}

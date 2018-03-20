@@ -51,6 +51,7 @@ public class LoginLogic {
 				// ログインユーザ情報をセット
 				loginUserInfo.setIdUser(userInfoDto.getIdUser());
 				loginUserInfo.setStAccountName(userInfoDto.getStAccountName());
+				loginUserInfo.setStDisplayName(userInfoDto.getStDisplayName());
 				loginUserInfo.setStIconURL(userInfoDto.getStIconURL());
 			} else {
 				//パスワードが一致しない場合

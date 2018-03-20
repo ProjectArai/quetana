@@ -179,7 +179,7 @@ public class T_USER_INFO_DAO {
 
 			// SELECT文を準備
 			String sql =
-					"select UI.IDUSER, UI.STACCOUNTNAME, UI.STMAILADDRESS, UI.STPASSWORD, UP.STICONURL "
+					"select UI.IDUSER, UI.STACCOUNTNAME, UI.STMAILADDRESS, UI.STPASSWORD, UP.STDISPLAYNAME, UP.STICONURL "
 					+ "from T_USER_INFO as UI, T_USER_PROFILE as UP "
 					+ "where (UI.IDUSER = UP.IDUSER) and (UI.STACCOUNTNAME = ? or UI.STMAILADDRESS = ?) and UI.CFDELETE = '0';";
 
@@ -195,6 +195,7 @@ public class T_USER_INFO_DAO {
 				dto.setStAccountName(rs.getString("UI.STACCOUNTNAME"));
 				dto.setStMailAddress(rs.getString("UI.STMAILADDRESS"));
 				dto.setStPassword(rs.getString("UI.STPASSWORD"));
+				dto.setStDisplayName(rs.getString("UP.STDISPLAYNAME"));
 				dto.setStIconURL(rs.getString("UP.STICONURL"));
 				arrUserInfo.add(dto);
 			}

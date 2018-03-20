@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ page import="model.UserProfileBean" %>
 <%
-String stBackURL = request.getContextPath() + "/Contents/Home";
 %>
 <!DOCTYPE html>
 <html>
@@ -13,7 +12,7 @@ String stBackURL = request.getContextPath() + "/Contents/Home";
 		<title>Quetana</title>
 		<link rel="stylesheet" type="text/css" href="/quetana/css/common/com.css">
 		<link rel="stylesheet" type="text/css" href="/quetana/css/common/com_basic.css">
-		<link rel="stylesheet" type="text/css" href="/quetana/css/function/postview.css">
+		<link rel="stylesheet" type="text/css" href="/quetana/css/function/comment.css">
 		<link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
 	</head>
 	<body>
@@ -30,10 +29,14 @@ String stBackURL = request.getContextPath() + "/Contents/Home";
 							<img class="Icon30 Left" src="/quetana/img/UI000001.jpg">
 							<div class="UserName30">まえぞのりょうた</div>
 						</a>
-						<div class="TblHead">
+						<div class="TblBody">
 							<div class="TblHeadTitleL">
 								Beatles（コピー）のメンバーを探しています！
 							</div>
+						</div>
+						<div class="TblHead">
+							<div class="TblHeadBlock"></div>
+							<div class="TblHeadTitleS">概略</div>
 						</div>
 						<div class="TblBody">
 							<div class="TblKey">募集パート</div><div class="TblValue">Ba, Dr</div>
@@ -75,15 +78,7 @@ String stBackURL = request.getContextPath() + "/Contents/Home";
 							<div class="TirRight"></div>
 							<div class="Balloon Right">
 								<a id="TLLink" href="/quetana/Contents/UserProfile?idUser=UI000001">まえぞのりょうた</a>
-								あべけん> ありがとうございます！！
-							</div>
-						</div>
-						<div class="BalloonBase">
-							<img class="Icon25 Right" src="/quetana/img/UI000001.jpg">
-							<div class="TirRight"></div>
-							<div class="Balloon Right">
-								<a id="TLLink" href="/quetana/Contents/UserProfile?idUser=UI000001">まえぞのりょうた</a>
-								kazzool> ありがとうございます！！まだ決まってないのでお願いします！
+								あべけん、kazzool> ありがとうございます！！まだ決まってないのでお願いします！
 							</div>
 						</div>
 					</div>

@@ -1,3 +1,7 @@
+var NOMAL_LINE_HEIGHT = "22px";
+var TITLE_LINE_HEIGHT = "22px";
+var DETAILS_HEIGHT = 118;
+
 // 画面表示時にinfoメッセージを出す
 function dispInfoMsg(infoMsg) {
 	if (infoMsg != "null") {
@@ -44,13 +48,30 @@ function closeMenu(){
 	}
 }
 
-// タブによる表示内容の制御(cssで制御)
+// タブによる表示内容の制御(cssで制御)★
 function changesytle(elementId, cssfile) {
 	document.getElementById(elementId).href = cssfile;
 }
 
+//タブ選択によるコンテンツの表示制御
+function changeDispContents() {
+
+	var arrTabEle = document.getElementsByName("TabRadio")
+
+	for (var i = 0 ; i < arrTabEle.length; i++) {
+		if (arrTabEle[i].checked){
+			// ラジオボタンが選択されていたら要素IDを取得
+			var stTabID = arrTabEle[i].id
+			// 連想配列に定義されたIDに紐づく表示切替cssを反映
+			document.getElementById("DispStyle").href = defDispStyle[stTabID];
+			break;
+		}
+	}
+
+}
+
 // 入力内容の量に応じたtextareaの自動サイズ変更
-function dynamicHeightChanger(id) {
+function dynamicHeightChangerBBB(id) {
 	var textarea = document.getElementById(id);
 	textarea.style.lineHeight = "22px";
 
@@ -104,6 +125,56 @@ function dynamicHeightChangerDetail(id) {
 						evt.target.style.height = defaultHeight + "px";
 						break;
 					}
+				}
+			}
+		}
+	});
+}
+
+// 入力内容の量に応じたtextareaの自動サイズ変更(★)
+function dynamicHeightChanger(id) {
+	var textarea = document.getElementById(id);
+
+	// 対象のtextareaがタイトル欄であればタイトル用lineHeightを設定
+	if (id == "stTitle"){
+		textarea.style.lineHeight = TITLE_LINE_HEIGHT;
+	} else {
+		textarea.style.lineHeight = NOMAL_LINE_HEIGHT;
+	}
+
+	textarea.addEventListener("input",function(evt){
+
+		// 詳細欄の最小Heightを指定
+		var detailsHeightMin = DETAILS_HEIGHT;
+
+		//scrollHeight(入力内容全体)とoffsetHeight(要素の大きさ)とを比較
+		if(evt.target.scrollHeight > evt.target.offsetHeight){
+			// 入力内容の方が大きい場合は、textareaのheightをscrollHeightに合わせる
+			evt.target.style.height = evt.target.scrollHeight + "px";
+
+		}else{
+			// scrollHeightの方がoffsetHeightよりも小さい、あるいは同じ場合にはheightを減らす
+			var height,lineHeight;
+			while (true){
+				// textareaのheightを1ラインずつ減らしていく
+				height = Number(evt.target.style.height.split("px")[0]);
+				lineHeight = Number(evt.target.style.lineHeight.split("px")[0]);
+				evt.target.style.height = height - lineHeight + "px";
+
+				// scrollHeightがoffsetHeightよりも大きくなったところでtextareaの高さを決定
+				if(evt.target.scrollHeight > evt.target.offsetHeight){
+
+					// 対象のtextareaが詳細欄、かつscrollHeightが最小Height以下の場合、最小Heightを採用
+					if (id == "stDetails"){
+						if (evt.target.scrollHeight <= detailsHeightMin){
+							evt.target.style.height = detailsHeightMin + "px";
+							break;
+						}
+					}
+					// scrollHeightが最小Heightより大きい、または対象のtextareaが詳細欄以外の場合
+					// textareaの高さをscrollHeightに合わせる
+					evt.target.style.height = evt.target.scrollHeight + "px";
+					break;
 				}
 			}
 		}

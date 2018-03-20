@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ page import="model.UserProfileBean" %>
 <%
-String stBackURL = request.getContextPath() + "/Contents/Home";
 %>
 <!DOCTYPE html>
 <html>
@@ -13,7 +12,7 @@ String stBackURL = request.getContextPath() + "/Contents/Home";
 		<title>Quetana</title>
 		<link rel="stylesheet" type="text/css" href="/quetana/css/common/com.css">
 		<link rel="stylesheet" type="text/css" href="/quetana/css/common/com_basic.css">
-		<link rel="stylesheet" type="text/css" href="/quetana/css/function/postview.css">
+		<link rel="stylesheet" type="text/css" href="/quetana/css/function/comment.css">
 		<link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
 	</head>
 	<body>
@@ -23,23 +22,33 @@ String stBackURL = request.getContextPath() + "/Contents/Home";
 			<div class="ContentsArea">
 				<div class="ContentsShadow">
 					<div class="ContentsTop">
+<!--
 						<form name="comment" action="/quetana/postedit_t1.jsp" method="Get">
 							<input type="submit" name="commentBtn" class="Button30 Right edit" value="">
 						</form>
+ -->
 						<a class="noshadow" id="TLLink" href="/quetana/Contents/UserProfile?idUser=UI000001">
 							<img class="Icon30 Left" src="/quetana/img/UI000001.jpg">
 							<div class="UserName30">まえぞのりょうた</div>
 						</a>
-						<div class="TblHead">
+						<div class="TblBody">
 							<div class="TblHeadTitleL">
-									OB/OGライブ 2018
+								OB/OGライブ 2018
 							</div>
+						</div>
+						<div class="TblHead">
+							<div class="TblHeadBlock"></div>
+							<div class="TblHeadTitleS">概略</div>
 						</div>
 						<div class="TblBody">
 							<div class="TblKey">開催日</div><div class="TblValue">2018/02/09</div>
 						</div>
 						<div class="TblBody">
 							<div class="TblKey">開催場所</div><div class="TblValue">池袋ロサ</div>
+						</div>
+						<div class="TblHead">
+							<div class="TblHeadBlock"></div>
+							<div class="TblHeadTitleS">詳細</div>
 						</div>
 						<div class="TblBody">
 							<div class="TblValue FullWide">

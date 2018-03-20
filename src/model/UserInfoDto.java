@@ -7,6 +7,7 @@ public class UserInfoDto {
 	private String stAccountName; //アカウント名
 	private String stMailAddress; //メールアドレス
 	private String stPassword;    //パスワード
+	private String stDisplayName; //表示名
 	private String stIconURL;     //アイコンURL(T_USER_PROFILEの)
 	private String cfDelete;      //削除FLG
 	private Date dtUpdate;        //更新日付
@@ -44,6 +45,14 @@ public class UserInfoDto {
 
 	public void setStPassword(String stPassword) {
 		this.stPassword = stPassword;
+	}
+
+	public String getStDisplayName() {
+		return stDisplayName;
+	}
+
+	public void setStDisplayName(String stDisplayName) {
+		this.stDisplayName = stDisplayName;
 	}
 
 	public String getStIconURL() {

@@ -6,6 +6,7 @@
 LoginUserInfoBean loginUserInfo = (LoginUserInfoBean) session.getAttribute("loginUserInfo");
 
 // デフォルトで使用する値達
+String stStatus = "new"; // 新規：new or 修正：fix
 String chkN = "";
 String chkM = "";
 String chkE = "";
@@ -17,7 +18,7 @@ String stPlace = "";
 String stGenre = "";
 String dtEvent = sdf.format(date); //デフォルトは当日日付を表示
 String stDetails = "";
-String cfPost = "N"; //デフォルトはプルダウン未選択状態
+String cfPost = "N"; // 新規のデフォルトはプルダウン未選択状態
 // エラーで画面再描画する際に使う値達
 Map inParam = (Map)request.getAttribute("inParam");
 if (inParam != null) {
@@ -59,33 +60,47 @@ String errMsg = (String)request.getAttribute("errMsg");
 		<link rel="stylesheet" type="text/css" href="/quetana/css/parts/select_part.css">
 		<link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
 	</head>
-	<body onLoad="dispPostForm();dispErrMsg('<%= errMsg %>');setTextareaHeight(arrHeight)">
+	<body onLoad="dispPostType('<%= stStatus %>');dispPostForm();dispErrMsg('<%= errMsg %>');setTextareaHeight(arrHeight)">
+		<form action="/quetana/Contents/Post" method="post">
 		<div class="Foundation">
-			<div class="PageTitle">投稿ページ</div>
+			<div class="PageTitle">
+				<% if (stStatus.equals("new")) { %>
+					投稿ページ
+				<% } else if (stStatus.equals("fix")) { %>
+					投稿内容修正
+				<% } %>
+			</div>
 			<div class="ContentsHeadLine"></div>
 			<div class="ContentsArea">
 				<div class="ContentsShadow">
-					<form action="/quetana/Contents/Post" method="post">
-					<div class="ContentsTop">
+					<div class="ContentsFull">
 <!--
 						<input type="submit" name="edit" class="Button30 Right post" value="">
  -->
  						<img class="Icon30 Left" src="/quetana/img/default-icon.jpg">
 						<div class="UserName30">テスト山　テスト一郎</div>
 <!--
-						<div class="Update30">2018/12/31 99:99</div>
- -->
 						<div class="TblBody">
 							<div class="TblKey">タイトル</div>
 							<textarea id="stTitle" class="TblValue" name="stTitle" placeholder="タイトル" onFocus="dynamicHeightChanger('stTitle')"><%= stTitle %></textarea>
 						</div>
+ -->
 						<div class="TblBody">
-							<div class="TblKey">投稿種別</div>
-							<select id="cfPost" class="TblValue" name="cfPost" onChange="dispPostForm();">
-								<option value="N" <%= chkN %>>---選択して下さい---</option>
-								<option value="M" <%= chkM %>>バンドメンバー募集</option>
-								<option value="E" <%= chkE %>>イベント告知</option>
-							</select>
+							<textarea id="stTitle" class="TblHeadTitleL" name="stTitle" placeholder="タイトル" onFocus="dynamicHeightChanger('stTitle')"><%= stTitle %></textarea>
+						</div>
+						<div class="TblHead">
+							<div class="TblHeadBlock"></div>
+							<div class="TblHeadTitleS">概略</div>
+						</div>
+						<div id="PostType">
+							<div class="TblBody">
+								<div class="TblKey">投稿種別</div>
+								<select id="cfPost" class="TblValue" name="cfPost" onChange="dispPostForm();">
+									<option value="N" <%= chkN %>>---選択して下さい---</option>
+									<option value="M" <%= chkM %>>バンドメンバー募集</option>
+									<option value="E" <%= chkE %>>イベント告知</option>
+								</select>
+							</div>
 						</div>
 						<div id="PostMember">
 							<div class="TblBody">
@@ -140,24 +155,31 @@ String errMsg = (String)request.getAttribute("errMsg");
 								<textarea id="stPlace" class="TblValue" name="stPlace" placeholder="開催場所" onFocus="dynamicHeightChanger('stPlace')"><%= stPlace %></textarea>
 							</div>
 						</div>
+						<div class="TblHead">
+							<div class="TblHeadBlock"></div>
+							<div class="TblHeadTitleS">詳細</div>
+						</div>
 						<div class="TblBody">
-							<div class="TblKey">詳細</div>
-							<textarea id="stDetails" class="TblValue" name="stDetails" placeholder="詳細" onFocus="dynamicHeightChangerDetail('stDetails')"><%= stDetails %></textarea>
+							<textarea id="stDetails" class="FullWide" name="stDetails" placeholder="詳細" onFocus="dynamicHeightChanger('stDetails')"><%= stDetails %></textarea>
 						</div>
 						<!-- ★この下のやつは一時的なやつなのでロジック直したら消す -->
 						<input type="hidden" name="stPart" value="<%= stPart %>">
 					</div>
-					<div class="ContentsBottom">
-						<input type="submit" name="commentBtn" class="Right write" value="投稿する">
 <!--
+					<div class="ContentsBottom">
+						<% if (stStatus.equals("new")) { %>
+							<input type="submit" name="newPostBtn" class="Right write" value="投稿する">
+						<% } else if (stStatus.equals("fix")) { %>
+							<input type="submit" name="fixPostBtn" class="Right write" value="修正する">
+						<% } %>
 						<input class="PostSend" type="submit" name="PostSend" value="投稿する">
- -->
 					</div>
-					</form>
+ -->
 				</div>
 			</div>
 		</div>
-		<jsp:include page="../jsp/parts/mainheader.jsp" flush="true" />
+		<jsp:include page="../jsp/parts/editheader.jsp" flush="true" />
+		</form>
 		<script src="/quetana/js/common.js"></script>
 		<script src="/quetana/js/postsend.js"></script>
 	</body>

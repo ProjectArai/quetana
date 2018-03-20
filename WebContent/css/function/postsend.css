@@ -8,6 +8,7 @@
 	display: none;
 }
 .PostSend {
+	/*たぶん使わない*/
 	float: right;
 	margin: 2.5px;
 	padding: 5px;
@@ -21,7 +22,7 @@
 input[type="submit"].write {
 	margin: 2.5px;
 	padding-right: 10px;
-	width: 100px;
+	width: 90px;
 	height: 30px;
 	background-color: #463D5D;
 	border-style: none;

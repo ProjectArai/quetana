@@ -1,5 +1,6 @@
 package model;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,35 +15,65 @@ public class ViewTimeLine {
 		List<TimeLineDto> timeLines = new ArrayList();
 		List<TimeLineBean> arrTimeLine = new ArrayList();
 
-//		TimeLineBean timeLine1 = new TimeLineBean("T000001E", "A001", "r-zoon", "/quetana/img/r-zoon.png", "OB/OGライブ 2018", "E", "", "", "池袋ロサ", "2018/02/09" ,"皆様、いかがお過ごしでしょうか。今年もOB/OGライブの季節がやってまいりました。");
-//		TimeLineBean timeLine2 = new TimeLineBean("T000002M", "A002", "kazzool", "/quetana/img/kazzool.png", "Beatles（コピー）のメンバーを探しています！", "M", "ベース,ドラム", "Rock", "", "" ,"ライブの日取りはまだ決まっていないのですが、the Beatlesのコピーバンドを組んでスタジオで合わせたいと思っています！！興味のある方はぜひ、私のアカウ");
-//		TimeLineBean timeLine3 = new TimeLineBean("T000003M", "A003", "gekiyasu", "/quetana/img/gekiyasu.png", "9mmをガチでコピーしたい", "M", "ドラム以外", "Rock", "", "" ,"貴方の厳しさ、見せてください。");
-//
-//		arrTimeLine.add(timeLine1);
-//		arrTimeLine.add(timeLine2);
-//		arrTimeLine.add(timeLine3);
-
 		GetTimeLineDAO getTimeLineDao = new GetTimeLineDAO();
 		timeLines = getTimeLineDao.selectUnionTimeLine();
 
 		for(TimeLineDto timeLine : timeLines) {
 			TimeLineBean timeLineBean = new TimeLineBean();
-			timeLineBean.setIdPost(timeLine.getIdPost());
+			String idPost = timeLine.getIdPost();
+			timeLineBean.setIdPost(idPost);
 			timeLineBean.setIdUser(timeLine.getIdUser());
-			timeLineBean.setStAccountName(timeLine.getStAccountName());
+			timeLineBean.setStAccountName(timeLine.getStAccountName()); //使わないんじゃない？
 			timeLineBean.setStDisplayName(timeLine.getStDisplayName());
 			timeLineBean.setStIconURL(timeLine.getStIconURL());
+
+			String cfPost = "";
+			String stOutLine = "";
+			if (idPost.charAt(1) == 'E') {
+				cfPost = "E";
+				stOutLine = new SimpleDateFormat("yyyy/MM/dd").format(timeLine.getDtEvent());
+				stOutLine +=  "＠";
+				//stPlaceが17文字以上かどうか判定、16文字以下だったらそのまま
+				//17文字以上だったら15文字+「…」とする
+				String stPlace = timeLine.getStPlace();
+				if (stPlace.length() > 16) {
+					stOutLine += stPlace.substring(0, 15);
+					stOutLine += "…";
+				} else {
+					stOutLine += stPlace;
+				}
+			} else if (idPost.charAt(1) == 'M') {
+				cfPost = "M";
+				//いずれコードが入るので、コードに紐づくパート名を取得してカンマ区切りで結合する
+				stOutLine = timeLine.getStPart();
+			}
+			timeLineBean.setCfPost(cfPost);
+			timeLineBean.setStOutLine(stOutLine);
+
 			timeLineBean.setStTitle(timeLine.getStTitle());
 			timeLineBean.setStPart(timeLine.getStPart());
 			timeLineBean.setStGenre(timeLine.getStGenre());
 			timeLineBean.setStPlace(timeLine.getStPlace());
 			timeLineBean.setDtEvent(timeLine.getDtEvent());
-			timeLineBean.setStDetails(timeLine.getStDetails());
+
+			String stDetails = timeLine.getStDetails();
+			timeLineBean.setStDetails(stDetails);
+
+			String stDetailsOmit = "";
+			if (stDetails.length() > 64) {
+				stDetailsOmit = stDetails.substring(0, 64);
+			} else {
+				stDetailsOmit = stDetails;
+			}
+			timeLineBean.setStDetailsOmit(stDetailsOmit);
+
+			String dtUpdateDT = new SimpleDateFormat("yyyy/MM/dd HH:mm").format(timeLine.getDtUpdate());
+			timeLineBean.setDtUpdateDT(dtUpdateDT);
+
 			timeLineBean.setDtUpdate(timeLine.getDtUpdate());
 			timeLineBean.setDtResist(timeLine.getDtResist());
 			arrTimeLine.add(timeLineBean);
 		}
-
 
 		return arrTimeLine;
 	}

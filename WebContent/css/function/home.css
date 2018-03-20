@@ -33,3 +33,38 @@ input[type="submit"].newpage {
 	text-align: center;
 	color: #ffffff;
 }
+.NewPostBtn {
+	position: fixed;
+	right: 5px;
+	bottom: 5px;
+	width: 60px;
+	height: 60px;
+	border-radius: 30px;
+	background: url('/quetana/img/comment.jpg');
+	background-size: 100% 100%;
+	border-style: none;
+}
+.TestArea {
+	overflow: hidden;
+	margin: auto;
+	max-width: 175px;
+}
+.PageMove {
+	float: left;
+	margin: 0px 2.5px;
+	padding: 8px 0px;
+	width: 30px;
+	height: 40px;
+	box-sizing: border-box;
+	background-color: #fafafa;
+	border-radius: 2px;
+	border: 1px solid #dddddd;
+	text-align: center;
+	font-size: 16px;
+	color: #000000;
+}
+.PageMove.now {
+	background-color: #463D5D;
+	border-style: none;
+	color: #ffffff;
+}

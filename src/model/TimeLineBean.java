@@ -5,15 +5,19 @@ import java.sql.Date;
 public class TimeLineBean {
 	private String idPost;    //投稿ID
 	private String idUser;    //ユーザID
-	private String stAccountName;    //アカウント名
-	private String stDisplayName;    //表示名
+	private String stAccountName; //アカウント名
+	private String stDisplayName; //表示名
 	private String stIconURL; //アイコンURL
+	private String cfPost;   //投稿区分
 	private String stTitle;   //タイトル
+	private String stOutLine;   //概略
 	private String stPart;    //募集パート
 	private String stGenre;   //演奏ジャンル
 	private String stPlace;   //開催場所
 	private Date dtEvent;     //開催日
 	private String stDetails; //詳細
+	private String stDetailsOmit; //詳細の省略版
+	private String dtUpdateDT;    //更新日時
 	private Date dtUpdate;    //更新日付
 	private Date dtResist;    //登録日付
 
@@ -59,12 +63,28 @@ public class TimeLineBean {
 		this.stIconURL = stIconURL;
 	}
 
+	public String getCfPost() {
+		return cfPost;
+	}
+
+	public void setCfPost(String cfPost) {
+		this.cfPost = cfPost;
+	}
+
 	public String getStTitle() {
 		return stTitle;
 	}
 
 	public void setStTitle(String stTitle) {
 		this.stTitle = stTitle;
+	}
+
+	public String getStOutLine() {
+		return stOutLine;
+	}
+
+	public void setStOutLine(String stOutLine) {
+		this.stOutLine = stOutLine;
 	}
 
 	public String getStPart() {
@@ -105,6 +125,22 @@ public class TimeLineBean {
 
 	public void setStDetails(String stDetails) {
 		this.stDetails = stDetails;
+	}
+
+	public String getStDetailsOmit() {
+		return stDetailsOmit;
+	}
+
+	public void setStDetailsOmit(String stDetailsOmit) {
+		this.stDetailsOmit = stDetailsOmit;
+	}
+
+	public String getDtUpdateDT() {
+		return dtUpdateDT;
+	}
+
+	public void setDtUpdateDT(String dtUpdateDT) {
+		this.dtUpdateDT = dtUpdateDT;
 	}
 
 	public Date getDtUpdate() {

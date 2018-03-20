@@ -1,0 +1,9 @@
+/*
+ * 基本情報を表示
+ */
+div.PfBasic {
+	display: block;
+}
+div.PfFriend {
+	display: none;
+}

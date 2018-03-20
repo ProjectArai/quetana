@@ -28,21 +28,21 @@ public class GetTimeLineDAO {
 			// SELECT文を準備
 			// ①T_MEMBER_RECRUITから更新日付が新しい順に5件を選択したものと、
 			//   T_EVENT_ANNOUNCEから更新日付が新しい順に5件を選択したものを
-			//   UNIONし、更新日付が新しい順に並べ替えて「V1」テーブルとする。
-			// ②T_USER_PROFILEからIDUSER, STACCOUNTNAME, STICONURLを射影し、
-			//   「V2」テーブルとする。
-			// ③「V1」テーブルと「V2」テーブルをIDUSERでJOINして紐づける。
+			//   UNIONし、「TL」テーブルとする。
+			// ②T_USER_PROFILEからIDUSER, STACCOUNTNAME, STDISPLAYNAME, STICONURLを射影し、
+			//   「UP」テーブルとする。
+			// ③「TL」テーブルと「UP」テーブルをIDUSERでJOINして紐づける。
+			// ④「UP」テーブルの更新日付が新しい順に並べ替える。
 			String sql =
 					"select * from ("
-						+ "(select IDPOST, IDUSER, STTITLE, STPART, STGENRE, NULL as STPLACE, NULL as DTEVENT, STDETAILS, CFDELETE, DTUPDATE, DTRESIST from T_MEMBER_RECRUIT where CFDELETE = false order by DTUPDATE desc limit 5) "
-						+ "union "
-						+ "(select IDPOST, IDUSER, STTITLE, NULL as STPART, NULL as STGENRE, STPLACE, DTEVENT, STDETAILS, CFDELETE, DTUPDATE, DTRESIST from T_EVENT_ANNOUNCE where CFDELETE = false order by DTUPDATE desc limit 5) "
-						+ "order by DTUPDATE desc"
-					+ ") V1 "
-					+ "join ("
-						+ "select IDUSER, STACCOUNTNAME, STDISPLAYNAME, STICONURL from T_USER_PROFILE"
-					+ ") V2 "
-					+ "on V1.IDUSER = V2.IDUSER;";
+							+ "(select IDPOST, IDUSER, STTITLE, STPART, STGENRE, NULL as STPLACE, NULL as DTEVENT, STDETAILS, CFDELETE, DTUPDATE, DTRESIST from T_MEMBER_RECRUIT where CFDELETE = false order by DTUPDATE desc limit 5) "
+							+ "union "
+							+ "(select IDPOST, IDUSER, STTITLE, NULL as STPART, NULL as STGENRE, STPLACE, DTEVENT, STDETAILS, CFDELETE, DTUPDATE, DTRESIST from T_EVENT_ANNOUNCE where CFDELETE = false order by DTUPDATE desc limit 5) "
+						+ ") TL "
+						+ "join ("
+							+ "select IDUSER, STACCOUNTNAME, STDISPLAYNAME, STICONURL from T_USER_PROFILE"
+						+ ") UP "
+						+ "on TL.IDUSER = UP.IDUSER order by TL.DTUPDATE desc;";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 
