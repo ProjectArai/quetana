@@ -40,7 +40,7 @@ List<TimeLineBean> arrTimeLine = (List<TimeLineBean>) request.getAttribute("arrT
 					<% if ((tlRecord.getCfPost()).equals("E")) { %>
 						<div class="TLEvent">
 							<div class="ContentsShadow">
-								<a class="ContentsLink" href="/quetana/postview_t2.jsp">
+								<a class="ContentsLink" href="/quetana/Contents/PostView?idPost=<%= tlRecord.getIdPost() %>">
 									<div class="ContentsFull">
 										<div class="TblHead">
 											<div class="TblHeadOutline">イベント（<%= tlRecord.getStOutLine() %>）</div>
@@ -59,20 +59,18 @@ List<TimeLineBean> arrTimeLine = (List<TimeLineBean>) request.getAttribute("arrT
 					<% } else if ((tlRecord.getCfPost()).equals("M")) { %>
 						<div class="TLMember">
 							<div class="ContentsShadow">
-								<a class="ContentsLink" href="/quetana/postview_t1.jsp">
+								<a class="ContentsLink" href="/quetana/Contents/PostView?idPost=<%= tlRecord.getIdPost() %>">
 									<div class="ContentsFull">
 										<div class="TblHead">
-											<div class="TblHeadOutline">メンバー募集（Ba, Dr）</div>
-											<div class="TblHeadTitleL">Beatles（コピー）のメンバーを探しています！</div>
+											<div class="TblHeadOutline">メンバー募集（<%= tlRecord.getStOutLine() %>）</div>
+											<div class="TblHeadTitleL"><%= tlRecord.getStTitle() %></div>
 										</div>
 										<div class="TblBody">
-											<div class="TblValue FullWide size-S">
-												ライブの日取りはまだ決まっていないのですが、theBeatlesのコピーバンドを組んでスタジオで合わせたいと思っています！！興味 … <font class="more">もっと見る</font>
-											</div>
+											<div class="TblValue FullWide size-S"><%= tlRecord.getStDetailsOmit() %> … <font class="more">もっと見る</font></div>
 										</div>
-										<img class="Icon20 Left" src="/quetana/img/UI000001.jpg">
-										<div class="UserName20">by まえぞのりょうた</div>
-										<div class="Update20">2018/12/31 23:55</div>
+										<img class="Icon20 Left" src="<%= tlRecord.getStIconURL() %>">
+										<div class="UserName20">by <%= tlRecord.getStDisplayName() %></div>
+										<div class="Update20"><%= tlRecord.getDtUpdateDT() %></div>
 									</div>
 								</a>
 							</div>
@@ -124,7 +122,7 @@ List<TimeLineBean> arrTimeLine = (List<TimeLineBean>) request.getAttribute("arrT
 						<a class="ContentsLink" href="/quetana/postview_t1.jsp">
 							<div class="ContentsFull">
 								<div class="TblHead">
-									<div class="TblHeadOutline">メンバー募集（Vo, Cho, Gt, Ba, Key, Dr, Per, Other）</div>
+									<div class="TblHeadOutline">メンバー募集（Vo. Gt. Ba. Key. Dr. Per. Cho. Other）</div>
 									<div class="TblHeadTitleL">１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２</div>
 								</div>
 								<div class="TblBody">
@@ -145,126 +143,6 @@ List<TimeLineBean> arrTimeLine = (List<TimeLineBean>) request.getAttribute("arrT
 							<div class="ContentsFull">
 								<div class="TblHead">
 									<div class="TblHeadOutline">イベント（9999/99/99＠１２３４５６７８９０１２３４５６）</div>
-									<div class="TblHeadTitleL">１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２</div>
-								</div>
-								<div class="TblBody">
-									<div class="TblValue FullWide size-S">
-										１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４ … <font class="more">もっと見る</font>
-									</div>
-								</div>
-								<img class="Icon20 Left" src="/quetana/img/default-icon.jpg">
-								<div class="UserName20">by １２３４５６７８９０</div>
-								<div class="Update20">9999/99/99 99:99</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="TLMember">
-					<div class="ContentsShadow">
-						<a class="ContentsLink" href="/quetana/postview_t1.jsp">
-							<div class="ContentsFull">
-								<div class="TblHead">
-									<div class="TblHeadOutline">メンバー募集（Vo, Cho, Gt, Ba, Key, Dr, Per, Other）</div>
-									<div class="TblHeadTitleL">１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２</div>
-								</div>
-								<div class="TblBody">
-									<div class="TblValue FullWide size-S">
-										１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４ … <font class="more">もっと見る</font>
-									</div>
-								</div>
-								<img class="Icon20 Left" src="/quetana/img/default-icon.jpg">
-								<div class="UserName20">by １２３４５６７８９０</div>
-								<div class="Update20">9999/99/99 99:99</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="TLEvent">
-					<div class="ContentsShadow">
-						<a class="ContentsLink" href="/quetana/postview_t2.jsp">
-							<div class="ContentsFull">
-								<div class="TblHead">
-									<div class="TblHeadOutline">イベント（9999/99/99＠１２３４５６７８９０１２３４５…）</div>
-									<div class="TblHeadTitleL">１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２</div>
-								</div>
-								<div class="TblBody">
-									<div class="TblValue FullWide size-S">
-										１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４ … <font class="more">もっと見る</font>
-									</div>
-								</div>
-								<img class="Icon20 Left" src="/quetana/img/default-icon.jpg">
-								<div class="UserName20">by １２３４５６７８９０</div>
-								<div class="Update20">9999/99/99 99:99</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="TLMember">
-					<div class="ContentsShadow">
-						<a class="ContentsLink" href="/quetana/postview_t1.jsp">
-							<div class="ContentsFull">
-								<div class="TblHead">
-									<div class="TblHeadOutline">メンバー募集（Vo, Cho, Gt, Ba, Key, Dr, Per, Other）</div>
-									<div class="TblHeadTitleL">１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２</div>
-								</div>
-								<div class="TblBody">
-									<div class="TblValue FullWide size-S">
-										１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４ … <font class="more">もっと見る</font>
-									</div>
-								</div>
-								<img class="Icon20 Left" src="/quetana/img/default-icon.jpg">
-								<div class="UserName20">by １２３４５６７８９０</div>
-								<div class="Update20">9999/99/99 99:99</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="TLEvent">
-					<div class="ContentsShadow">
-						<a class="ContentsLink" href="/quetana/postview_t2.jsp">
-							<div class="ContentsFull">
-								<div class="TblHead">
-									<div class="TblHeadOutline">イベント（9999/99/99＠１２３４５６７８９０１２３４５…）</div>
-									<div class="TblHeadTitleL">１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２</div>
-								</div>
-								<div class="TblBody">
-									<div class="TblValue FullWide size-S">
-										１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４ … <font class="more">もっと見る</font>
-									</div>
-								</div>
-								<img class="Icon20 Left" src="/quetana/img/default-icon.jpg">
-								<div class="UserName20">by １２３４５６７８９０</div>
-								<div class="Update20">9999/99/99 99:99</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="TLMember">
-					<div class="ContentsShadow">
-						<a class="ContentsLink" href="/quetana/postview_t1.jsp">
-							<div class="ContentsFull">
-								<div class="TblHead">
-									<div class="TblHeadOutline">メンバー募集（Vo, Cho, Gt, Ba, Key, Dr, Per, Other）</div>
-									<div class="TblHeadTitleL">１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２</div>
-								</div>
-								<div class="TblBody">
-									<div class="TblValue FullWide size-S">
-										１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２３４ … <font class="more">もっと見る</font>
-									</div>
-								</div>
-								<img class="Icon20 Left" src="/quetana/img/default-icon.jpg">
-								<div class="UserName20">by １２３４５６７８９０</div>
-								<div class="Update20">9999/99/99 99:99</div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="TLEvent">
-					<div class="ContentsShadow">
-						<a class="ContentsLink" href="/quetana/postview_t2.jsp">
-							<div class="ContentsFull">
-								<div class="TblHead">
-									<div class="TblHeadOutline">イベント（9999/99/99＠１２３４５６７８９０１２３４５…）</div>
 									<div class="TblHeadTitleL">１２３４５６７８９０１２３４５６７８９０１２３４５６７８９０１２</div>
 								</div>
 								<div class="TblBody">

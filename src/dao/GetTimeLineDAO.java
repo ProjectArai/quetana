@@ -39,7 +39,7 @@ public class GetTimeLineDAO {
 							+ "union "
 							+ "(select IDPOST, IDUSER, STTITLE, NULL as STPART, NULL as STGENRE, STPLACE, DTEVENT, STDETAILS, CFDELETE, DTUPDATE, DTRESIST from T_EVENT_ANNOUNCE where CFDELETE = false order by DTUPDATE desc limit 5) "
 						+ ") TL "
-						+ "join ("
+						+ "left join ("
 							+ "select IDUSER, STACCOUNTNAME, STDISPLAYNAME, STICONURL from T_USER_PROFILE"
 						+ ") UP "
 						+ "on TL.IDUSER = UP.IDUSER order by TL.DTUPDATE desc;";

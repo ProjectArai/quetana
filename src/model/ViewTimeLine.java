@@ -3,6 +3,7 @@ package model;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import dao.GetTimeLineDAO;
 import model.dto.TimeLineDto;
@@ -36,7 +37,7 @@ public class ViewTimeLine {
 				//stPlaceが17文字以上かどうか判定、16文字以下だったらそのまま
 				//17文字以上だったら15文字+「…」とする
 				String stPlace = timeLine.getStPlace();
-				if (stPlace.length() > 16) {
+				if (stPlace.length() > 15) {
 					stOutLine += stPlace.substring(0, 15);
 					stOutLine += "…";
 				} else {
@@ -45,7 +46,21 @@ public class ViewTimeLine {
 			} else if (idPost.charAt(1) == 'M') {
 				cfPost = "M";
 				//いずれコードが入るので、コードに紐づくパート名を取得してカンマ区切りで結合する
-				stOutLine = timeLine.getStPart();
+				Map<String, String> mapPart = CommonLogic.getStPartName();
+
+				String stPart = "";
+				String stPartName = "";
+				String[] arrPart = timeLine.getStPart().split(",", 0);
+				for (int i = 0; i < arrPart.length; i++) {
+					stPartName = mapPart.get(arrPart[i]);
+					stPart += stPartName;
+
+					// 最後以外は半角スペース区切り
+					if (i < (arrPart.length - 1)) {
+						stPart += " ";
+					}
+				}
+				stOutLine = stPart;
 			}
 			timeLineBean.setCfPost(cfPost);
 			timeLineBean.setStOutLine(stOutLine);

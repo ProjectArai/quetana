@@ -1,5 +1,8 @@
 package model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import dao.M_SEQ_NO_DAO;
 import model.dto.SeqNoDto;
 
@@ -43,4 +46,21 @@ public class CommonLogic {
 		return rtnId;
 	}
 
+	public static Map<String, String> getStPartName () {
+
+		Map<String, String> mapPart = new HashMap<String, String>(){
+            {
+                put("01", "Vo.");
+                put("02", "Gt.");
+                put("03", "Ba.");
+                put("04", "Key.");
+                put("05", "Dr.");
+                put("06", "Per.");
+                put("07", "Cho.");
+                put("08", "Other");
+            }
+        };
+
+		return mapPart;
+	}
 }

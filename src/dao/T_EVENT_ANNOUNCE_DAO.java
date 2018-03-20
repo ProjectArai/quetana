@@ -3,9 +3,13 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import model.dto.EventAnnounceDto;
+import model.dto.TimeLineDto;
 
 public class T_EVENT_ANNOUNCE_DAO {
 
@@ -62,5 +66,71 @@ public class T_EVENT_ANNOUNCE_DAO {
 			}
 		}
 		return rowExecute;
+	}
+
+	public List<TimeLineDto> selectEventAnnounce(String idPost) {
+
+		List<TimeLineDto> arrEAInfo = new ArrayList();
+
+		Connection conn = null;
+
+		try {
+			// JDBCドライバを読み込み
+			Class.forName("org.mariadb.jdbc.Driver");
+
+			// DBへ接続
+			conn = DriverManager.getConnection("jdbc:mariadb://localhost/quetana_dev", "root", "mon202");
+
+			// SELECT文を準備
+			String sql =
+					"select * from ("
+							+ "(select IDPOST, IDUSER, STTITLE, STPLACE, DTEVENT, STDETAILS, CFDELETE, DTUPDATE, DTRESIST from T_EVENT_ANNOUNCE where IDPOST= ? AND CFDELETE = false) "
+						+ ") TE "
+						+ "left join ("
+							+ "select IDUSER, STACCOUNTNAME, STDISPLAYNAME, STICONURL from T_USER_PROFILE"
+						+ ") UP "
+						+ "on TE.IDUSER = UP.IDUSER;";
+
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, idPost);
+
+			// SELECTを実行し、結果が取得できた場合DTO型のListに格納
+			ResultSet rs  = pStmt.executeQuery();
+			while (rs.next()) {
+				TimeLineDto dto = new TimeLineDto();
+				dto.setIdUser(rs.getString("IDUSER"));
+				dto.setIdPost(rs.getString("IDPOST"));
+				dto.setStTitle(rs.getString("STTITLE"));
+				dto.setStPlace(rs.getString("STPLACE"));
+				dto.setDtEvent(rs.getDate("DTEVENT"));
+				dto.setStDetails(rs.getString("STDETAILS"));
+				dto.setCfDelete(rs.getString("CFDELETE"));
+				dto.setDtUpdate(rs.getDate("DTUPDATE"));
+				dto.setDtResist(rs.getDate("DTRESIST"));
+				dto.setStAccountName(rs.getString("STACCOUNTNAME"));
+				dto.setStDisplayName(rs.getString("STDISPLAYNAME"));
+				dto.setStIconURL(rs.getString("STICONURL"));
+
+				arrEAInfo.add(dto);
+			}
+
+		} catch(SQLException e) {
+			e.printStackTrace();
+			return null;
+		} catch(ClassNotFoundException e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			// DB切断
+			if(conn != null) {
+				try {
+					conn.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+					return null;
+				}
+			}
+		}
+		return arrEAInfo;
 	}
 }
