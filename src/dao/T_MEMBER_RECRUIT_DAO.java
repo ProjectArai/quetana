@@ -15,12 +15,12 @@ public class T_MEMBER_RECRUIT_DAO {
 
 	/**
 	 * T_MEMBER_RECRUITへINSERT
-	 * @param memberRecruitDto  ：T_MEMBER_RECRUITのDTO
-	 * @return rowExecute  ：実行件数、DB処理失敗の場合2
+	 * @param dtoMR  ：T_MEMBER_RECRUITのDTO
+	 * @return rowExec  ：実行件数、DB処理失敗の場合2
 	 */
-	public int insertMemberRecruit(MemberRecruitDto memberRecruitDto) {
+	public int insertMemberRecruit(MemberRecruitDto dtoMR) {
 
-		int rowExecute = 0;
+		int rowExec = 0;
 
 		Connection conn = null;
 
@@ -37,16 +37,16 @@ public class T_MEMBER_RECRUIT_DAO {
 						+ "values (?, ?, ?, ?, ?, ?, ?, now(), now()); ";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1, memberRecruitDto.getIdPost());
-			pStmt.setString(2, memberRecruitDto.getIdUser());
-			pStmt.setString(3, memberRecruitDto.getStTitle());
-			pStmt.setString(4, memberRecruitDto.getStPart());
-			pStmt.setString(5, memberRecruitDto.getStGenre());
-			pStmt.setString(6, memberRecruitDto.getStDetails());
-			pStmt.setString(7, memberRecruitDto.getCfDelete());
+			pStmt.setString(1, dtoMR.getIdPost());
+			pStmt.setString(2, dtoMR.getIdUser());
+			pStmt.setString(3, dtoMR.getStTitle());
+			pStmt.setString(4, dtoMR.getStPart());
+			pStmt.setString(5, dtoMR.getStGenre());
+			pStmt.setString(6, dtoMR.getStDetails());
+			pStmt.setString(7, dtoMR.getCfDelete());
 
 			// INSERTを実行し、実行結果をrowExecuteに格納
-			rowExecute = pStmt.executeUpdate();
+			rowExec = pStmt.executeUpdate();
 
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -65,7 +65,7 @@ public class T_MEMBER_RECRUIT_DAO {
 				}
 			}
 		}
-		return rowExecute;
+		return rowExec;
 	}
 
 	public List<TimeLineDto> selectMemberRecruit(String idPost) {
@@ -132,5 +132,66 @@ public class T_MEMBER_RECRUIT_DAO {
 			}
 		}
 		return arrMRInfo;
+	}
+
+	/**
+	 * 投稿IDをWHERE句に指定し、T_MEMBER_RECRUITを更新
+	 * @param dtoMR  ：T_MEMBER_RECRUITのDTO
+	 * @return rowExec  ：実行件数 0:更新なし？、1:更新成功、2:DB処理失敗
+	 */
+	public int updateMemberRecruit(MemberRecruitDto dtoMR) {
+
+		int rowExec = 0;
+
+		Connection conn = null;
+
+		try {
+			// JDBCドライバを読み込み
+			Class.forName("org.mariadb.jdbc.Driver");
+
+			// DBへ接続
+			conn = DriverManager.getConnection("jdbc:mariadb://localhost/quetana_dev", "root", "mon202");
+
+			// SELECT文を準備
+			String sql =
+					"UPDATE T_MEMBER_RECRUIT"
+							+ " SET"
+							+ " STTITLE = ?"
+							+ " , STPART = ?"
+							+ " , STGENRE = ?"
+							+ " , STDETAILS = ?"
+							+ " , DTUPDATE = now()"
+							+ " WHERE"
+							+ " IDPOST = ?"
+							+ ";";
+
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, dtoMR.getStTitle());
+			pStmt.setString(2, dtoMR.getStPart());
+			pStmt.setString(3, dtoMR.getStGenre());
+			pStmt.setString(4, dtoMR.getStDetails());
+			pStmt.setString(5, dtoMR.getIdPost());
+
+			// UPDATEを実行し、実行結果をrowExecに格納
+			rowExec = pStmt.executeUpdate();
+
+		} catch(SQLException e) {
+			e.printStackTrace();
+			return 2;
+		} catch(ClassNotFoundException e) {
+			e.printStackTrace();
+			return 2;
+		} finally {
+			// DB切断
+			if(conn != null) {
+				try {
+					conn.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+					return 2;
+				}
+			}
+		}
+		return rowExec;
 	}
 }

@@ -1,6 +1,18 @@
 //投稿画面のtextareaの初期heightを設定
 //var arrHeight = "stTitle=30,stGenre=30,stPlace=30,stDetails=118";
 
+// 表示時のheight取得が必要な要素IDを定義
+var arrTextareaId;
+arrTextareaId = ['stTitle', 'stPlace', 'stGenre', 'stDetails'];
+//cfPostType = document.getElementById("cfPostType").value;
+//if (cfPostType == "E") {
+//	arrTextareaId = ['stTitle', 'stPlace', 'stDetails'];
+//} else if (cfPostType == "M") {
+//	arrTextareaId = ['stTitle', 'stGenre', 'stDetails'];
+//} else {
+//	arrTextareaId = ['stTitle', 'stPlace', 'stGenre', 'stDetails'];
+//}
+
 //投稿種別によるフォームの表示・非表示を制御
 function dispPostOutline() {
 

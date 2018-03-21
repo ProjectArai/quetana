@@ -23,7 +23,7 @@ LoginUserInfoBean loginUserInfo = (LoginUserInfoBean) session.getAttribute("logi
 <!--
 				<img class="HeaderBtn" src="/quetana/img/fix.jpg">
  -->
-				<input type="submit" name="fixBtn" class="fix" value="">
+				<input type="submit" name="fixBtn" class="fix" value="" onclick="getHeightTextare(arrTextareaId)">
 			</div>
 		</div>
 		<script src="/quetana/js/common.js"></script>

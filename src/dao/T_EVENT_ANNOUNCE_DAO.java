@@ -15,12 +15,12 @@ public class T_EVENT_ANNOUNCE_DAO {
 
 	/**
 	 * T_EVENT_ANNOUNCEへINSERT
-	 * @param eventAnnounceDto  ：T_EVENT_ANNOUNCEのDTO
-	 * @return rowExecute  ：実行件数、DB処理失敗の場合2
+	 * @param dtoEA  ：T_EVENT_ANNOUNCEのDTO
+	 * @return rowExec  ：実行件数、DB処理失敗の場合2
 	 */
-	public int insertEventAnnounce(EventAnnounceDto eventAnnounceDto) {
+	public int insertEventAnnounce(EventAnnounceDto dtoEA) {
 
-		int rowExecute = 0;
+		int rowExec = 0;
 
 		Connection conn = null;
 
@@ -37,16 +37,16 @@ public class T_EVENT_ANNOUNCE_DAO {
 						+ "values (?, ?, ?, ?, ?, ?, ?, now(), now()); ";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1, eventAnnounceDto.getIdPost());
-			pStmt.setString(2, eventAnnounceDto.getIdUser());
-			pStmt.setString(3, eventAnnounceDto.getStTitle());
-			pStmt.setString(4, eventAnnounceDto.getStPlace());
-			pStmt.setDate(5, eventAnnounceDto.getDtEvent());
-			pStmt.setString(6, eventAnnounceDto.getStDetails());
-			pStmt.setString(7, eventAnnounceDto.getCfDelete());
+			pStmt.setString(1, dtoEA.getIdPost());
+			pStmt.setString(2, dtoEA.getIdUser());
+			pStmt.setString(3, dtoEA.getStTitle());
+			pStmt.setString(4, dtoEA.getStPlace());
+			pStmt.setDate(5, dtoEA.getDtEvent());
+			pStmt.setString(6, dtoEA.getStDetails());
+			pStmt.setString(7, dtoEA.getCfDelete());
 
 			// INSERTを実行し、実行結果をrowExecuteに格納
-			rowExecute = pStmt.executeUpdate();
+			rowExec = pStmt.executeUpdate();
 
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -65,7 +65,7 @@ public class T_EVENT_ANNOUNCE_DAO {
 				}
 			}
 		}
-		return rowExecute;
+		return rowExec;
 	}
 
 	public List<TimeLineDto> selectEventAnnounce(String idPost) {
@@ -132,5 +132,66 @@ public class T_EVENT_ANNOUNCE_DAO {
 			}
 		}
 		return arrEAInfo;
+	}
+
+	/**
+	 * 投稿IDをWHERE句に指定し、T_EVENT_ANNOUNCEを更新
+	 * @param dtoEA  ：T_EVENT_ANNOUNCEのDTO
+	 * @return rowExec  ：実行件数 0:更新なし？、1:更新成功、2:DB処理失敗
+	 */
+	public int updateEventAnnounce(EventAnnounceDto dtoEA) {
+
+		int rowExec = 0;
+
+		Connection conn = null;
+
+		try {
+			// JDBCドライバを読み込み
+			Class.forName("org.mariadb.jdbc.Driver");
+
+			// DBへ接続
+			conn = DriverManager.getConnection("jdbc:mariadb://localhost/quetana_dev", "root", "mon202");
+
+			// SELECT文を準備
+			String sql =
+					"UPDATE T_EVENT_ANNOUNCE"
+							+ " SET"
+							+ " STTITLE = ?"
+							+ " , STPLACE = ?"
+							+ " , DTEVENT = ?"
+							+ " , STDETAILS = ?"
+							+ " , DTUPDATE = now()"
+							+ " WHERE"
+							+ " IDPOST = ?"
+							+ ";";
+
+			PreparedStatement pStmt = conn.prepareStatement(sql);
+			pStmt.setString(1, dtoEA.getStTitle());
+			pStmt.setString(2, dtoEA.getStPlace());
+			pStmt.setDate(3, dtoEA.getDtEvent());
+			pStmt.setString(4, dtoEA.getStDetails());
+			pStmt.setString(5, dtoEA.getIdPost());
+
+			// UPDATEを実行し、実行結果をrowExecに格納
+			rowExec = pStmt.executeUpdate();
+
+		} catch(SQLException e) {
+			e.printStackTrace();
+			return 2;
+		} catch(ClassNotFoundException e) {
+			e.printStackTrace();
+			return 2;
+		} finally {
+			// DB切断
+			if(conn != null) {
+				try {
+					conn.close();
+				} catch(SQLException e) {
+					e.printStackTrace();
+					return 2;
+				}
+			}
+		}
+		return rowExec;
 	}
 }

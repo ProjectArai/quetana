@@ -95,44 +95,81 @@ public class PostSendServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		request.setCharacterEncoding("UTF-8");
+
 		// セッションスコープからユーザ情報を取得
 		HttpSession session = request.getSession();
 		LoginUserInfoBean loginUserInfo = (LoginUserInfoBean)session.getAttribute("loginUserInfo");
 
-		// リクエストパラメータを取得
-		request.setCharacterEncoding("UTF-8");
-
-		// partで選択したチェックボックスはString型配列で来るらしい★
-		String[] test = request.getParameterValues("part");
-		String stPart = "";
-		for (int i = 0 ; i < test.length ; i++){
-			stPart += test[i];
-			stPart += ",";
-		}
+		// 判定用に事前に投稿種別を取得
+		String cfPostType = request.getParameter("cfPostType");
 
 		// 投稿情報をマップに詰め込む
 		Map inParam = new HashMap();
-		inParam.put("idUser", loginUserInfo.getIdUser());
-		inParam.put("cfPostType", request.getParameter("cfPostType"));
+		inParam.put("idUser", loginUserInfo.getIdUser()); // 投稿ユーザ用にログインユーザを設定
+		inParam.put("cfPostType", cfPostType);
 		inParam.put("stTitle", request.getParameter("stTitle"));
-		inParam.put("stPart", stPart);
-		inParam.put("stGenre", request.getParameter("stGenre"));
-		inParam.put("stPlace", request.getParameter("stPlace"));
-		inParam.put("dtEvent", request.getParameter("dtEvent"));
+		if (cfPostType.equals("E")) {
+			// 投稿種別がイベント告知の場合
+			inParam.put("stPlace", request.getParameter("stPlace"));
+			inParam.put("dtEvent", request.getParameter("dtEvent"));
+		} else if (cfPostType.equals("M")) {
+			// 投稿種別がメンバー募集の場合
+			// 選択したpartはString型配列で来るので、カンマ区切りの文字列へ変換
+			String[] arrChkPart = request.getParameterValues("chkPart");
+			String stPart = "";
+			for (int i = 0 ; i < arrChkPart.length ; i++){
+				stPart += arrChkPart[i];
+				if (i < (arrChkPart.length - 1)) {
+					stPart += ",";
+				}
+			}
+			inParam.put("stPart", stPart);
+			inParam.put("stGenre", request.getParameter("stGenre"));
+		}
 		inParam.put("stDetails", request.getParameter("stDetails"));
 
-		// 投稿内容のDB登録処理の実行
-		Map resultPost = PostSendLogic.insertPostInfo(inParam);
-		String errMsg = (String)resultPost.get("errMsg");
+		String stReturnURL = "";
+		Map resultPost = new HashMap();
+		String cfPostMode = request.getParameter("cfPostMode");
+		if (cfPostMode.equals("N")) {
+			// 投稿モードが新規の場合
+			// 戻り先にはホーム画面を設定
+			stReturnURL = "/quetana/Contents/Home";
 
+			// 投稿内容InsertのDB登録処理の実行
+			resultPost = PostSendLogic.insertPostInfo(inParam);
+
+		} else if (cfPostMode.equals("F")) {
+			// 投稿モードが修正の場合
+			// 投稿情報に投稿IDを追加
+			String idPost = request.getParameter("idPost");
+			inParam.put("idPost", idPost);
+			// 戻り先には修正元の投稿内容表示画面を設定
+			stReturnURL = "/quetana/Contents/PostView?idPost=" + idPost;
+
+			// 投稿内容UpdateのDB登録処理の実行
+			resultPost = PostSendLogic.updatePostInfo(inParam);
+
+		} else {
+			// 投稿モードの指定がなかった場合、即エラー画面に遷移
+			request.setAttribute("errMsg", "なんか変です★");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
+			dispatcher.forward(request, response);
+		}
+
+		String errMsg = (String)resultPost.get("errMsg");
 		// 投稿処理の結果で分岐
 		if (errMsg.equals("")) {
-			// 成功した場合、ホーム画面を表示（/Homeにリダイレクト）
-			response.sendRedirect("/quetana/Contents/Home");
+			// 成功した場合、戻り先にリダイレクト
+			response.sendRedirect(stReturnURL);
 		} else {
-			// 失敗した場合、errMsgとinParamを持たせて、postSend.jspにフォワード
+			// 失敗した場合、再描画に必要な情報を持たせてpostSend.jspにフォワード
 			request.setAttribute("errMsg", errMsg);
-			request.setAttribute("inParam", inParam);
+			request.setAttribute("cfPostMode", cfPostMode); // 投稿モードをリクエストスコープに保存
+			request.setAttribute("beanPV", (PostViewBean)resultPost.get("beanPV"));
+			request.setAttribute("stHeightArray", request.getParameter("arrHeight")); // 投稿画面のtextareaの初期heightを設定
+			request.setAttribute("stReturnURL", stReturnURL); // 編集終了時の戻り先を設定
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/postSend.jsp");
 			dispatcher.forward(request, response);
 		}

@@ -5,7 +5,7 @@
 // セッションスコープからユーザ情報を取得
 LoginUserInfoBean loginUserInfo = (LoginUserInfoBean) session.getAttribute("loginUserInfo");
 
-//requestスコープから投稿モードを取得(新規：N、修正：F)
+// requestスコープから投稿モードを取得(新規：N、修正：F)
 String cfPostMode = (String)request.getAttribute("cfPostMode");
 
 // requestスコープから投稿内容(新規の場合は基本空)を取得
@@ -14,34 +14,9 @@ String stTitle = (String)beanPV.getStTitle();
 Map chkPart = (Map)beanPV.getChkPart();
 String stGenre = (String)beanPV.getStGenre();
 String stPlace = (String)beanPV.getStPlace();
-String dtEvent = "";
-if ((beanPV.getDtEvent()) != null){
-	dtEvent = (String)beanPV.getDtEvent().replace("/","-");
-}
+String dtEvent = (String)beanPV.getDtEvent();
 String stDetails = (String)beanPV.getStDetails();
 String cfPostType = (String)beanPV.getCfPostType();
-
-String chk01 = "";
-String chk02 = "";
-String chk03 = "";
-String chk04 = "";
-String chk05 = "";
-String chk06 = "";
-String chk07 = "";
-String chk08 = "";
-
-
-// エラーで画面再描画する際に使う値達
-Map inParam = (Map)request.getAttribute("inParam");
-if (inParam != null) {
-	stTitle = (String)inParam.get("stTitle");
-//	stPart = (String)inParam.get("stPart");
-	stPlace = (String)inParam.get("stPlace");
-	stGenre = (String)inParam.get("stGenre");
-	dtEvent = (String)inParam.get("dtEvent");
-	stDetails = (String)inParam.get("stDetails");
-	cfPostType = (String)inParam.get("cfPostType");
-}
 
 // 投稿種別プルダウンの初期選択状態設定
 String chkN = "";
@@ -75,11 +50,11 @@ String errMsg = (String)request.getAttribute("errMsg");
 		<link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
 	</head>
 	<body onLoad="dispPostTypePulldown('<%= cfPostMode %>');dispPostOutline();dispErrMsg('<%= errMsg %>');setTextareaHeight('<%= stHeightArray %>')">
-		<form action="/quetana/Contents/PostSend" method="post">
+		<form name="formEdit" action="/quetana/Contents/PostSend" method="post">
 		<div class="Foundation">
 			<div class="PageTitle">
 				<% if (cfPostMode.equals("N")) { %>
-					投稿ページ
+					新規投稿
 				<% } else if (cfPostMode.equals("F")) { %>
 					投稿内容修正
 				<% } %>
@@ -88,17 +63,8 @@ String errMsg = (String)request.getAttribute("errMsg");
 			<div class="ContentsArea">
 				<div class="ContentsShadow">
 					<div class="ContentsFull">
-<!--
-						<input type="submit" name="edit" class="Button30 Right post" value="">
- -->
  						<img class="Icon30 Left" src="/quetana/img/default-icon.jpg">
 						<div class="UserName30">テスト山　テスト一郎</div>
-<!--
-						<div class="TblBody">
-							<div class="TblKey">タイトル</div>
-							<textarea id="stTitle" class="TblValue" name="stTitle" placeholder="タイトル" onFocus="dynamicHeightChanger('stTitle')"><%= stTitle %></textarea>
-						</div>
- -->
 						<div class="TblBody">
 							<textarea id="stTitle" class="TblHeadTitleL" name="stTitle" placeholder="タイトル" onFocus="dynamicHeightChanger('stTitle')"><%= stTitle %></textarea>
 						</div>
@@ -121,35 +87,35 @@ String errMsg = (String)request.getAttribute("errMsg");
 								<div class="TblKey">募集パート</div>
 								<div class="PartArea">
 									<label for="checkVo" class="noshadow">
-										<input id="checkVo" type="checkbox" name="part" value="01" class="PartCheck unshown" <%= chkPart.get("01") %>>
+										<input id="checkVo" type="checkbox" name="chkPart" value="01" class="PartCheck unshown" <%= chkPart.get("01") %>>
 										<div class="part">Vo.</div>
 									</label>
 									<label for="checkGt" class="noshadow">
-										<input id="checkGt" type="checkbox" name="part" value="02" class="PartCheck unshown" <%= chkPart.get("02") %>>
+										<input id="checkGt" type="checkbox" name="chkPart" value="02" class="PartCheck unshown" <%= chkPart.get("02") %>>
 										<div class="part">Gt.</div>
 									</label>
 									<label for="checkBa" class="noshadow">
-										<input id="checkBa" type="checkbox" name="part" value="03" class="PartCheck unshown" <%= chkPart.get("03") %>>
+										<input id="checkBa" type="checkbox" name="chkPart" value="03" class="PartCheck unshown" <%= chkPart.get("03") %>>
 										<div class="part">Ba.</div>
 									</label>
 									<label for="checkKey" class="noshadow">
-										<input id="checkKey" type="checkbox" name="part" value="04" class="PartCheck unshown" <%= chkPart.get("04") %>>
+										<input id="checkKey" type="checkbox" name="chkPart" value="04" class="PartCheck unshown" <%= chkPart.get("04") %>>
 										<div class="part">Key.</div>
 									</label>
 									<label for="checkDr" class="noshadow">
-										<input id="checkDr" type="checkbox" name="part" value="05" class="PartCheck unshown" <%= chkPart.get("05") %>>
+										<input id="checkDr" type="checkbox" name="chkPart" value="05" class="PartCheck unshown" <%= chkPart.get("05") %>>
 										<div class="part">Dr.</div>
 									</label>
 									<label for="checkPer" class="noshadow">
-										<input id="checkPer" type="checkbox" name="part" value="06" class="PartCheck unshown" <%= chkPart.get("06") %>>
+										<input id="checkPer" type="checkbox" name="chkPart" value="06" class="PartCheck unshown" <%= chkPart.get("06") %>>
 										<div class="part">Per.</div>
 									</label>
 									<label for="checkCho" class="noshadow">
-										<input id="checkCho" type="checkbox" name="part" value="07" class="PartCheck unshown" <%= chkPart.get("07") %>>
+										<input id="checkCho" type="checkbox" name="chkPart" value="07" class="PartCheck unshown" <%= chkPart.get("07") %>>
 										<div class="part">Cho.</div>
 									</label>
 									<label for="checkOther" class="noshadow">
-										<input id="checkOther" type="checkbox" name="part" value="08" class="PartCheck unshown" <%= chkPart.get("08") %>>
+										<input id="checkOther" type="checkbox" name="chkPart" value="08" class="PartCheck unshown" <%= chkPart.get("08") %>>
 										<div class="part">Other</div>
 									</label>
 								</div>
@@ -176,8 +142,10 @@ String errMsg = (String)request.getAttribute("errMsg");
 						<div class="TblBody">
 							<textarea id="stDetails" class="FullWide" name="stDetails" placeholder="詳細" onFocus="dynamicHeightChanger('stDetails')"><%= stDetails %></textarea>
 						</div>
-						<!-- ★この下のやつは一時的なやつなのでロジック直したら消す
-						<input type="hidden" name="stPart" value="<%= chkPart %>"> -->
+						<input type="hidden" name="cfPostMode" value="<%= cfPostMode %>">
+						<% if (cfPostMode.equals("F")) { %>
+							<input type="hidden" name="idPost" value="<%= beanPV.getIdPost() %>">
+						<% } %>
 					</div>
 				</div>
 			</div>

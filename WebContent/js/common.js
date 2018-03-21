@@ -125,6 +125,14 @@ function getHeightTextare(arrTextareaId) {
 		// 各textareaの高さを取得し、「要素ID=高さ」で配列に追加
 		var targetId = arrTextareaId[i];
 		var targetHeight = document.getElementById(targetId).clientHeight;
+		if (targetId == "stDetails") {
+			if (targetHeight < DETAILS_HEIGHT) {
+				targetHeight = DETAILS_HEIGHT;
+			}
+		}
+		if (targetHeight == 0) {
+			targetHeight = 30;
+		}
 		arrHeight.push(targetId + "=" + targetHeight);
 	}
 
