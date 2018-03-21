@@ -63,7 +63,7 @@ public class PostSendServlet extends HttpServlet {
 			stHeightArray = (String)session.getAttribute("arrHeight");
 
 			//sessionスコープに残った要素は不要なので破棄
-			session.removeAttribute("stHeightArray");
+			session.removeAttribute("arrHeight");
 			session.removeAttribute("idPost");
 
 			// 投稿IDを基に投稿内容を取得
@@ -115,7 +115,7 @@ public class PostSendServlet extends HttpServlet {
 			inParam.put("dtEvent", request.getParameter("dtEvent"));
 		} else if (cfPostType.equals("M")) {
 			// 投稿種別がメンバー募集の場合
-			// 選択したpartはString型配列で来るので、カンマ区切りの文字列へ変換
+			// 選択したpartはString型配列で来るので、対応するコード(カンマ区切り)の文字列へ変換
 			String[] arrChkPart = request.getParameterValues("chkPart");
 			String stPart = "";
 			for (int i = 0 ; i < arrChkPart.length ; i++){
@@ -159,6 +159,7 @@ public class PostSendServlet extends HttpServlet {
 		}
 
 		String errMsg = (String)resultPost.get("errMsg");
+
 		// 投稿処理の結果で分岐
 		if (errMsg.equals("")) {
 			// 成功した場合、戻り先にリダイレクト

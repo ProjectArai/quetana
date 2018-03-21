@@ -1,3 +1,6 @@
+// 表示時のheight取得が必要な要素IDを定義
+var arrTextareaId = ['stGenre', 'stBand', 'stIntroduction'];
+
 // プロフィール画像変更時、submit前にプレビューさせる処理
 function setImage(event){
 	var file = event.target.files[0];

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.bean.PostViewBean,model.TimeLineBean,java.util.Map, java.util.Date, java.text.SimpleDateFormat, model.LoginUserInfoBean" %>
+<%@ page import="model.bean.PostViewBean, java.util.Map, model.LoginUserInfoBean" %>
 <%
 // セッションスコープからユーザ情報を取得
 LoginUserInfoBean loginUserInfo = (LoginUserInfoBean) session.getAttribute("loginUserInfo");
@@ -10,18 +10,13 @@ String cfPostMode = (String)request.getAttribute("cfPostMode");
 
 // requestスコープから投稿内容(新規の場合は基本空)を取得
 PostViewBean beanPV = (PostViewBean)request.getAttribute("beanPV");
-String stTitle = (String)beanPV.getStTitle();
 Map chkPart = (Map)beanPV.getChkPart();
-String stGenre = (String)beanPV.getStGenre();
-String stPlace = (String)beanPV.getStPlace();
-String dtEvent = (String)beanPV.getDtEvent();
-String stDetails = (String)beanPV.getStDetails();
-String cfPostType = (String)beanPV.getCfPostType();
 
-// 投稿種別プルダウンの初期選択状態設定
+//投稿種別プルダウンの初期選択状態設定
 String chkN = "";
 String chkM = "";
 String chkE = "";
+String cfPostType = (String)beanPV.getCfPostType();
 if (cfPostType.equals("M")) {
 	chkM = "selected";
 } else if (cfPostType.equals("E")) {
@@ -30,7 +25,7 @@ if (cfPostType.equals("M")) {
 	chkN = "selected";
 }
 
-// sessionスコープからプロフィール表示画面での各要素の高さを取得、取得後は不要なので破棄
+// requestスコープから各textareaの高さを取得
 String stHeightArray = (String)request.getAttribute("stHeightArray");
 
 // エラーメッセージがあれば保持
@@ -66,7 +61,7 @@ String errMsg = (String)request.getAttribute("errMsg");
  						<img class="Icon30 Left" src="/quetana/img/default-icon.jpg">
 						<div class="UserName30">テスト山　テスト一郎</div>
 						<div class="TblBody">
-							<textarea id="stTitle" class="TblHeadTitleL" name="stTitle" placeholder="タイトル" onFocus="dynamicHeightChanger('stTitle')"><%= stTitle %></textarea>
+							<textarea id="stTitle" class="TblHeadTitleL" name="stTitle" placeholder="タイトル" onFocus="dynamicHeightChanger('stTitle')"><%= beanPV.getStTitle() %></textarea>
 						</div>
 						<div class="TblHead">
 							<div class="TblHeadBlock"></div>
@@ -122,17 +117,17 @@ String errMsg = (String)request.getAttribute("errMsg");
 							</div>
 							<div class="TblBody">
 								<div class="TblKey">ジャンル</div>
-								<textarea id="stGenre" class="TblValue" name="stGenre" placeholder="ジャンル" onFocus="dynamicHeightChanger('stGenre')"><%= stGenre %></textarea>
+								<textarea id="stGenre" class="TblValue" name="stGenre" placeholder="ジャンル" onFocus="dynamicHeightChanger('stGenre')"><%= beanPV.getStGenre() %></textarea>
 							</div>
 						</div>
 						<div id="PostEvent">
 							<div class="TblBody">
 								<div class="TblKey">開催日</div>
-								<input class="TblValue" type="date" name="dtEvent" placeholder="開催日" value="<%= dtEvent %>">
+								<input class="TblValue" type="date" name="dtEvent" placeholder="開催日" value="<%= beanPV.getDtEvent() %>">
 							</div>
 							<div class="TblBody">
 								<div class="TblKey">開催場所</div>
-								<textarea id="stPlace" class="TblValue" name="stPlace" placeholder="開催場所" onFocus="dynamicHeightChanger('stPlace')"><%= stPlace %></textarea>
+								<textarea id="stPlace" class="TblValue" name="stPlace" placeholder="開催場所" onFocus="dynamicHeightChanger('stPlace')"><%= beanPV.getStPlace() %></textarea>
 							</div>
 						</div>
 						<div class="TblHead">
@@ -140,7 +135,7 @@ String errMsg = (String)request.getAttribute("errMsg");
 							<div class="TblHeadTitleS">詳細</div>
 						</div>
 						<div class="TblBody">
-							<textarea id="stDetails" class="FullWide" name="stDetails" placeholder="詳細" onFocus="dynamicHeightChanger('stDetails')"><%= stDetails %></textarea>
+							<textarea id="stDetails" class="FullWide" name="stDetails" placeholder="詳細" onFocus="dynamicHeightChanger('stDetails')"><%= beanPV.getStDetails() %></textarea>
 						</div>
 						<input type="hidden" name="cfPostMode" value="<%= cfPostMode %>">
 						<% if (cfPostMode.equals("F")) { %>

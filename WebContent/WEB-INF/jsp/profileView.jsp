@@ -39,15 +39,15 @@ String perEdit = (String) request.getAttribute("perEdit");
 						<div class="ContentsFull">
 							<% if (perEdit.equals("Y")) { %>
 								<!-- ログインユーザ自身の場合、プロフィール編集ボタンを表示 -->
-								<form name="formEdit" action="/quetana/Contents/UserProfile" method="post">
+								<form name="formEdit" action="/quetana/Contents/ProfileView" method="post">
 									<input type="submit" class="Button30 Right edit" value="" onclick="getHeightTextare(arrTextareaId)">
 								</form>
 							<% } else if (perEdit.equals("N")) { %>
 								<!-- ログインユーザ以外の場合、友達申請ボタン？とDM送信ボタンを表示 -->
-								<form name="formReqFriend" action="/quetana/Contents/UserProfile" method="post" onsubmit="return dispConfirmDialog('MSG00010')">
+								<form name="formReqFriend" action="/quetana/Contents/ProfileView" method="post" onsubmit="return dispConfirmDialog('MSG00010')">
 									<input type="submit" name="btnRecFriend" class="Button30 Right friend" value="">
 								</form>
-								<form name="formSendDM" action="/quetana/Contents/UserProfile" method="post" onsubmit="return dispConfirmDialog('MSG00012')">
+								<form name="formSendDM" action="/quetana/Contents/ProfileView" method="post" onsubmit="return dispConfirmDialog('MSG00012')">
 									<input type="submit" name="btnSendDM" class="Button30 Right dm" value="">
 								</form>
 							<% } %>
@@ -147,7 +147,7 @@ String perEdit = (String) request.getAttribute("perEdit");
 				</div>
 				<div class="PfFriend">
 					<div class="ContentsShadow">
-						<a class="ContentsLink" href="/quetana/Contents/UserProfile?idUser=UI000001">
+						<a class="ContentsLink" href="/quetana/Contents/ProfileView?idUser=UI000001">
 							<div class="ContentsFull">
 								<div class="ListIconArea">
 									<img class="Icon30" src="/quetana/img/UI000001.jpg">
@@ -161,7 +161,7 @@ String perEdit = (String) request.getAttribute("perEdit");
 						</a>
 					</div>
 					<div class="ContentsShadow">
-						<!-- <a class="ContentsLink" href="/quetana/Contents/UserProfile?idUser=UI000001"> -->
+						<!-- <a class="ContentsLink" href="/quetana/Contents/ProfileView?idUser=UI000001"> -->
 							<div class="ContentsFull">
 								<div class="ListIconArea">
 									<img class="Icon30" src="/quetana/img/kazzool.png">
@@ -174,7 +174,7 @@ String perEdit = (String) request.getAttribute("perEdit");
 						<!-- </a> -->
 					</div>
 					<div class="ContentsShadow">
-						<!-- <a class="ContentsLink" href="/quetana/Contents/UserProfile?idUser=UI000001"> -->
+						<!-- <a class="ContentsLink" href="/quetana/Contents/ProfileView?idUser=UI000001"> -->
 							<div class="ContentsFull">
 								<div class="ListIconArea">
 									<img class="Icon30" src="/quetana/img/gekiyasu.png">
@@ -185,7 +185,8 @@ String perEdit = (String) request.getAttribute("perEdit");
 								<div class="ListOutline">なに表示しようか</div>
 							</div>
 						<!-- </a> -->
-					</div>				</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<jsp:include page="../jsp/parts/mainheader.jsp" flush="true" />

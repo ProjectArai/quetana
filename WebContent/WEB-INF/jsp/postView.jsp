@@ -41,7 +41,7 @@ String perEdit = (String) request.getAttribute("perEdit");
 								<input type="hidden" name="idPost" value="<%= beanPV.getIdPost() %>">
 							</form>
 						<% } %>
-						<a class="noshadow" id="TLLink" href="/quetana/Contents/UserProfile?idUser=<%= beanPV.getIdUser() %>">
+						<a class="noshadow" id="TLLink" href="/quetana/Contents/ProfileView?idUser=<%= beanPV.getIdUser() %>">
 							<img class="Icon30 Left" src="<%= beanPV.getStIconURL() %>">
 							<div class="UserName30"><%= beanPV.getStDisplayName() %></div>
 						</a>
@@ -85,7 +85,7 @@ String perEdit = (String) request.getAttribute("perEdit");
 							<img class="Icon25 Left" src="/quetana/img/gekiyasu.png">
 							<div class="TirLeft"></div>
 							<div class="Balloon Left">
-								<a id="TLLink" href="/quetana/Contents/UserProfile?idUser=UI000009">あべけん</a>
+								<a id="TLLink" href="/quetana/Contents/ProfileView?idUser=UI000009">あべけん</a>
 								ドラム加入希望です！
 							</div>
 						</div>
@@ -93,7 +93,7 @@ String perEdit = (String) request.getAttribute("perEdit");
 							<img class="Icon25 Left" src="/quetana/img/kazzool.png">
 							<div class="TirLeft"></div>
 							<div class="Balloon Left">
-								<a id="TLLink" href="/quetana/Contents/UserProfile?idUser=UI000001">kazzool</a>
+								<a id="TLLink" href="/quetana/Contents/ProfileView?idUser=UI000001">kazzool</a>
 								はじめまして、2014年卒のkazzoolです！ベース加入希望ですがもう決まってしまいましたか？
 							</div>
 						</div>
@@ -101,7 +101,7 @@ String perEdit = (String) request.getAttribute("perEdit");
 							<img class="Icon25 Right" src="/quetana/img/UI000001.jpg">
 							<div class="TirRight"></div>
 							<div class="Balloon Right">
-								<a id="TLLink" href="/quetana/Contents/UserProfile?idUser=UI000001">まえぞのりょうた</a>
+								<a id="TLLink" href="/quetana/Contents/ProfileView?idUser=UI000001">まえぞのりょうた</a>
 								あべけん、kazzool> ありがとうございます！！まだ決まってないのでお願いします！
 							</div>
 						</div>

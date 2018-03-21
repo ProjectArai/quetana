@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.UserProfileBean,java.util.List,java.util.ArrayList" %>
+<%@ page import="model.UserProfileBean, java.util.Map" %>
 <%
 //リクエストスコープからプロフィールを取得
 UserProfileBean userProfile = (UserProfileBean) request.getAttribute("userProfile");
-String errMsg = (String)request.getAttribute("errMsg");
+Map chkPart = (Map)userProfile.getChkPart();
 
-// sessionスコープからプロフィール表示画面での各要素の高さを取得、取得後は不要なので破棄
-String stHeightArray = (String)session.getAttribute("arrHeight");
-session.removeAttribute("arrHeight");
+//requestスコープから各textareaの高さを取得
+String stHeightArray = (String)request.getAttribute("stHeightArray");
+
+//エラーメッセージがあれば保持
+String errMsg = (String)request.getAttribute("errMsg");
 %>
 <!DOCTYPE html>
 <html>
@@ -24,7 +26,7 @@ session.removeAttribute("arrHeight");
 		<link href="https://fonts.googleapis.com/css?family=Lato:400,900" rel="stylesheet">
 	</head>
 	<body onLoad="setVideoURLHeight();setTextareaHeight('<%= stHeightArray %>')">
-		<form enctype="multipart/form-data" action="/quetana/Contents/EditProfile" method="post">
+		<form name="formEdit" enctype="multipart/form-data" action="/quetana/Contents/ProfileEdit" method="post">
 		<div class="Foundation">
 			<div class="PageTitle">プロフィール編集</div>
 			<div class="ContentsHead">
@@ -66,35 +68,35 @@ session.removeAttribute("arrHeight");
 							<div class="TblKey">担当パート</div>
 							<div class="PartArea">
 								<label for="checkVo" class="noshadow">
-									<input id="checkVo" type="checkbox" name="part" value="01" class="PartCheck unshown">
+									<input id="checkVo" type="checkbox" name="chkPart" value="01" class="PartCheck unshown" <%= chkPart.get("01") %>>
 									<div class="part">Vo.</div>
 								</label>
 								<label for="checkGt" class="noshadow">
-									<input id="checkGt" type="checkbox" name="part" value="02" class="PartCheck unshown">
+									<input id="checkGt" type="checkbox" name="chkPart" value="02" class="PartCheck unshown" <%= chkPart.get("02") %>>
 									<div class="part">Gt.</div>
 								</label>
 								<label for="checkBa" class="noshadow">
-									<input id="checkBa" type="checkbox" name="part" value="03" class="PartCheck unshown">
+									<input id="checkBa" type="checkbox" name="chkPart" value="03" class="PartCheck unshown" <%= chkPart.get("03") %>>
 									<div class="part">Ba.</div>
 								</label>
 								<label for="checkKey" class="noshadow">
-									<input id="checkKey" type="checkbox" name="part" value="04" class="PartCheck unshown">
+									<input id="checkKey" type="checkbox" name="chkPart" value="04" class="PartCheck unshown" <%= chkPart.get("04") %>>
 									<div class="part">Key.</div>
 								</label>
 								<label for="checkDr" class="noshadow">
-									<input id="checkDr" type="checkbox" name="part" value="05" class="PartCheck unshown">
+									<input id="checkDr" type="checkbox" name="chkPart" value="05" class="PartCheck unshown" <%= chkPart.get("05") %>>
 									<div class="part">Dr.</div>
 								</label>
 								<label for="checkPer" class="noshadow">
-									<input id="checkPer" type="checkbox" name="part" value="06" class="PartCheck unshown">
+									<input id="checkPer" type="checkbox" name="chkPart" value="06" class="PartCheck unshown" <%= chkPart.get("06") %>>
 									<div class="part">Per.</div>
 								</label>
 								<label for="checkCho" class="noshadow">
-									<input id="checkCho" type="checkbox" name="part" value="07" class="PartCheck unshown">
+									<input id="checkCho" type="checkbox" name="chkPart" value="07" class="PartCheck unshown" <%= chkPart.get("07") %>>
 									<div class="part">Cho.</div>
 								</label>
 								<label for="checkOther" class="noshadow">
-									<input id="checkOther" type="checkbox" name="part" value="08" class="PartCheck unshown">
+									<input id="checkOther" type="checkbox" name="chkPart" value="08" class="PartCheck unshown" <%= chkPart.get("08") %>>
 									<div class="part">Other</div>
 								</label>
 							</div>
@@ -125,7 +127,7 @@ session.removeAttribute("arrHeight");
 						<div class="TblBody">
 							<textarea id="stVideoURL" class=FullWide name="stVideoURL" placeholder="YoutubeURL" onfocus="dynamicHeightChanger('stVideoURL')"><%= userProfile.getStVideoURL() %></textarea>
 						</div>
-						<input type="hidden" name="stIconURL" value="<%= userProfile.getStIconURL() %>">
+						<input type="hidden" name="stIconURL_org" value="<%= userProfile.getStIconURL() %>">
 						<!-- ★この下のやつは一時的なやつなのでロジック直したら消す -->
 						<input type="hidden" name="stPart" value="<%= userProfile.getStPart() %>">
 					</div>

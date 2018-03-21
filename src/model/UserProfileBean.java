@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Map;
+
 public class UserProfileBean {
 	private String idUser;     //ユーザID
 	private String stAccountName; //アカウント名
@@ -7,6 +9,7 @@ public class UserProfileBean {
 	private String nmAge;      //年齢
 	private String nmAddYear;  //入学年度
 	private String stPart;     //担当パート
+	private Map chkPart;       //担当パートの選択状況★
 	private String stFBand;    //好きなバンド
 	private String stFGenre;   //好きなジャンル
 	private String stIconURL;  //アイコンURL
@@ -61,6 +64,14 @@ public class UserProfileBean {
 
 	public void setStPart(String stPart) {
 		this.stPart = stPart;
+	}
+
+	public Map getChkPart() {
+		return chkPart;
+	}
+
+	public void setChkPart(Map chkPart) {
+		this.chkPart = chkPart;
 	}
 
 	public String getStFBand() {

@@ -2,8 +2,7 @@
 //var arrHeight = "stTitle=30,stGenre=30,stPlace=30,stDetails=118";
 
 // 表示時のheight取得が必要な要素IDを定義
-var arrTextareaId;
-arrTextareaId = ['stTitle', 'stPlace', 'stGenre', 'stDetails'];
+var arrTextareaId = ['stTitle', 'stPlace', 'stGenre', 'stDetails'];
 //cfPostType = document.getElementById("cfPostType").value;
 //if (cfPostType == "E") {
 //	arrTextareaId = ['stTitle', 'stPlace', 'stDetails'];

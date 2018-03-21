@@ -1,6 +1,6 @@
 var NOMAL_LINE_HEIGHT = "22px";
 var TITLE_LINE_HEIGHT = "22px";
-var DETAILS_HEIGHT = 184;
+var DETAILS_MIN_HEIGHT = 184; // 詳細欄の最小Height
 
 // 画面表示時にinfoメッセージを出す
 function dispInfoMsg(infoMsg) {
@@ -78,9 +78,6 @@ function dynamicHeightChanger(id) {
 
 	textarea.addEventListener("input",function(evt){
 
-		// 詳細欄の最小Heightを指定
-		var detailsHeightMin = DETAILS_HEIGHT;
-
 		//scrollHeight(入力内容全体)とoffsetHeight(要素の大きさ)とを比較
 		if(evt.target.scrollHeight > evt.target.offsetHeight){
 			// 入力内容の方が大きい場合は、textareaのheightをscrollHeightに合わせる
@@ -100,8 +97,8 @@ function dynamicHeightChanger(id) {
 
 					// 対象のtextareaが詳細欄、かつscrollHeightが最小Height以下の場合、最小Heightを採用
 					if (id == "stDetails"){
-						if (evt.target.scrollHeight <= detailsHeightMin){
-							evt.target.style.height = detailsHeightMin + "px";
+						if (evt.target.scrollHeight <= DETAILS_MIN_HEIGHT){
+							evt.target.style.height = DETAILS_MIN_HEIGHT + "px";
 							break;
 						}
 					}
@@ -126,8 +123,8 @@ function getHeightTextare(arrTextareaId) {
 		var targetId = arrTextareaId[i];
 		var targetHeight = document.getElementById(targetId).clientHeight;
 		if (targetId == "stDetails") {
-			if (targetHeight < DETAILS_HEIGHT) {
-				targetHeight = DETAILS_HEIGHT;
+			if (targetHeight < DETAILS_MIN_HEIGHT) {
+				targetHeight = DETAILS_MIN_HEIGHT;
 			}
 		}
 		if (targetHeight == 0) {

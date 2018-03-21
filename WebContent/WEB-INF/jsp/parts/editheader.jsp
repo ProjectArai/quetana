@@ -1,9 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.LoginUserInfoBean" %>
 <%
-//セッションスコープからユーザ情報を取得
-LoginUserInfoBean loginUserInfo = (LoginUserInfoBean) session.getAttribute("loginUserInfo");
+// 指定された戻り先を取得
+String stReturnURL = (String)request.getAttribute("stReturnURL");
 %>
 <!DOCTYPE html>
 <html>
@@ -16,7 +15,7 @@ LoginUserInfoBean loginUserInfo = (LoginUserInfoBean) session.getAttribute("logi
 	<body>
 		<div class="HeaderBase">
 			<div class="BtnBase">
-				<input class="BackBtn" type="button" value="×" onClick="history.back()">
+				<input class="BackBtn" type="button" value="×" onClick="location.href='<%= stReturnURL %>'">
 			</div>
 			<div class="HeaderLogo">Quetana</div>
 			<div class="BtnBase">

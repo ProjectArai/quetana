@@ -12,20 +12,20 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import model.LoginUserInfoBean;
-import model.bean.PostViewBean;
-import model.logic.PostViewLogic;
+import model.UserProfileBean;
+import model.logic.ProfileViewLogic;
 
 /**
  * Servlet implementation class HomeServlet
  */
-@WebServlet("/Contents/PostView")
-public class PostViewServlet extends HttpServlet {
+@WebServlet("/Contents/ProfileView")
+public class ProfileViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PostViewServlet() {
+    public ProfileViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,41 +37,48 @@ public class PostViewServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 
-		String idPost = request.getParameter("idPost");
+		// セッションスコープからログインユーザ情報(のID)を取得
+		HttpSession session = request.getSession();
+		LoginUserInfoBean loginUserInfo = (LoginUserInfoBean)session.getAttribute("loginUserInfo");
+		String idLoginUser = loginUserInfo.getIdUser();
 
-		// 投稿IDを基に投稿内容を取得
-		Map result = PostViewLogic.getPostInfo(idPost);
+		// プロフィールを表示するユーザを設定
+		String idUser;
+		String perEdit = "N";
+		if (request.getParameter("idUser") == null) {
+			// idUser指定なし(MENUから遷移)の場合＝ログインユーザ本人
+			idUser = idLoginUser;
+		} else {
+			idUser = request.getParameter("idUser");
+		}
+
+		// ログインユーザ本人の場合は編集可の権限を付与
+		if (idUser.equals(idLoginUser)) {
+			perEdit = "Y";
+		}
+
+		//ユーザIDを基にプロフィールを取得
+		Map result = ProfileViewLogic.getUserProfile(idUser);
+
 		String errMsg = (String)result.get("errMsg");
 
 		if (errMsg.equals("")) {
-			// 投稿内容の取得に成功した場合
-			PostViewBean beanPV = (PostViewBean)result.get("beanPV");
-
-			String perEdit = "N";
-			// セッションスコープからログインユーザ情報(のID)を取得
-			HttpSession session = request.getSession();
-			LoginUserInfoBean loginUserInfo = (LoginUserInfoBean)session.getAttribute("loginUserInfo");
-			String idLoginUser = loginUserInfo.getIdUser();
-			// ログインユーザ＝投稿者本人の場合は編集可の権限を付与
-			if (idLoginUser.equals(beanPV.getIdUser())) {
-				perEdit = "Y";
-			}
-
-			// 投稿内容をリクエストスコープに保存
-			request.setAttribute("beanPV", beanPV);
-			//投稿内容修正権限をリクエストスコープに保存
+			//プロフィール取得に成功した場合
+			//ユーザプロフィールをリクエストスコープに保存
+			UserProfileBean userProfile = (UserProfileBean)result.get("userProfile");
+			request.setAttribute("userProfile", userProfile);
+			//プロフィール編集権限をリクエストスコープに保存
 			request.setAttribute("perEdit", perEdit);
-			// postView.jspにフォワード
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/postView.jsp");
+			// profileView.jspにフォワード
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/profileView.jsp");
 			dispatcher.forward(request, response);
 		} else {
-			// 投稿内容の取得に失敗した場合
+			//プロフィール取得に失敗した場合
 			// ★エラー画面でエラーメッセージを表示？
 			request.setAttribute("errMsg", errMsg);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/error.jsp");
 			dispatcher.forward(request, response);
 		}
-
 	}
 
 	/**
@@ -83,9 +90,8 @@ public class PostViewServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		session.setAttribute("arrHeight", request.getParameter("arrHeight"));
-		session.setAttribute("idPost", request.getParameter("idPost"));
 
-		// 投稿内容修正画面に遷移（/PostSendにリダイレクト）
-		response.sendRedirect("/quetana/Contents/PostSend");
-	}
+		// プロフィール編集画面に遷移（/ProfileEditにリダイレクト）
+		response.sendRedirect("/quetana/Contents/ProfileEdit");
+		}
 }
