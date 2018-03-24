@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.LoginUserInfoBean" %>
+<%@ page import="model.bean.LoginUserInfoBean" %>
 <%
 //セッションスコープからユーザ情報を取得
 LoginUserInfoBean loginUserInfo = (LoginUserInfoBean) session.getAttribute("loginUserInfo");

@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.LoginUserInfoBean;
-import model.PostSendLogic;
+import model.bean.LoginUserInfoBean;
 import model.bean.PostViewBean;
+import model.logic.PostSendLogic;
 
 /**
  * Servlet implementation class HomeServlet

@@ -1,4 +1,4 @@
-package dao;
+package model.dao;
 
 //DAO用のインポート
 import java.sql.Connection;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.UserInfoDto;
+import model.dto.UserInfoDto;
 
 
 public class T_USER_INFO_DAO {

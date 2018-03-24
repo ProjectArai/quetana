@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.TimeLineBean,java.util.List" %>
+<%@ page import="model.bean.TimeLineBean,java.util.List" %>
 <%
 //リクエストスコープからタイムラインを取得
 List<TimeLineBean> arrTimeLine = (List<TimeLineBean>) request.getAttribute("arrTimeLine");

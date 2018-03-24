@@ -8,10 +8,9 @@ import java.util.Map;
 
 import javax.servlet.http.Part;
 
-import dao.T_USER_PROFILE_DAO;
-import model.CommonLogic;
-import model.LoginUserInfoBean;
-import model.UserProfileBean;
+import model.bean.LoginUserInfoBean;
+import model.bean.UserProfileBean;
+import model.dao.T_USER_PROFILE_DAO;
 import model.dto.UserProfileDto;
 
 public class ProfileEditLogic {
@@ -156,6 +155,9 @@ public class ProfileEditLogic {
 			dtoUP.setStIconURL("/quetana/img" + stIconFileName);
 			// IconUpdateFLGをオン
 			cfIconUpdate = true;
+
+			LoginUserInfoBean loginUserInfo = (LoginUserInfoBean)inParam.get("loginUserInfo");
+			loginUserInfo.setStIconURL("/quetana/img" + stIconFileName);
 		} else {
 			// アップロードされていない場合、Dtoに元々のアイコンパスをセット
 			dtoUP.setStIconURL((String)inParam.get("stIconURL_org"));

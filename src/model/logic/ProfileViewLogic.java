@@ -5,9 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import dao.T_USER_PROFILE_DAO;
-import model.CommonLogic;
-import model.UserProfileBean;
+import model.bean.UserProfileBean;
+import model.dao.T_USER_PROFILE_DAO;
 import model.dto.UserProfileDto;
 
 public class ProfileViewLogic {

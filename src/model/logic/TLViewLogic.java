@@ -1,15 +1,16 @@
-package model;
+package model.logic;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import dao.GetTimeLineDAO;
+import model.bean.TimeLineBean;
+import model.dao.GetTimeLineDAO;
 import model.dto.TimeLineDto;
 
 
-public class ViewTimeLine {
+public class TLViewLogic {
 
 	public static List<TimeLineBean> getTimeLineList() {
 

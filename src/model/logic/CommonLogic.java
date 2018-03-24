@@ -1,9 +1,9 @@
-package model;
+package model.logic;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import dao.M_SEQ_NO_DAO;
+import model.dao.M_SEQ_NO_DAO;
 import model.dto.SeqNoDto;
 
 public class CommonLogic {

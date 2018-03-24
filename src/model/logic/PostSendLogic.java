@@ -1,4 +1,4 @@
-package model;
+package model.logic;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -7,9 +7,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import dao.T_EVENT_ANNOUNCE_DAO;
-import dao.T_MEMBER_RECRUIT_DAO;
 import model.bean.PostViewBean;
+import model.dao.T_EVENT_ANNOUNCE_DAO;
+import model.dao.T_MEMBER_RECRUIT_DAO;
 import model.dto.EventAnnounceDto;
 import model.dto.MemberRecruitDto;
 import model.dto.TimeLineDto;

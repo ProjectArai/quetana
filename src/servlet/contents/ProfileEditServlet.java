@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.LoginUserInfoBean;
-import model.UserProfileBean;
+import model.bean.LoginUserInfoBean;
+import model.bean.UserProfileBean;
 import model.logic.ProfileEditLogic;
 
 /**
@@ -110,6 +110,7 @@ public class ProfileEditServlet extends HttpServlet {
 		inParam.put("stImgSavePath", getServletContext().getRealPath("/img"));
 		inParam.put("stVideoURL", request.getParameter("stVideoURL"));
 		inParam.put("stIntroduction", request.getParameter("stIntroduction"));
+		inParam.put("loginUserInfo", loginUserInfo);
 
 		// 戻り先には修正元のプロフィール表示画面を設定
 		String stReturnURL = "/quetana/Contents/ProfileView";
@@ -125,8 +126,8 @@ public class ProfileEditServlet extends HttpServlet {
 			if (cfIconUpdate) {
 				// アイコンを更新している場合、セッションのユーザ情報を更新
 				// ★エラーの場合のとか考えなきゃ
-				Map resultLUUpdate = ProfileEditLogic.updateLoginUserInfo(loginUserInfo.getIdUser());
-				loginUserInfo = (LoginUserInfoBean)resultLUUpdate.get("loginUserInfo");
+//				Map resultLUUpdate = ProfileEditLogic.updateLoginUserInfo(loginUserInfo.getIdUser());
+//				loginUserInfo = (LoginUserInfoBean)resultLUUpdate.get("loginUserInfo");
 				session.setAttribute("loginUserInfo", loginUserInfo);
 			}
 			// 戻り先にリダイレクト

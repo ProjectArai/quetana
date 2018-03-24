@@ -1,9 +1,10 @@
-package model;
+package model.logic;
 
 import java.util.Map;
 
-import dao.T_USER_INFO_DAO;
-import dao.T_USER_PROFILE_DAO;
+import model.dao.T_USER_INFO_DAO;
+import model.dao.T_USER_PROFILE_DAO;
+import model.dto.UserInfoDto;
 import model.dto.UserProfileDto;
 
 

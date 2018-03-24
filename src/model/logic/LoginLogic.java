@@ -1,10 +1,12 @@
-package model;
+package model.logic;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import dao.T_USER_INFO_DAO;
+import model.bean.LoginUserInfoBean;
+import model.dao.T_USER_INFO_DAO;
+import model.dto.UserInfoDto;
 
 public class LoginLogic {
 

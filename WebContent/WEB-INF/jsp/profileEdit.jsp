@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="model.UserProfileBean, java.util.Map" %>
+<%@ page import="model.bean.UserProfileBean, java.util.Map" %>
 <%
 //リクエストスコープからプロフィールを取得
 UserProfileBean userProfile = (UserProfileBean) request.getAttribute("userProfile");

@@ -1,4 +1,4 @@
-package dao;
+package model.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,17 +8,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.dto.MemberRecruitDto;
+import model.dto.EventAnnounceDto;
 import model.dto.TimeLineDto;
 
-public class T_MEMBER_RECRUIT_DAO {
+public class T_EVENT_ANNOUNCE_DAO {
 
 	/**
-	 * T_MEMBER_RECRUITへINSERT
-	 * @param dtoMR  ：T_MEMBER_RECRUITのDTO
+	 * T_EVENT_ANNOUNCEへINSERT
+	 * @param dtoEA  ：T_EVENT_ANNOUNCEのDTO
 	 * @return rowExec  ：実行件数、DB処理失敗の場合2
 	 */
-	public int insertMemberRecruit(MemberRecruitDto dtoMR) {
+	public int insertEventAnnounce(EventAnnounceDto dtoEA) {
 
 		int rowExec = 0;
 
@@ -33,17 +33,17 @@ public class T_MEMBER_RECRUIT_DAO {
 
 			// SELECT文を準備
 			String sql =
-					"insert into T_MEMBER_RECRUIT(IDPOST, IDUSER, STTITLE, STPART, STGENRE, STDETAILS, CFDELETE, DTUPDATE, DTRESIST) "
+					"insert into T_EVENT_ANNOUNCE(IDPOST, IDUSER, STTITLE, STPLACE, DTEVENT, STDETAILS, CFDELETE, DTUPDATE, DTRESIST) "
 						+ "values (?, ?, ?, ?, ?, ?, ?, now(), now()); ";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1, dtoMR.getIdPost());
-			pStmt.setString(2, dtoMR.getIdUser());
-			pStmt.setString(3, dtoMR.getStTitle());
-			pStmt.setString(4, dtoMR.getStPart());
-			pStmt.setString(5, dtoMR.getStGenre());
-			pStmt.setString(6, dtoMR.getStDetails());
-			pStmt.setString(7, dtoMR.getCfDelete());
+			pStmt.setString(1, dtoEA.getIdPost());
+			pStmt.setString(2, dtoEA.getIdUser());
+			pStmt.setString(3, dtoEA.getStTitle());
+			pStmt.setString(4, dtoEA.getStPlace());
+			pStmt.setDate(5, dtoEA.getDtEvent());
+			pStmt.setString(6, dtoEA.getStDetails());
+			pStmt.setString(7, dtoEA.getCfDelete());
 
 			// INSERTを実行し、実行結果をrowExecuteに格納
 			rowExec = pStmt.executeUpdate();
@@ -68,9 +68,9 @@ public class T_MEMBER_RECRUIT_DAO {
 		return rowExec;
 	}
 
-	public List<TimeLineDto> selectMemberRecruit(String idPost) {
+	public List<TimeLineDto> selectEventAnnounce(String idPost) {
 
-		List<TimeLineDto> arrMRInfo = new ArrayList();
+		List<TimeLineDto> arrEAInfo = new ArrayList();
 
 		Connection conn = null;
 
@@ -84,12 +84,12 @@ public class T_MEMBER_RECRUIT_DAO {
 			// SELECT文を準備
 			String sql =
 					"select * from ("
-							+ "(select IDPOST, IDUSER, STTITLE, STPART, STGENRE, STDETAILS, CFDELETE, DTUPDATE, DTRESIST from T_MEMBER_RECRUIT where IDPOST= ? AND CFDELETE = false) "
-						+ ") TM "
+							+ "(select IDPOST, IDUSER, STTITLE, STPLACE, DTEVENT, STDETAILS, CFDELETE, DTUPDATE, DTRESIST from T_EVENT_ANNOUNCE where IDPOST= ? AND CFDELETE = false) "
+						+ ") TE "
 						+ "left join ("
 							+ "select IDUSER, STACCOUNTNAME, STDISPLAYNAME, STICONURL from T_USER_PROFILE"
 						+ ") UP "
-						+ "on TM.IDUSER = UP.IDUSER;";
+						+ "on TE.IDUSER = UP.IDUSER;";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			pStmt.setString(1, idPost);
@@ -101,8 +101,8 @@ public class T_MEMBER_RECRUIT_DAO {
 				dto.setIdUser(rs.getString("IDUSER"));
 				dto.setIdPost(rs.getString("IDPOST"));
 				dto.setStTitle(rs.getString("STTITLE"));
-				dto.setStPart(rs.getString("STPART"));
-				dto.setStGenre(rs.getString("STGENRE"));
+				dto.setStPlace(rs.getString("STPLACE"));
+				dto.setDtEvent(rs.getDate("DTEVENT"));
 				dto.setStDetails(rs.getString("STDETAILS"));
 				dto.setCfDelete(rs.getString("CFDELETE"));
 				dto.setDtUpdate(rs.getDate("DTUPDATE"));
@@ -111,7 +111,7 @@ public class T_MEMBER_RECRUIT_DAO {
 				dto.setStDisplayName(rs.getString("STDISPLAYNAME"));
 				dto.setStIconURL(rs.getString("STICONURL"));
 
-				arrMRInfo.add(dto);
+				arrEAInfo.add(dto);
 			}
 
 		} catch(SQLException e) {
@@ -131,15 +131,15 @@ public class T_MEMBER_RECRUIT_DAO {
 				}
 			}
 		}
-		return arrMRInfo;
+		return arrEAInfo;
 	}
 
 	/**
-	 * 投稿IDをWHERE句に指定し、T_MEMBER_RECRUITを更新
-	 * @param dtoMR  ：T_MEMBER_RECRUITのDTO
+	 * 投稿IDをWHERE句に指定し、T_EVENT_ANNOUNCEを更新
+	 * @param dtoEA  ：T_EVENT_ANNOUNCEのDTO
 	 * @return rowExec  ：実行件数 0:更新なし？、1:更新成功、2:DB処理失敗
 	 */
-	public int updateMemberRecruit(MemberRecruitDto dtoMR) {
+	public int updateEventAnnounce(EventAnnounceDto dtoEA) {
 
 		int rowExec = 0;
 
@@ -154,11 +154,11 @@ public class T_MEMBER_RECRUIT_DAO {
 
 			// SELECT文を準備
 			String sql =
-					"UPDATE T_MEMBER_RECRUIT"
+					"UPDATE T_EVENT_ANNOUNCE"
 							+ " SET"
 							+ " STTITLE = ?"
-							+ " , STPART = ?"
-							+ " , STGENRE = ?"
+							+ " , STPLACE = ?"
+							+ " , DTEVENT = ?"
 							+ " , STDETAILS = ?"
 							+ " , DTUPDATE = now()"
 							+ " WHERE"
@@ -166,11 +166,11 @@ public class T_MEMBER_RECRUIT_DAO {
 							+ ";";
 
 			PreparedStatement pStmt = conn.prepareStatement(sql);
-			pStmt.setString(1, dtoMR.getStTitle());
-			pStmt.setString(2, dtoMR.getStPart());
-			pStmt.setString(3, dtoMR.getStGenre());
-			pStmt.setString(4, dtoMR.getStDetails());
-			pStmt.setString(5, dtoMR.getIdPost());
+			pStmt.setString(1, dtoEA.getStTitle());
+			pStmt.setString(2, dtoEA.getStPlace());
+			pStmt.setDate(3, dtoEA.getDtEvent());
+			pStmt.setString(4, dtoEA.getStDetails());
+			pStmt.setString(5, dtoEA.getIdPost());
 
 			// UPDATEを実行し、実行結果をrowExecに格納
 			rowExec = pStmt.executeUpdate();

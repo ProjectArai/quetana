@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.TimeLineBean;
-import model.ViewTimeLine;
+import model.bean.TimeLineBean;
+import model.logic.TLViewLogic;
 
 /**
  * Servlet implementation class HomeServlet
@@ -38,7 +38,7 @@ public class HomeServlet extends HttpServlet {
 
 		//タイムラインを取得し、リクエストスコープに保存
 		List<TimeLineBean> arrTimeLine = new ArrayList();
-		arrTimeLine = ViewTimeLine.getTimeLineList();
+		arrTimeLine = TLViewLogic.getTimeLineList();
 		request.setAttribute("arrTimeLine", arrTimeLine);
 
 		// home.jspにフォワード

@@ -11,12 +11,14 @@ div.Foundation {
 div.ContentsMargin {
 	width: 100%;
 	height: calc(50% - 150px);
+	background: #ffccff;
 }
 div.ContentsArea {
 	margin: auto;
 	width: 100%;
 	height: 300px;
 	text-align: center;
+	background: #ffffcc;
 }
 div.TitleArea {
 	overflow: hidden;

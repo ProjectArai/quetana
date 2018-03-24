@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import model.LoginLogic;
-import model.LoginUserInfoBean;
+import model.bean.LoginUserInfoBean;
+import model.logic.LoginLogic;
 
 /**
  * Servlet implementation class LoginServlet
